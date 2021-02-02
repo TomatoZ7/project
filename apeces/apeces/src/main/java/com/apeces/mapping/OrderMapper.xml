@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.apeces.dao.OrderDao">
+	<resultMap id="order" type="com.apeces.domain.Order">
+		<result column="id" property="id"/>
+		<result column="order_no" property="order_no"/>
+		<result column="user_id" property="user_id"/>
+		<result column="product_id" property="product_id"/>
+		<result column="shop_id" property="shop_id"/>
+		<result column="address_id" property="address_id"/>
+		<result column="nums" property="nums"/>
+		<result column="amount" property="amount"/>
+		<result column="status" property="status"/>
+		<result column="create_time" property="create_time"/>
+		
+		<collection property="product" ofType="com.apeces.pojo.ProSimple">
+			<result column="pid" property="id"/>
+			<result column="name" property="name"/>
+		</collection>
+		
+		<collection property="address" ofType="com.apeces.domain.Address">
+			<result column="aid" property="id"/>
+			<result column="phone" property="phone"/>
+			<result column="aname" property="name"/>
+			<result column="address" property="address"/>
+		</collection>
+	</resultMap>
+
+    <resultMap id="orderCount" type="java.lang.Integer">
+        <result column="count"/>
+    </resultMap>
+	
+	<!-- ADMIN -->
+	<!-- 首页销售额统计 -->
+ 	<select id="count">
+ 		SELECT SUM(amount) FROM orders
+ 		<where>
+ 			<if test="start_time != null">
+ 				create_time >= #{start_time}
+ 			</if>
+ 			<if test="end_time != null">
+ 				create_time &lt;= #{end_time}
+ 			</if>
+ 			<if test="shop_id">
+ 				shop_id = #{shop_id}
+ 			</if>
+ 		</where>
+ 		;
+ 	</select>
+ 	
+ 	<select id="queryOrderByShop" parameterType="Map" resultMap="order, orderCount">
+ 		SELECT SQL_CALC_FOUND_ROWS
+ 			o.*,
+ 			p.id AS pid, p.name,
+ 			a.id AS aid, a.phone, a.name as aname, a.address
+ 		FROM 
+ 			orders AS o
+ 			LEFT JOIN product AS p ON p.id = o.product_id
+ 			LEFT JOIN address AS a ON a.id = o.address_id
+ 		<where>
+ 			<if test="shop_id != null">
+ 				o.shop_id = #{shop_id}
+ 			</if>
+ 		</where>
+ 		<if test="limit > 0">
+ 			limit #{limit} offset{#offset}
+ 		</if>
+ 		;
+			
+		SELECT FOUND_ROWS() as count;
+ 	</select>
+ 	
+ 	<select id="queryOrder" resultMap="order">
+ 		SELECT
+ 			o.*,
+ 			p.id AS pid, p.name,
+ 			a.id AS aid, a.phone, a.name as aname, a.address
+ 		FROM 
+ 			orders AS o
+ 			LEFT JOIN product AS p ON p.id = o.product_id
+ 			LEFT JOIN address AS a ON a.id = o.address_id
+ 		WHERE
+ 			o.id = #{id};
+ 	</select>
+ 	
+ 	
+ 	
+ 	
+ 	
+</mapper>

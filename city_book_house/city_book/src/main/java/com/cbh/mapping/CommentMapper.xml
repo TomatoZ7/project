@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.cbh.dao.CommentDao">
+ 	<resultMap id="commentList" type="com.cbh.domain.Comment">
+ 		<result column="id" property="id"/>
+ 		<result column="user_id" property="user_id"/>
+        <result column="book_id" property="book_id"/>
+        <result column="content" property="content"/>
+        <result column="score" property="score"/>
+        <result column="create_time" property="create_time"/>
+        
+       	<result column="user_name" property="user_name"/>
+       	<result column="user_avatar" property="user_avatar"/>
+	</resultMap>
+	
+	<resultMap id="commentCount" type="java.lang.Integer">
+        <result column="count"/>
+    </resultMap>
+	
+	<!-- 列表查询 -->
+	<select id="getCommentList" parameterType="Map" resultMap="commentList, commentCount">
+		SELECT SQL_CALC_FOUND_ROWS
+			c.*,
+			u.id AS uid,
+			u.name as user_name,
+			u.avatar as user_avatar
+		FROM
+			cb_comment AS c
+			LEFT JOIN cb_user AS u ON c.user_id = u.id
+		<where>
+			<if test="book_id != null">
+				c.book_id = #{book_id}
+			</if>
+		</where>
+		ORDER BY create_time DESC LIMIT #{limit} OFFSET #{offset};
+		SELECT FOUND_ROWS() as count;
+	</select>
+    
+    <!-- 添加评论 -->
+    <insert id="insertComment" parameterType="com.cbh.domain.Comment">
+    	INSERT INTO cb_comment(user_id, book_id, score, content, create_time)
+    	VALUES(#{user_id}, #{book_id}, #{score}, #{content}, #{create_time});
+    </insert>
+ </mapper>

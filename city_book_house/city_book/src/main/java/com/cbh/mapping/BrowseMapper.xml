@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="com.cbh.dao.BrowseDao">
+	<resultMap id="browseList" type="com.cbh.domain.Browse">
+ 		<result property="id" column="id"/>
+        <result column="user_id" property="user_id"/>
+        <result column="book_id" property="book_id"/>
+        <result column="time" property="time"/>
+        
+       	<result column="book_name" property="book_name"/>
+       	<result column="book_image" property="book_image"/>
+       	<result column="book_author" property="book_author"/>
+       	<result column="book_stock" property="book_stock"/>
+       	<result column="book_first_cate" property="book_first_cate"/>
+       	<result column="book_second_cate" property="book_second_cate"/>
+ 	</resultMap>
+ 	
+ 	<!-- 收藏列表-->
+	<select id="getBrowseList" resultMap="browseList">
+		SELECT
+			br.*,
+			b.book_name, b.author as book_author, b.image as book_image, b.stock as book_stock, 
+			fc.category_name as book_first_cate, 
+        	sc.category_name as book_second_cate
+		FROM
+			cb_browse AS br
+			INNER JOIN cb_books AS b ON br.book_id = b.id
+			LEFT JOIN cb_category AS fc ON fc.id = b.first_category_id
+			LEFT JOIN cb_category AS sc ON sc.id = b.second_category_id
+		<where>
+			<if test="user_id != null">
+				br.user_id = #{user_id}
+			</if>
+		</where>
+		ORDER BY br.time DESC;
+	</select>
+	
+	<insert id="insertBrowse" parameterType="com.cbh.domain.Browse">
+		INSERT INTO 
+    	cb_browse(user_id, book_id, time)
+    	SELECT #{user_id}, #{book_id}, #{time}
+    	FROM DUAL
+    	WHERE NOT EXISTS
+    		(SELECT id FROM cb_browse WHERE user_id = #{user_id} AND book_id = #{book_id});
+	</insert>
+</mapper>

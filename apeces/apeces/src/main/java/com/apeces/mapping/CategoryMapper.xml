@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.apeces.dao.CategoryDao">
+	<resultMap id="category" type="com.apeces.domain.Category">
+		<result column="id" property="id"/>
+		<result column="category_name" property="category_name"/>
+	</resultMap>
+
+    <resultMap id="cateCount" type="java.lang.Integer">
+        <result column="count"/>
+    </resultMap>
+	
+	<select id="queryCate" parameterType="Map" resultMap="category, cateCount">
+		SELECT SQL_CALC_FOUND_ROWS * FROM category
+		<if test="limit > 0">
+			limit #{limit} offset #{offset}
+		</if>
+		;
+		SELECT FOUND_ROWS() as count;
+	</select>
+	
+	<select id="queryCateSingle" resultMap="category">
+		SELECT * FROM category WHERE id = #{id};
+	</select>
+	
+	<insert id="insertCate">
+		INSERT INTO category(category_name) VALUES(#{category_name});
+	</insert>
+	
+	<update id="editCate">
+		UPDATE category SET category_name = #{category_name} WHERE id = #{id};
+	</update>
+	
+	<delete id="delCate">
+		DELETE FROM category WHERE id = #{id};
+	</delete>
+</mapper>

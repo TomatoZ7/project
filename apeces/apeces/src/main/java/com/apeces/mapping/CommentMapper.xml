@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.apeces.dao.CommentDao">
+	<resultMap id="comment" type="com.apeces.domain.Comment">
+		<result column="id" property="id"/>
+		<result column="content" property="content"/>
+		<result column="score" property="score"/>
+		<result column="create_time" property="create_time"/>
+		
+		<collection property="product" ofType="com.apeces.pojo.ProSimple">
+			<result column="pid" property="id"/>
+			<result column="name" property="name"/>
+		</collection>
+	</resultMap>
+
+    <resultMap id="commCount" type="java.lang.Integer">
+        <result column="count"/>
+    </resultMap>
+	
+	<!-- ADMIN -->
+	<select id="queryCommByShop" parameterType="Map" resultMap="comment, commCount">
+		SELECT SQL_CALC_FOUND_ROWS
+			c.*,
+			p.id as pid, p.name
+		FROM 
+			comment AS c
+			LEFT JOIN product AS p ON p.id = c.product_id
+ 		<where>
+ 			<if test="shop_id != null">
+ 				c.shop_id = #{shop_id}
+ 			</if>
+ 		</where>
+ 		<if test="limit > 0">
+ 			limit #{limit} offset{#offset}
+ 		</if>
+ 		;
+			
+		SELECT FOUND_ROWS() as count;
+	</select>
+	
+	<delete id="delComm">
+		DELETE FROM comment WHERE id = #{id};
+	</delete>
+</mapper>

@@ -1,0 +1,1437 @@
+{
+	"info": {
+		"_postman_id": "b5fc980c-b0a3-4017-b04a-70e32114edca",
+		"name": "localhost",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "manager",
+			"item": [
+				{
+					"name": "list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8079/city_book/manager/list?offset=0&limit=10&status=0&content=admin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8079",
+							"path": [
+								"city_book",
+								"manager",
+								"list"
+							],
+							"query": [
+								{
+									"key": "offset",
+									"value": "0"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								},
+								{
+									"key": "status",
+									"value": "0"
+								},
+								{
+									"key": "content",
+									"value": "admin"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "single",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": "http://localhost:8079/city_book/manager/9"
+					},
+					"response": []
+				},
+				{
+					"name": "add",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"account\" : \"test0119-1109\",\r\n    \"name\" : \"test0119-1109\",  \r\n    \"gender\" : 1,\r\n    \"phone\" : \"13501191109\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8079/city_book/manager/add"
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "account",
+									"value": "adminadmin",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "小红",
+									"type": "text"
+								},
+								{
+									"key": "gender",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "13515013510",
+									"type": "text"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8079/city_book/manager/10"
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:8079/city_book/manager/4"
+					},
+					"response": []
+				},
+				{
+					"name": "borrow_record",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8079/city_book/borrow_record/list?offset=0&limit=10&book_id=3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8079",
+							"path": [
+								"city_book",
+								"borrow_record",
+								"list"
+							],
+							"query": [
+								{
+									"key": "offset",
+									"value": "0"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								},
+								{
+									"key": "status",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "start_time",
+									"value": "2021-01-01 17:13:22",
+									"disabled": true
+								},
+								{
+									"key": "end_time",
+									"value": "2021-01-10 17:13:22",
+									"disabled": true
+								},
+								{
+									"key": "content",
+									"value": "hahaha",
+									"disabled": true
+								},
+								{
+									"key": "user_id",
+									"value": "1",
+									"description": "用于 “查看用户”",
+									"disabled": true
+								},
+								{
+									"key": "book_id",
+									"value": "3",
+									"description": "用于 “查看书籍”"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "account",
+									"value": "test20210118",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "text"
+								}
+							]
+						},
+						"url": "http://localhost:8079/city_book/manager/login"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "category",
+			"item": [
+				{
+					"name": "list",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "http://localhost:8079/city_book/category/list?offset=0&limit=10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8079",
+							"path": [
+								"city_book",
+								"category",
+								"list"
+							],
+							"query": [
+								{
+									"key": "offset",
+									"value": "0"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								},
+								{
+									"key": "first_category_id",
+									"value": "12",
+									"disabled": true
+								},
+								{
+									"key": "second_category_id",
+									"value": "14",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "first_cate",
+									"value": "美食",
+									"type": "text"
+								},
+								{
+									"key": "second_cate",
+									"value": "小食",
+									"type": "text"
+								}
+							]
+						},
+						"url": "http://localhost:8079/city_book/category/add"
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"first_cate\" : \"测试\",\r\n    \"second_cate\" : \"测试3\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8079/city_book/category/14?first_cate=test",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8079",
+							"path": [
+								"city_book",
+								"category",
+								"14"
+							],
+							"query": [
+								{
+									"key": "first_cate",
+									"value": "test"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:8079/city_book/category/16"
+					},
+					"response": []
+				},
+				{
+					"name": "all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8079/city_book/category/all"
+					},
+					"response": []
+				},
+				{
+					"name": "import",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/12143/Downloads/分类模板.xls"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8079/city_book/category/import",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8079",
+							"path": [
+								"city_book",
+								"category",
+								"import"
+							],
+							"query": [
+								{
+									"key": "file",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "template",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8079/city_book/category/template"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "book",
+			"item": [
+				{
+					"name": "list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8079/city_book/book/list?offset=0&limit=10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8079",
+							"path": [
+								"city_book",
+								"book",
+								"list"
+							],
+							"query": [
+								{
+									"key": "offset",
+									"value": "0"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								},
+								{
+									"key": "first_category_id",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "second_category_id",
+									"value": "0",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "single",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8079/city_book/book/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8079",
+							"path": [
+								"city_book",
+								"book",
+								"1"
+							],
+							"query": [
+								{
+									"key": "offset",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "10",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "book_name",
+									"value": "添加03",
+									"type": "text"
+								},
+								{
+									"key": "author",
+									"value": "作者",
+									"type": "text"
+								},
+								{
+									"key": "first_category_id",
+									"value": "12",
+									"type": "text"
+								},
+								{
+									"key": "second_category_id",
+									"value": "14",
+									"type": "text"
+								},
+								{
+									"key": "total",
+									"value": "5",
+									"type": "text"
+								},
+								{
+									"key": "book_code",
+									"value": "addtest03",
+									"type": "text"
+								},
+								{
+									"key": "place",
+									"value": "S3E2",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"value": "/upload/20210112/ef137204-f31c-47be-a140-b704a03926e8_2.jpg",
+									"type": "text"
+								},
+								{
+									"key": "introduction",
+									"value": "我玩大保健  你玩盲僧我玩大保健  你玩盲僧我玩大保健  你玩盲僧我玩大保健  你玩盲僧我玩大保健  你玩盲僧我玩大保健  你玩盲僧我玩大保健  你玩盲僧我玩大保健  你玩盲僧",
+									"type": "text"
+								}
+							]
+						},
+						"url": "http://localhost:8079/city_book/book/add"
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"book_name\" : \"修改01\",\r\n    \"author\" : \"作者\",\r\n    \"first_category_id\" : 12,\r\n    \"second_category_id\" : 14,\r\n    \"total\" : 30,\r\n    \"book_code\" : \"upttest01\",\r\n    \"place\" : \"999\",\r\n    \"introduction\" : \"阿斯利康连打机发你奥斯丁adad\",\r\n    \"image\" : \"/src/s/s/s.jpg\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8079/city_book/book/6"
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:8079/city_book/book/99"
+					},
+					"response": []
+				},
+				{
+					"name": "template",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8079/city_book/book/template"
+					},
+					"response": []
+				},
+				{
+					"name": "import",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/12143/Downloads/书籍模板 (7).xls"
+								}
+							]
+						},
+						"url": "http://localhost:8079/city_book/book/import"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8079/city_book/user/list?offset=0&limit=10&name&phone&status&auth",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8079",
+							"path": [
+								"city_book",
+								"user",
+								"list"
+							],
+							"query": [
+								{
+									"key": "offset",
+									"value": "0"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								},
+								{
+									"key": "name",
+									"value": null
+								},
+								{
+									"key": "phone",
+									"value": null
+								},
+								{
+									"key": "status",
+									"value": null,
+									"description": "1正常 2禁用"
+								},
+								{
+									"key": "auth",
+									"value": null,
+									"description": "1正常 2禁用"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "single",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8079/city_book/user/9"
+					},
+					"response": []
+				},
+				{
+					"name": "user_apply_list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8079/city_book/user_apply/list?offset=0&limit=10&status=1&status=2&status=3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8079",
+							"path": [
+								"city_book",
+								"user_apply",
+								"list"
+							],
+							"query": [
+								{
+									"key": "offset",
+									"value": "0"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								},
+								{
+									"key": "status",
+									"value": "1",
+									"description": "1审核通过 2不通过 3待审"
+								},
+								{
+									"key": "status",
+									"value": "2"
+								},
+								{
+									"key": "status",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "verify",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user_id\" : [1,2],\r\n    \"status\" : 1,\r\n    \"remark\" : \"很好，通过\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8079/city_book/user_apply/verify"
+					},
+					"response": []
+				},
+				{
+					"name": "批量启用",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\" : [3,4,5],\r\n    \"auth\" : 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8079/city_book/user/enable_batch"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "mini-api",
+			"item": [
+				{
+					"name": "carousel",
+					"item": [
+						{
+							"name": "list",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:8079/city_book/api/carousel/list"
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "category",
+					"item": [
+						{
+							"name": "list",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:8079/city_book/api/category/list"
+							},
+							"response": []
+						},
+						{
+							"name": "all",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:8079/city_book/api/category/all"
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "book",
+					"item": [
+						{
+							"name": "recommend",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8079/city_book/api/book/recommend?recommend=borrow",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8079",
+									"path": [
+										"city_book",
+										"api",
+										"book",
+										"recommend"
+									],
+									"query": [
+										{
+											"key": "recommend",
+											"value": "borrow",
+											"description": "new / borrow / popular(默认)"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "detail",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8079/city_book/api/book/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8079",
+									"path": [
+										"city_book",
+										"api",
+										"book",
+										"1"
+									],
+									"query": [
+										{
+											"key": "user_id",
+											"value": "2",
+											"description": "非必填",
+											"disabled": true
+										},
+										{
+											"key": null,
+											"value": null,
+											"description": "说明：is_collect & is_borrow 值 > 0 代表 已经收藏 & 已经添加进借阅车",
+											"disabled": true
+										},
+										{
+											"key": null,
+											"value": null,
+											"description": "score 为评分，collect_count 为收藏量",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "list",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8079/city_book/api/book/list?offset=0&limit=10&content=&second_category_id&column=score&order=desc",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8079",
+									"path": [
+										"city_book",
+										"api",
+										"book",
+										"list"
+									],
+									"query": [
+										{
+											"key": "offset",
+											"value": "0"
+										},
+										{
+											"key": "limit",
+											"value": "10"
+										},
+										{
+											"key": "content",
+											"value": ""
+										},
+										{
+											"key": "second_category_id",
+											"value": null,
+											"description": "二级分类id"
+										},
+										{
+											"key": "column",
+											"value": "score",
+											"description": "收藏量排序：collect_count，评分排序：score"
+										},
+										{
+											"key": "order",
+											"value": "desc",
+											"description": "asc / desc"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "comment",
+					"item": [
+						{
+							"name": "list",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8079/city_book/api/comment/list?offset=0&limit=10&book_id=1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8079",
+									"path": [
+										"city_book",
+										"api",
+										"comment",
+										"list"
+									],
+									"query": [
+										{
+											"key": "offset",
+											"value": "0"
+										},
+										{
+											"key": "limit",
+											"value": "10"
+										},
+										{
+											"key": "book_id",
+											"value": "1",
+											"description": "非必填"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "add comment",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"user_id\" : 1,\r\n    \"book_id\" : 2,\r\n    \"score\" : 5,\r\n    \"content\" : \"put your hands up\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:8079/city_book/api/comment"
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "borrow_record",
+					"item": [
+						{
+							"name": "list",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8079/city_book/api/borrow_record/list?user_id=1&offset=0&limit=-1&type=violation",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8079",
+									"path": [
+										"city_book",
+										"api",
+										"borrow_record",
+										"list"
+									],
+									"query": [
+										{
+											"key": "user_id",
+											"value": "1"
+										},
+										{
+											"key": "offset",
+											"value": "0"
+										},
+										{
+											"key": "limit",
+											"value": "-1",
+											"description": "-1 返回所有"
+										},
+										{
+											"key": "type",
+											"value": "violation",
+											"description": "当前借阅now / 历史借阅history / 违规记录violation"
+										},
+										{
+											"key": null,
+											"value": null,
+											"description": "回参status说明：1借阅 2续借",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "add",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"book_id\" : 7,\r\n    \"user_id\" : 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:8079/city_book/api/borrow_record"
+							},
+							"response": []
+						},
+						{
+							"name": "count",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8079/city_book/api/borrow_record/count?user_id=1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8079",
+									"path": [
+										"city_book",
+										"api",
+										"borrow_record",
+										"count"
+									],
+									"query": [
+										{
+											"key": "user_id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "批量借阅",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"user_id\" : 1,\r\n    \"ids\" : [2,3,4,5,6,7,8,9,10]\r\n}\r\n\r\n// 这里的id是 书本的id值",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:8079/city_book/api/borrow_record/addM"
+							},
+							"response": []
+						},
+						{
+							"name": "批量归还",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"user_id\" : 1,\r\n    \"ids\" : [4,5,6]\r\n}\r\n\r\n// 这里的id是 借阅记录的id值",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:8079/city_book/api/borrow_record/returnM"
+							},
+							"response": []
+						},
+						{
+							"name": "续借",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"user_id\" : 1,\r\n    \"ids\" : [3]\r\n}\r\n\r\n// 这里的id是 借阅记录的id值",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:8079/city_book/api/borrow_record/renew"
+							},
+							"response": []
+						},
+						{
+							"name": "returned list / my comment",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8079/city_book/api/borrow_record/returned?user_id=1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8079",
+									"path": [
+										"city_book",
+										"api",
+										"borrow_record",
+										"returned"
+									],
+									"query": [
+										{
+											"key": "user_id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "user",
+					"item": [
+						{
+							"name": "authenticate",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"user_id\" : 1,\r\n    \"name\" : \"测试\",\r\n    \"gender\" : 1,\r\n    \"phone\" : \"13560608080\",\r\n    \"id_card\" : \"8888777776666\",\r\n    \"id_card_positive_img\" : \"/upload/1/1/1.jpg\",\r\n    \"id_card_negative_img\" : \"/upload/1/1/2.jpg\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:8079/city_book/api/user/authenticate"
+							},
+							"response": []
+						},
+						{
+							"name": "edit",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\" : \"admin\",\r\n    \"gender\" : 1,\r\n    \"phone\" : \"13560608080\",\r\n    \"avatar\" : \"/upload/1/2/3/4.jpg\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:8079/city_book/api/user/1"
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "borrow car",
+					"item": [
+						{
+							"name": "list",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8079/city_book/api/borrow_car/list?user_id=1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8079",
+									"path": [
+										"city_book",
+										"api",
+										"borrow_car",
+										"list"
+									],
+									"query": [
+										{
+											"key": "user_id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "cancel",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": "http://localhost:8079/city_book/api/borrow_car/1"
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "collect",
+					"item": [
+						{
+							"name": "list",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8079/city_book/api/collect/list?user_id=3",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8079",
+									"path": [
+										"city_book",
+										"api",
+										"collect",
+										"list"
+									],
+									"query": [
+										{
+											"key": "user_id",
+											"value": "3"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "add",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"user_id\" : 3,\r\n    \"book_id\" : 2\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:8079/city_book/api/collect"
+							},
+							"response": []
+						},
+						{
+							"name": "cancel",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": "http://localhost:8079/city_book/api/collect/7"
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "user browse",
+					"item": [
+						{
+							"name": "list",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8079/city_book/api/browse/list?user_id=1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8079",
+									"path": [
+										"city_book",
+										"api",
+										"browse",
+										"list"
+									],
+									"query": [
+										{
+											"key": "user_id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"account\" : \"test0118-1452\",\r\n    \"password\" : \"123456\"\r\n}\r\n\r\n// manager_id > 0 表示 管理员身份\r\n// auth 1启用 2禁用 : 可否借书",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8079/city_book/api/user/login"
+					},
+					"response": []
+				},
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"account\" : \"test0118-1452\",\r\n    \"password\" : \"01181452\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8079/city_book/api/user/register"
+					},
+					"response": []
+				},
+				{
+					"name": "reset_pwd",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user_id\" : 9,\r\n    \"old_pwd\" : \"01181452\",\r\n    \"account\" : \"test0118-1452\",\r\n    \"new_pwd\" : \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8079/city_book/api/user/reset_pwd"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "upload",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/12143/Desktop/img/2.jpg"
+						}
+					]
+				},
+				"url": "http://localhost:8079/city_book/upload/upload"
+			},
+			"response": []
+		},
+		{
+			"name": "count",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8079/city_book/count/count"
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

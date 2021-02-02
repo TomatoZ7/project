@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.cbh.dao.UserApplyDao">
+  	<resultMap id="userApply" type="com.cbh.domain.UserApply">
+        <result property="id" column="id"/>
+        <result column="user_id" property="user_id"/>
+        <result column="name" property="name"/>
+        <result column="gender" property="gender"/>
+        <result column="phone" property="phone"/>
+        <result column="id_card" property="id_card"/>
+        <result column="id_card_positive_img" property="id_card_positive_img"/>
+        <result column="id_card_negative_img" property="id_card_negative_img"/>
+        <result column="status" property="status"/>
+        <result column="remark" property="remark"/>
+        <result column="create_time" property="create_time"/>
+    </resultMap>
+    
+    <resultMap id="userApplyCount" type="java.lang.Integer">
+        <result column="count"/>
+    </resultMap>
+    
+    <!-- 列表查询 -->
+    <select id="getUserApplyList" parameterType="Map" resultMap="userApply, userApplyCount">
+        SELECT SQL_CALC_FOUND_ROWS 
+        	*
+        FROM cb_user_apply
+        WHERE status IN
+        <foreach collection="status" item="name" index="index" open="(" close=")" separator=",">#{name}</foreach>
+        ORDER BY id DESC LIMIT #{limit} OFFSET #{offset};
+        SELECT FOUND_ROWS() as count;
+    </select>
+    
+    <!-- 审核 -->
+    <update id="verifyUserApply" parameterType="Map">
+    	UPDATE cb_user_apply set status = #{status}, remark = #{remark}
+		WHERE
+			status IN (2,3) AND
+			user_id IN
+		<foreach collection="user_id" item="name" index="index" open="(" close=")" separator=",">#{name}</foreach>
+    </update>
+    
+    
+    <!-- ————————  以下为移动端api  —————— -->
+    
+    <!-- 申请认证 -->
+    <insert id="insertUserApply" parameterType="Map">
+    	INSERT INTO
+        	cb_user_apply(user_id,name,gender,phone,id_card,id_card_positive_img,id_card_negative_img,status,create_time)
+        	SELECT #{user_id},#{name},#{gender},#{phone},#{id_card},#{id_card_positive_img},#{id_card_negative_img},#{status},#{create_time}
+			FROM DUAL
+       		WHERE NOT EXISTS 
+        		(SELECT id FROM cb_user_apply WHERE status != 2 AND (id_card = #{id_card} OR phone = #{phone}));
+    </insert>
+  </mapper>

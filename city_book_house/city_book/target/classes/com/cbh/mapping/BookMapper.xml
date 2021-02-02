@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.cbh.dao.BookDao">
+ 	<resultMap id="book" type="com.cbh.domain.Book">
+ 		<result column="id" property="id"/>
+ 		<result column="book_name" property="book_name"/>
+ 		<result column="author" property="author"/>
+ 		<result column="first_category_id" property="first_category_id"/>
+ 		<result column="second_category_id" property="second_category_id"/>
+ 		<result column="total" property="total"/>
+ 		<result column="stock" property="stock"/>
+ 		<result column="book_code" property="book_code"/>
+ 		<result column="status" property="status"/>
+ 		<result column="place" property="place"/>
+ 		<result column="introduction" property="introduction"/>
+ 		<result column="image" property="image"/>
+ 		<result column="create_time" property="create_time"/>
+ 		
+ 		<result column="collectCount" property="collectCount"/>
+ 		<result column="scoreAvg" property="scoreAvg"/>
+ 		<result column="readCount" property="readCount"/>
+ 		
+ 		<result column="is_collect" property="is_collect"/>
+ 		<result column="is_borrow" property="is_borrow"/>
+ 		
+ 		<collection property="firstCate" ofType="com.cbh.domain.Category">
+        	<id column="fcid" property="id" />
+        	<result column="first_category_name" property="category_name"/>
+        </collection>
+        
+        <collection property="secondCate" ofType="com.cbh.domain.Category">
+        	<id column="scid" property="id" />
+        	<result column="second_category_name" property="category_name"/>
+        </collection>
+	</resultMap>
+
+    <resultMap id="bookCount" type="java.lang.Integer">
+        <result column="count"/>
+    </resultMap>
+	
+	<!-- 列表查询 -->
+	<select id="getBookList" parameterType="Map" resultMap="book, bookCount">
+        SELECT SQL_CALC_FOUND_ROWS 
+        	book.*,
+			fc.id as fcid, fc.category_name as first_category_name, 
+        	sc.id as scid, sc.category_name as second_category_name
+        FROM 
+        	cb_books AS book
+        	LEFT JOIN cb_category AS fc ON fc.id = book.first_category_id
+        	LEFT JOIN cb_category AS sc ON sc.id = book.second_category_id
+        <where>
+        	<if test="first_category_id != null">
+                and first_category_id = #{first_category_id}
+            </if>
+        	<if test="second_category_id != null">
+                and second_category_id = #{second_category_id}
+            </if>
+        	<if test="book_name != null">
+                and book_name like "%"#{book_name}"%"
+            </if>
+        	<if test="status != null">
+                and status = #{status}
+            </if>
+        	<if test="content != null">
+                and (author like "%"#{content}"%" or book_code like "%"#{content}"%")
+            </if>
+        </where>
+        ORDER BY 
+        	id DESC 
+        LIMIT #{limit} OFFSET #{offset};
+        
+        SELECT FOUND_ROWS() as count;
+    </select>
+    
+    <!-- 单条记录 -->
+    <select id="getBookById" resultMap="book">
+        SELECT book.*,
+			fc.id as fcid, fc.category_name as first_category_name, 
+        	sc.id as scid, sc.category_name as second_category_name
+        FROM 
+        	cb_books AS book
+        	LEFT JOIN cb_category AS fc ON fc.id = book.first_category_id
+        	LEFT JOIN cb_category AS sc ON sc.id = book.second_category_id
+        WHERE
+        	book.id=#{id};
+    </select>
+    
+    <!-- 新增 -->
+    <insert id="insertBook" parameterType="com.cbh.domain.Book">
+        INSERT INTO
+        cb_books(book_name,author,first_category_id,second_category_id,total,book_code,place,image,introduction,create_time)
+        VALUES(#{book_name},#{author},#{first_category_id},#{second_category_id},#{total},#{book_code},#{place},#{image},#{introduction},#{create_time});
+    </insert>
+    
+    <!-- 更新 -->
+    <update id="updateBook" parameterType="com.cbh.domain.Book">
+    	UPDATE cb_books set 
+        	book_name = #{book_name},
+        	author = #{author},
+        	first_category_id = #{first_category_id},
+        	second_category_id = #{second_category_id},
+        	total = #{total},
+        	book_code = #{book_code},
+        	place = #{place},
+        	image = #{image},
+        	introduction = #{introduction}
+		where
+			id = #{id};
+    </update>
+    
+    <!-- 删除 -->
+    <delete id="delBookById" parameterType="java.lang.Integer">
+        DELETE FROM cb_books WHERE id = #{id};
+    </delete>
+    
+    <select id="countBook" resultType="java.lang.Integer">
+    	SELECT COUNT(*) FROM cb_books;
+    </select>
+    
+    <select id="countBookByCategory" resultType="java.util.Map">
+    	SELECT
+			SUM( b.total ) AS book,
+			c.category_name 
+		FROM
+			cb_books AS b
+			LEFT JOIN cb_category AS c ON c.id = b.second_category_id 
+		WHERE
+			c.category_name IS NOT NULL 
+		GROUP BY
+			B.second_category_id 
+		ORDER BY
+			book DESC;
+    </select>
+    
+    
+    <!-- ————————  以下为移动端api  —————— -->
+    
+    <!-- 热门推荐，根据收藏量排序 -->
+    <select id="getBookOfPopular" resultMap="book">
+    	SELECT 
+    		book.*,
+			fc.id as fcid, fc.category_name as first_category_name, 
+        	sc.id as scid, sc.category_name as second_category_name,
+        	COUNT(c.id) as count,
+        	COUNT(br.id) as readCount
+        FROM 
+        	cb_books AS book
+        	LEFT JOIN cb_category AS fc ON fc.id = book.first_category_id
+        	LEFT JOIN cb_category AS sc ON sc.id = book.second_category_id
+        	LEFT JOIN cb_collect AS c ON c.book_id = book.id
+        	LEFT JOIN cb_borrow_record AS br ON br.book_id = book.id
+        WHERE 
+			book.status = 1
+		GROUP BY book.id
+		ORDER BY count DESC
+        LIMIT 10;
+    </select>
+    
+    <!-- 新书上线，根据上线时间排序 -->
+    <select id="getBookOfNew" resultMap="book">
+    	SELECT 
+    		book.*,
+			fc.id as fcid, fc.category_name as first_category_name, 
+        	sc.id as scid, sc.category_name as second_category_name,
+        	COUNT(br.id) as readCount
+        FROM 
+        	cb_books AS book
+        	LEFT JOIN cb_category AS fc ON fc.id = book.first_category_id
+        	LEFT JOIN cb_category AS sc ON sc.id = book.second_category_id
+        	LEFT JOIN cb_borrow_record AS br ON br.book_id = book.id
+        WHERE 
+			book.status = 1
+		GROUP BY book.id
+		ORDER BY create_time DESC
+        LIMIT 10;
+    </select>
+    
+    <!-- 借阅最高，根据借阅次数排序 -->
+    <select id="getBookOfHighBorrow" resultMap="book">
+    	SELECT 
+    		book.*,
+			fc.id as fcid, fc.category_name as first_category_name, 
+        	sc.id as scid, sc.category_name as second_category_name,
+        	COUNT(br.id) as readCount
+        FROM 
+        	cb_books AS book
+        	LEFT JOIN cb_category AS fc ON fc.id = book.first_category_id
+        	LEFT JOIN cb_category AS sc ON sc.id = book.second_category_id
+        	LEFT JOIN cb_borrow_record AS br ON br.book_id = book.id
+        WHERE 
+			book.status = 1
+		GROUP BY book.id
+		ORDER BY readCount DESC
+        LIMIT 10;
+    </select>
+    
+    <!-- 搜索 -->
+    <resultMap id="apibooklist" type="com.cbh.pojo.apiBookList">
+ 		<result column="id" property="id"/>
+ 		<result column="book_name" property="book_name"/>
+ 		<result column="author" property="author"/>
+ 		<result column="image" property="image"/>
+ 		
+        <result column="first_cate" property="first_cate"/>
+       	<result column="second_cate" property="second_cate"/>
+ 		
+ 		<result column="collect_count" property="collect_count"/>
+ 		<result column="score" property="score"/>
+	</resultMap>
+    <select id="searchBook" resultMap="apibooklist, bookCount">
+    	SELECT SQL_CALC_FOUND_ROWS 
+			book.*,
+			COUNT(c.id) as collect_count,
+			AVG(m.score) as score,
+			fc.category_name as first_cate,
+			sc.category_name as second_cate
+		FROM
+			cb_books AS book
+			LEFT JOIN cb_collect AS c ON c.book_id = book.id 
+			LEFT JOIN cb_comment AS m ON m.book_id = book.id
+			LEFT JOIN cb_category AS fc ON fc.id = book.first_category_id
+			LEFT JOIN cb_category AS sc ON sc.id = book.second_category_id
+		<where>
+			<if test="content != null">
+				book_name LIKE "%"#{content}"%" OR author LIKE "%"#{content}"%"
+			</if>
+        	<if test="second_category_id != null">
+                and second_category_id = #{second_category_id}
+            </if>
+		</where>
+		GROUP BY
+			book.id
+		ORDER BY
+			${column} ${order}
+		LIMIT #{limit} OFFSET #{offset};
+		SELECT FOUND_ROWS() as count;
+    </select>
+    
+    <!-- 书籍详情 -->
+    <resultMap id="apibookdetail" type="com.cbh.pojo.apiBookDetail">
+ 		<result column="id" property="id"/>
+ 		<result column="book_name" property="book_name"/>
+ 		<result column="author" property="author"/>
+ 		<result column="stock" property="stock"/>
+ 		<result column="book_code" property="book_code"/>
+ 		<result column="place" property="place"/>
+ 		<result column="introduction" property="introduction"/>
+ 		<result column="image" property="image"/>
+ 		
+        <result column="first_cate" property="first_cate"/>
+       	<result column="second_cate" property="second_cate"/>
+ 		
+ 		<result column="collect_count" property="collect_count"/>
+ 		<result column="score" property="score"/>
+ 		
+ 		<result column="is_collect" property="is_collect"/>
+ 		<result column="is_borrow" property="is_borrow"/>
+	</resultMap>
+    <select id="getBookDetail" resultMap="apibookdetail">
+    	SELECT
+			book.*,
+			COUNT(c.id) as collectCount,
+			AVG(m.score) as scoreAvg,
+			uc.user_id as is_collect,
+			bc.user_id as is_borrow,
+			fc.category_name as first_cate,
+			sc.category_name as second_cate
+		FROM
+			cb_books AS book
+			LEFT JOIN cb_collect AS c ON c.book_id = book.id 
+			LEFT JOIN cb_comment AS m ON m.book_id = book.id
+			LEFT JOIN cb_collect AS uc ON uc.book_id = book.id AND uc.user_id = #{user_id}
+			LEFT JOIN cb_borrow_car AS bc ON bc.book_id = book.id AND bc.user_id = #{user_id}
+			LEFT JOIN cb_category AS fc ON fc.id = book.first_category_id
+			LEFT JOIN cb_category AS sc ON sc.id = book.second_category_id
+		WHERE
+			book.id = #{id}
+		GROUP BY
+			book.id;
+    </select>
+    
+    <!-- 书籍库存自减1 -->
+    <update id="borrowBookCallback">
+    	UPDATE cb_books set stock = stock - 1 WHERE id = #{id};
+    </update>
+    
+    <!-- 书籍库存自增1 -->
+    <update id="returnBookCallback" parameterType="java.util.List">
+    	UPDATE cb_books set stock = stock + 1 WHERE id IN 
+    	<foreach collection="list" item="name" index="index" open="(" close=")" separator=",">#{name}</foreach>
+    </update>
+ </mapper>

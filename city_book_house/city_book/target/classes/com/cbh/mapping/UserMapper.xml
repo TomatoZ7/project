@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="com.cbh.dao.UserDao">
+ 	<resultMap id="user" type="com.cbh.domain.User">
+        <result property="id" column="id"/>
+        <result column="code" property="code"/>
+        <result column="name" property="name"/>
+        <result column="gender" property="gender"/>
+        <result column="phone" property="phone"/>
+        <result column="status" property="status"/>
+        <result column="auth" property="auth"/>
+        <result column="manager_id" property="manager_id"/>
+        <result column="avatar" property="avatar"/>
+    </resultMap>
+    
+    <resultMap id="userCount" type="java.lang.Integer">
+        <result column="count"/>
+    </resultMap>
+ 
+ 	<!-- 列表查询 -->
+    <select id="getUserList" parameterType="Map" resultMap="user, userCount">
+        SELECT SQL_CALC_FOUND_ROWS 
+        	*
+        FROM cb_user AS u
+        <where>
+        	<if test="name != null">
+                and name like "%"#{name}"%"
+            </if>
+            <if test="phone != null">
+                and phone like "%"#{phone}"%"
+            </if>
+        	<if test="status != null">
+                and status = #{status}
+            </if>
+        	<if test="auth != null">
+                and auth = #{auth}
+            </if>
+        </where>
+        ORDER BY id DESC LIMIT #{limit} OFFSET #{offset};
+        SELECT FOUND_ROWS() as count;
+    </select>
+    
+    <!-- 单条记录 -->
+    <select id="getUserById" resultMap="user">
+		SELECT * FROM cb_user WHERE id = #{id}
+    </select>
+    
+    <!-- 用户查重 -->
+    <select id="recheckUser" parameterType="com.cbh.domain.User" resultType="user">
+    	SELECT * FROM cb_user WHERE account = #{account} OR phone = #{phone};
+    </select>
+    
+    <!-- 添加 -->
+    <insert id="insertUser" parameterType="com.cbh.domain.User">
+    	<selectKey keyProperty="id" keyColumn="id" resultType="int" order="AFTER">
+    		SELECT last_insert_id();
+    	</selectKey>
+        INSERT INTO
+        	cb_user(code,account,name,gender,phone,password,status,auth,manager_id)
+        	VALUES(#{code},#{account},#{name},#{gender},#{phone},#{password},#{status},#{auth},#{manager_id});
+    </insert>
+    
+    <!-- 更新 -->
+    <update id="updateUser" parameterType="com.cbh.domain.User">
+    	UPDATE cb_user 
+    	<set>
+    		<if test="gender != null">
+    			gender = #{gender}
+    		</if>
+    		<if test="phone != null">
+    			phone = #{phone}
+    		</if>
+    		<if test="manager_id != null">
+    			manager_id = #{manager_id}
+    		</if>
+    	</set>
+    	WHERE id = #{id};
+    </update>
+    
+    <!-- 审核 -->
+    <update id="verifyUser" parameterType="Map">
+    	UPDATE cb_user set auth = #{status}
+		WHERE
+			id IN
+		<foreach collection="user_id" item="name" index="index" open="(" close=")" separator=",">#{name}</foreach>
+    </update>
+    
+    <!-- 批量启用/禁用 -->
+    <update id="updateUserBatch">
+    	UPDATE cb_user set auth = #{auth}
+    	WHERE
+    		id IN
+    	<foreach collection="id" item="name" index="index" open="(" close=")" separator=",">#{name}</foreach>	
+    </update>
+    
+    <!-- 统计 -->
+    <select id="countUser" resultType="java.lang.Integer">
+    	SELECT COUNT(*) FROM cb_user;
+    </select>
+    
+    
+    <!-- ————————  以下为移动端api  —————— -->
+    
+    <select id="getUserByLogin" parameterType="com.cbh.domain.User" resultMap="user">
+    	SELECT id,manager_id,auth FROM cb_user WHERE password = #{password} AND (account = #{account} OR phone = #{account}) AND status = 1 LIMIT 1;
+    </select>
+    
+    
+    <insert id="register" parameterType="com.cbh.domain.User">
+ 		<!-- 插入后获取id -->
+    	<selectKey keyProperty="id" keyColumn="id" resultType="int" order="AFTER">
+    		SELECT last_insert_id();
+    	</selectKey>
+        INSERT INTO
+        	cb_user(code,account,name,gender,phone,password,status,auth,manager_id)
+        	SELECT #{code},#{account},#{name},#{gender},#{phone},#{password},#{status},#{auth},#{manager_id}
+			FROM DUAL
+       		WHERE NOT EXISTS 
+        		(SELECT id FROM cb_user WHERE account = #{account});
+    </insert>
+    
+    <update id="resetPwd" parameterType="Map">
+    	UPDATE cb_user set password = #{new_pwd} WHERE id = #{user_id} AND account = #{account} AND password = #{old_pwd};
+    </update>
+    
+    <update id="apiUpdateUser" parameterType="com.cbh.domain.User">
+    	UPDATE cb_user SET avatar=#{avatar}, name=#{name}, gender=#{gender}, phone=#{phone} WHERE id = #{id};
+    </update>
+    
+    <resultMap id="userCenter" type="com.cbh.pojo.UserCenter">
+        <result property="id" column="id"/>
+        <result column="code" property="code"/>
+        <result column="name" property="name"/>
+        <result column="auth" property="auth"/>
+        <result column="manager_id" property="manager_id"/>
+        <result column="avatar" property="avatar"/>
+        
+        <result column="apply_status" property="apply_status"/>
+        <result column="balance" property="balance"/>
+    </resultMap>
+
+    <!-- 查询借阅余额 -->
+    <select id="getUserWithBalance" resultMap="userCenter">
+    	SELECT
+			u.id, u.avatar, u.code, u.auth, u.name, u.manager_id,
+			ua.status AS apply_status,
+			COUNT(br.id) AS balance 
+		FROM
+			cb_user AS u
+			LEFT JOIN cb_user_apply AS ua ON ua.user_id = u.id
+			LEFT JOIN cb_borrow_record AS br ON br.user_id = u.id 
+			AND br.return_time IS NULL 
+		WHERE
+			u.id = #{user_id}
+		GROUP BY
+			u.id, u.avatar, u.CODE, u.auth, u.NAME, u.manager_id, apply_status
+    </select>
+ </mapper>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.apeces.dao.NewsDao">
+	<resultMap id="news" type="com.apeces.domain.News">
+		<result column="id" property="id"/>
+		<result column="title" property="title"/>
+		<result column="cover_img" property="cover_img"/>
+		<result column="content" property="content"/>
+		<result column="create_time" property="create_time"/>
+		<result column="product_id" property="product_id"/>
+		<result column="shop_id" property="shop_id"/>
+		
+		<collection property="product" ofType="com.apeces.pojo.ProSimple">
+			<result column="pid" property="id"/>
+			<result column="name" property="name"/>
+		</collection>
+	</resultMap>
+
+    <resultMap id="newsCount" type="java.lang.Integer">
+        <result column="count"/>
+    </resultMap>
+	
+	<select id="queryNewsByShop" parameterType="Map" resultMap="news, newsCount">
+		SELECT SQL_CALC_FOUND_ROWS
+			n.*,
+			p.id as pid, p.name
+		FROM
+			news AS n
+			LEFT JOIN product AS p ON p.id = n.product_id
+		<where>
+			<if test="shop_id > 0">
+				n.shop_id = #{shop_id}
+			</if>
+		</where>
+		<if test="limit > 0">
+			limit #{limit} offset #{offset}
+		</if>
+		;
+			
+		SELECT FOUND_ROWS() as count;
+	</select>
+	
+	<select id="queryNews" resultMap="news">
+		SELECT 
+			n.*,
+			p.id as pid, p.name
+		FROM
+			news AS n
+			LEFT JOIN product AS p ON p.id = n.product_id
+		WHERE 
+			n.id = #{id};
+	</select>
+	
+	<insert id="insertNews">
+		INSERT INTO news(title, cover_img, content, create_time, product_id, shop_id)
+		VALUES(#{title}, #{cover_img}, #{content}, #{create_time}, #{product_id}, #{shop_id});
+	</insert>
+	
+	<update id="editNews">
+		UPDATE news
+		<set>
+			<if test="title != null">
+				title = #{title},
+			</if>
+			<if test="cover_img != null">
+				cover_img = #{cover_img},
+			</if>
+			<if test="content != null">
+				content = #{content},
+			</if>
+		</set>
+		WHERE id = #{id};
+	</update>
+	
+	<delete id="delNews">
+		DELETE FROM news WHERE id = #{id};
+	</delete>
+</mapper>

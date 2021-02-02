@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.apeces.dao.ManagerDao">
+	<resultMap id="manager" type="com.apeces.domain.Manager">
+ 		<result column="id" property="id"/>
+ 		<result column="phone" property="phone"/>
+ 		<result column="password" property="password"/>
+ 		<result column="shop_id" property="shop_id"/>
+ 		
+ 		<collection property="shop" ofType="com.apeces.domain.Shop">
+ 			<result column="sid" property="id"/>
+ 			<result column="name" property="name"/>
+ 			<result column="logo" property="logo"/>
+ 		</collection>
+ 	</resultMap>
+
+    <resultMap id="managerCount" type="java.lang.Integer">
+        <result column="count"/>
+    </resultMap>
+ 	
+ 	<!-- ADMIN -->
+ 	<!-- 登录 -->
+ 	<select id="login" parameterType="com.apeces.domain.Manager" resultMap="manager">
+ 		SELECT * FROM manager WHERE phone=#{phone} AND password=#{password};
+ 	</select>
+ 	
+ 	<select id="queryManager" resultMap="manager, managerCount">
+ 		SELECT SQL_CALC_FOUND_ROWS
+ 			m.id, m.phone, m.shop_id,
+ 			s.id as sid, s.name, s.logo
+ 		FROM
+ 			manager AS m
+ 			INNER JOIN shop AS s ON s.id = m.shop_id
+ 		<if test="limit > 0">
+ 			limit #{limit} offset #{offset}
+ 		</if>
+ 		;
+ 		
+ 		SELECT FOUND_ROWS() as count;
+ 	</select>
+ 	
+ 	<select id="queryManagerSingle" resultMap="manager">
+ 		SELECT 
+ 			m.id, m.phone, m.shop_id,
+ 			s.id as sid, s.name, s.logo
+ 		FROM
+ 			manager AS m
+ 			LEFT JOIN shop AS s ON s.id = m.shop_id
+ 		WHERE
+ 			m.id = #{id};
+ 	</select>
+ 	
+ 	<insert id="insertManager">
+ 		INSERT INTO manager(phone, password, shop_id)
+ 		VALUES(#{phone}, #{password}, #{shop_id});
+ 	</insert>
+ 	
+ 	<delete id="delManager">
+ 		DELETE FROM manager WHERE id = #{id};
+ 	</delete>
+</mapper>

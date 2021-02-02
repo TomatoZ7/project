@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="com.cbh.dao.BorrowCarDao">
+ 	<resultMap id="carList" type="com.cbh.domain.BorrowCar">
+ 		<result property="id" column="id"/>
+        <result column="user_id" property="user_id"/>
+        <result column="book_id" property="book_id"/>
+        <result column="create_time" property="create_time"/>
+        
+       	<result column="book_name" property="book_name"/>
+       	<result column="book_author" property="book_author"/>
+       	<result column="book_image" property="book_image"/>
+       	<result column="book_first_cate" property="book_first_cate"/>
+       	<result column="book_place" property="book_place"/>
+       	<result column="book_stock" property="book_stock"/>
+ 	</resultMap>
+ 	
+ 	<!-- 借阅车查询 -->
+ 	<select id="getBorrowCarList" parameterType="Map" resultMap="carList">
+ 		SELECT
+        	car.*,
+        	book.id AS bookid, book.book_name, book.stock as book_stock, book.author as book_author, book.image as book_image, book.place as book_place,
+        	fc.category_name as book_first_cate
+        FROM
+			cb_borrow_car AS car
+        	LEFT JOIN cb_books AS book ON book.id = car.book_id
+        	LEFT JOIN cb_category AS fc ON fc.id = book.first_category_id
+        <where>
+        	<if test="user_id != null">
+        		and user_id = #{user_id}
+        	</if>
+        	<if test="book_id != null">
+        		and book_id = #{book_id}
+        	</if>
+        </where>
+        ORDER BY 
+        	id DESC;
+ 	</select>
+ 	
+ 	<!-- 借阅车添加 -->
+ 	<insert id="insertSingle" parameterType="Map">
+ 		INSERT INTO cb_borrow_car(user_id, book_id, create_time) VALUES(#{user_id}, #{book_id}, #{create_time});
+ 	</insert>
+ 	
+ 	<!-- 取消借阅 -->
+ 	<delete id="deleteById">
+ 		DELETE FROM cb_borrow_car WHERE id = #{id};
+ 	</delete>
+ 	
+ 	<!-- 取消借阅 multi -->
+ 	<delete id="deleteM">
+ 		DELETE FROM cb_borrow_car WHERE user_id = #{user_id} AND book_id IN 
+ 			<foreach collection="book_ids" item="name" index="index" open="(" close=")" separator=",">#{name}</foreach>
+ 	</delete>
+ </mapper>
+  

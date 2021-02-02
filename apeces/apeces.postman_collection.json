@@ -1,0 +1,572 @@
+{
+	"info": {
+		"_postman_id": "eed2ba1c-837f-410b-8dcf-597bbfd42984",
+		"name": "apeces",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "admin",
+			"item": [
+				{
+					"name": "manager",
+					"item": [
+						{
+							"name": "login",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"phone\" : \"13515013510\",\r\n    \"password\" : \"123456\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:8079/apeces/admin/manager/login"
+							},
+							"response": []
+						},
+						{
+							"name": "list",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8079/apeces/admin/manager/list?limit=10&offset=0",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8079",
+									"path": [
+										"apeces",
+										"admin",
+										"manager",
+										"list"
+									],
+									"query": [
+										{
+											"key": "limit",
+											"value": "10"
+										},
+										{
+											"key": "offset",
+											"value": "0"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "single",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:8079/apeces/admin/manager/1"
+							},
+							"response": []
+						},
+						{
+							"name": "add",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"phone\" : \"13515013510\",\r\n    \"password\" : \"123456\",\r\n    \"name\" : \"test\",\r\n    \"logo\" : \"\"\r\n}\r\n\r\n// 添加商户账号，name 指商户名，logo 指商户logo",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:8079/apeces/admin/manager"
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": "http://localhost:8079/apeces/admin/manager/2"
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "shop",
+					"item": [
+						{
+							"name": "single",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:8079/apeces/admin/shop/1"
+							},
+							"response": []
+						},
+						{
+							"name": "edit",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"phone\": \"13515013510\",\r\n    \"name\": \"华盛商行\",\r\n    \"logo\": \"\",\r\n    \"id\": 1,\r\n    \"introduction\": \"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:8079/apeces/admin/shop/1"
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "product",
+					"item": [
+						{
+							"name": "list",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8079/apeces/admin/product/list?shop_id=1&limit=-1&offset=0",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8079",
+									"path": [
+										"apeces",
+										"admin",
+										"product",
+										"list"
+									],
+									"query": [
+										{
+											"key": "shop_id",
+											"value": "1"
+										},
+										{
+											"key": "limit",
+											"value": "-1"
+										},
+										{
+											"key": "offset",
+											"value": "0"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "single",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:8079/apeces/admin/product/1"
+							},
+							"response": []
+						},
+						{
+							"name": "add",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\" : \"东北小麦\",\r\n    \"price\" : 22.00,\r\n    \"unit\" : \"斤\",\r\n    \"category_id\" : 1,\r\n    \"cover_img\" : \"\",\r\n    \"introduction\" : \"东北小麦比较饱满\",\r\n    \"detail_img\" : \"\",\r\n    \"shop_id\" : 1,\r\n    \"nums\" : 200\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:8079/apeces/admin/product"
+							},
+							"response": []
+						},
+						{
+							"name": "edit",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\" : \"江南小麦\",\r\n    \"price\" : 5.50,\r\n    \"unit\" : \"斤\",\r\n    \"category_id\" : 1,\r\n    \"cover_img\" : \"\",\r\n    \"introduction\" : \"江南小麦比较饱满\",\r\n    \"detail_img\" : \"\",\r\n    \"shop_id\" : 1,\r\n    \"nums\" : 200\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:8079/apeces/admin/product/1"
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": "http://localhost:8079/apeces/admin/product/1"
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "news",
+					"item": [
+						{
+							"name": "list",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8079/apeces/admin/news/list?shop_id=0&limit=10&offset=0",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8079",
+									"path": [
+										"apeces",
+										"admin",
+										"news",
+										"list"
+									],
+									"query": [
+										{
+											"key": "shop_id",
+											"value": "0",
+											"description": "管理员传0"
+										},
+										{
+											"key": "limit",
+											"value": "10"
+										},
+										{
+											"key": "offset",
+											"value": "0"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "single",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:8079/apeces/admin/news/1"
+							},
+							"response": []
+						},
+						{
+							"name": "add",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "// 管理员 shop_id : 0\r\n{\r\n    \"title\" : \"今日农产品资讯\",\r\n    \"cover_img\" : \"\",\r\n    \"content\" : \"今日农产品资讯\",\r\n    \"product_id\" : 0,\r\n    \"shop_id\" : 0\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:8079/apeces/admin/news"
+							},
+							"response": []
+						},
+						{
+							"name": "edit",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\" : \"今日农产品促销1\",\r\n    \"cover_img\" : \"\",\r\n    \"content\" : \"今日农产品促销1\",\r\n    \"product_id\" : 0,\r\n    \"shop_id\" : 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:8079/apeces/admin/news/1"
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": "http://localhost:8079/apeces/admin/news/2"
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "order",
+					"item": [
+						{
+							"name": "list",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8079/apeces/admin/order/list?shop_id=1&limit=-1&offset=0",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8079",
+									"path": [
+										"apeces",
+										"admin",
+										"order",
+										"list"
+									],
+									"query": [
+										{
+											"key": "shop_id",
+											"value": "1"
+										},
+										{
+											"key": "limit",
+											"value": "-1"
+										},
+										{
+											"key": "offset",
+											"value": "0"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "single",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:8079/apeces/admin/order/1"
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "comment",
+					"item": [
+						{
+							"name": "list",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8079/apeces/admin/comment/list?shop_id=1&limit=-1&offset=0",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8079",
+									"path": [
+										"apeces",
+										"admin",
+										"comment",
+										"list"
+									],
+									"query": [
+										{
+											"key": "shop_id",
+											"value": "1"
+										},
+										{
+											"key": "limit",
+											"value": "-1"
+										},
+										{
+											"key": "offset",
+											"value": "0"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": "http://localhost:8079/apeces/admin/comment/1"
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "category",
+					"item": [
+						{
+							"name": "list",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8079/apeces/admin/category/list?shop_id=1&limit=10&offset=0",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8079",
+									"path": [
+										"apeces",
+										"admin",
+										"category",
+										"list"
+									],
+									"query": [
+										{
+											"key": "shop_id",
+											"value": "1"
+										},
+										{
+											"key": "limit",
+											"value": "10"
+										},
+										{
+											"key": "offset",
+											"value": "0"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "add",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"category_name\" : \"根茎类\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:8079/apeces/admin/category"
+							},
+							"response": []
+						},
+						{
+							"name": "edit",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"category_name\" : \"芽苗类\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:8079/apeces/admin/category/24"
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": "http://localhost:8079/apeces/admin/category/25"
+							},
+							"response": []
+						},
+						{
+							"name": "single",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:8079/apeces/admin/category/15"
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "homepage",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8079/apeces/admin/order/count"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "mini",
+			"item": [],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "upload",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/12143/Desktop/img/微信图片_20210128130219.jpg"
+						}
+					]
+				},
+				"url": "http://localhost:8079/apeces/upload"
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
