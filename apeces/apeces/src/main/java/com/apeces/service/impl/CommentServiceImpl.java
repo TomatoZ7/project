@@ -23,4 +23,11 @@ public class CommentServiceImpl implements CommentService {
 	public int delComm(int id) {
 		return commentDao.delComm(id);
 	}
+	
+	
+	
+	@Override
+	public List<List<?>> queryAppComm(Map<String, Object> param) {
+		return commentDao.queryAppComm(param);
+	}
 }

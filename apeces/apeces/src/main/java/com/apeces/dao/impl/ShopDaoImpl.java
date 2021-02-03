@@ -1,5 +1,8 @@
 package com.apeces.dao.impl;
 
+import java.util.List;
+import java.util.Map;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -25,5 +28,10 @@ public class ShopDaoImpl implements ShopDao {
 	@Override
 	public int updateShop(Shop shop) {
 		return ssTemplate.getMapper(ShopDao.class).updateShop(shop);
+	}
+	
+	@Override
+	public List<List<?>> queryAppShopList(Map<String, Object> param){
+		return ssTemplate.getMapper(ShopDao.class).queryAppShopList(param);
 	}
 }

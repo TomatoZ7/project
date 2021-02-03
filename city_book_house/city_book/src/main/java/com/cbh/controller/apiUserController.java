@@ -45,6 +45,8 @@ public class apiUserController {
     	
     	user.setCode(UUID.randomUUID().toString().replace("-", ""));
     	user.setName(user.getAccount());
+    	user.setStatus(1);
+    	user.setAuth(2);
     	
     	int result = userService.register(user);
     	if (result == 0) {

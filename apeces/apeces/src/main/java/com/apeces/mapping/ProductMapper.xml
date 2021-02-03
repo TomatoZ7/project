@@ -97,4 +97,62 @@
 	<delete id="delPro">
 		DELETE FROM product WHERE id = #{id};
 	</delete>
+
+	<!-- APP -->
+	<resultMap id="appProList" type="com.apeces.pojo.appProList">
+		<result column="id" property="id"/>
+		<result column="name" property="name"/>
+		<result column="price" property="price"/>
+		<result column="cover_img" property="cover_img"/>
+	</resultMap>
+	
+	<select id="queryAppPro" parameterType="Map" resultMap="appProList, proCount">
+		SELECT SQL_CALC_FOUND_ROWS * FROM product
+		<where>
+			nums > 0
+			<if test="content != null">
+				AND name LIKE "%"#{content}"%"
+			</if>
+			<if test="category_id != null">
+				AND category_id = #{category_id}
+			</if>
+		</where>
+		<if test="limit > 0">
+			limit #{limit} offset #{offset}
+		</if>
+		;
+		
+		SELECT FOUND_ROWS() as count;
+	</select>
+	
+	<resultMap id="appProDetail" type="com.apeces.pojo.AppProDetail">
+		<result column="id" property="id"/>
+		<result column="name" property="name"/>
+		<result column="price" property="price"/>
+		<result column="cover_img" property="cover_img"/>
+		<result column="unit" property="unit"/>
+		<result column="introduction" property="introduction"/>
+		<result column="detail_img" property="detail_img"/>
+		<result column="nums" property="nums"/>
+		
+		<result column="category_id" property="category_id"/>
+		<result column="category_name" property="category_name"/>
+		
+		<result column="shop_id" property="shop_id"/>
+		<result column="shop_name" property="shop_name"/>
+		<result column="shop_logo" property="shop_logo"/>
+	</resultMap>
+	
+	<select id="queryAppProDetail" resultMap="appProDetail">
+		SELECT 
+			p.*,
+			c.category_name,
+			s.id as shop_id, s.name as shop_name, s.logo as shop_logo
+		FROM
+			product AS p
+			LEFT JOIN category AS c ON c.id = p.category_id
+			LEFT JOIN shop AS s ON s.id = p.shop_id
+		WHERE
+			p.id = #{id};
+	</select>
 </mapper>

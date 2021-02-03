@@ -50,4 +50,9 @@ public class ManagerDaoImpl implements ManagerDao {
 	public Manager getManagerByLogin(Manager manager) {
 		return ssTemplate.getMapper(ManagerDao.class).getManagerByLogin(manager);
 	}
+	
+	@Override
+	public int updateManagerBatch(Map<?,?> param) {
+		return ssTemplate.getMapper(ManagerDao.class).updateManagerBatch(param);
+	}
 }

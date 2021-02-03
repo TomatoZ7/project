@@ -78,4 +78,38 @@
 	<delete id="delNews">
 		DELETE FROM news WHERE id = #{id};
 	</delete>
+	
+	
+	
+	<!-- APP -->
+	<select id="queryAppNews" parameterType="Map" resultMap="news, newsCount">
+		SELECT SQL_CALC_FOUND_ROWS
+			n.*,
+			p.id as pid, p.name
+		FROM
+			news AS n
+			LEFT JOIN product AS p ON p.id = n.product_id
+		<where>
+			<if test="shop_id != null">
+				n.shop_id = #{shop_id}
+			</if>
+		</where>
+		<if test="limit > 0">
+			limit #{limit} offset #{offset}
+		</if>
+		;
+		
+		SELECT FOUND_ROWS() as count;
+	</select>
+	
+	<select id="queryAppNew" resultMap="news">
+		SELECT 
+			n.*,
+			p.id as pid, p.name
+		FROM
+			news AS n
+			LEFT JOIN product AS p ON p.id = n.product_id
+		WHERE 
+			n.id = #{id};
+	</select>
 </mapper>

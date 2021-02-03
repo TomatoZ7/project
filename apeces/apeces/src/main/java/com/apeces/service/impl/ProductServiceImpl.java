@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.apeces.dao.ProductDao;
 import com.apeces.domain.Product;
+import com.apeces.pojo.AppProDetail;
 import com.apeces.pojo.ProCatePivot;
 import com.apeces.service.ProductService;
 
@@ -40,5 +41,16 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public int delPro(int id) {
 		return productDao.delPro(id);
+	}
+	
+	
+	@Override
+	public List<List<?>> queryAppPro(Map<String, Object> param){
+		return productDao.queryAppPro(param);
+	}
+	
+	@Override
+	public AppProDetail queryAppProDetail(int id) {
+		return productDao.queryAppProDetail(id);
 	}
 }

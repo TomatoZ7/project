@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.apeces.dao.UserDao">
+	<resultMap id="user" type="com.apeces.domain.User">
+		<result column="id" property="id"/>
+		<result column="phone" property="phone"/>
+		<result column="password" property="password"/>
+		<result column="nickname" property="nickname"/>
+		<result column="avatar" property="avatar"/>
+	</resultMap>
+	
+	<!-- APP -->
+	<insert id="register">
+		INSERT INTO user(phone, password, nickname)
+		SELECT #{phone},#{password},#{nickname}
+		FROM DUAL
+		WHERE NOT EXISTS
+			(SELECT id FROM user WHERE phone = #{phone});
+	</insert>
+	
+	<select id="login" resultMap="user">
+		SELECT * FROM user WHERE phone = #{phone} AND password = #{password};
+	</select>
+</mapper>

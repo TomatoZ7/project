@@ -7,4 +7,7 @@ public interface CommentDao {
 	List<List<?>> queryCommByShop(Map<String, Object> param);
 	
 	int delComm(int id);
+	
+	
+	List<List<?>> queryAppComm(Map<String, Object> param);
 }

@@ -68,11 +68,11 @@ public class apiBookController {
 		Map<String,Object> param = new HashMap<>();
 		param.put("offset", offset);
 		param.put("limit", limit);
-		param.put("content", content);
+		param.put("content", content.isEmpty() ? null : content);
 		param.put("second_category_id", second_category_id);
 		param.put("column", column);
 		param.put("order", order);
-		
+
 		List<List<?>> list = bookservice.searchBook(param);
 		
 		HashMap<String,Object> res = new HashMap<>();

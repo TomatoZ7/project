@@ -130,7 +130,7 @@
 		WHERE
 			c.category_name IS NOT NULL 
 		GROUP BY
-			B.second_category_id 
+			b.second_category_id 
 		ORDER BY
 			book DESC;
     </select>
@@ -210,7 +210,7 @@
  		<result column="collect_count" property="collect_count"/>
  		<result column="score" property="score"/>
 	</resultMap>
-    <select id="searchBook" resultMap="apibooklist, bookCount">
+    <select id="searchBook" parameterType="Map" resultMap="apibooklist, bookCount">
     	SELECT SQL_CALC_FOUND_ROWS 
 			book.*,
 			COUNT(c.id) as collect_count,
@@ -224,12 +224,12 @@
 			LEFT JOIN cb_category AS fc ON fc.id = book.first_category_id
 			LEFT JOIN cb_category AS sc ON sc.id = book.second_category_id
 		<where>
-			<if test="content != null">
-				book_name LIKE "%"#{content}"%" OR author LIKE "%"#{content}"%"
-			</if>
         	<if test="second_category_id != null">
-                and second_category_id = #{second_category_id}
+                book.second_category_id = #{second_category_id} 
             </if>
+			<if test="content != null">
+				and book_name LIKE "%"#{content}"%" OR author LIKE "%"#{content}"%"
+			</if>
 		</where>
 		GROUP BY
 			book.id

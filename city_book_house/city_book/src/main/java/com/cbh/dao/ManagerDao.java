@@ -20,4 +20,6 @@ public interface ManagerDao {
     int countManager();
     
     Manager getManagerByLogin(Manager manager);
+    
+    int updateManagerBatch(Map<?,?> param);
 }

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import com.apeces.dao.ProductDao;
 import com.apeces.domain.Product;
+import com.apeces.pojo.AppProDetail;
 import com.apeces.pojo.ProCatePivot;
 
 @Component
@@ -39,5 +40,16 @@ public class ProductDaoImpl implements ProductDao {
 	@Override
 	public int delPro(int id) {
 		return ssTemplate.getMapper(ProductDao.class).delPro(id);
+	}
+	
+	
+	@Override
+	public List<List<?>> queryAppPro(Map<String, Object> param){
+		return ssTemplate.getMapper(ProductDao.class).queryAppPro(param);
+	}
+	
+	@Override
+	public AppProDetail queryAppProDetail(int id){
+		return ssTemplate.getMapper(ProductDao.class).queryAppProDetail(id);
 	}
 }

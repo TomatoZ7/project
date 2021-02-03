@@ -23,4 +23,11 @@ public class CommentDaoImpl implements CommentDao {
 	public int delComm(int id) {
 		return ssTemplate.getMapper(CommentDao.class).delComm(id);
 	}
+	
+	
+	
+	@Override
+	public List<List<?>> queryAppComm(Map<String, Object> param) {
+		return ssTemplate.getMapper(CommentDao.class).queryAppComm(param);
+	}
 }

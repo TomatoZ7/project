@@ -83,6 +83,9 @@ public class ManagerController {
     	// 设置创建时间
     	Manager.setCreate_time(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
     	
+    	Manager.setStatus(1);
+    	Manager.setHas_rights(2);
+    	
         int result = managerService.insertManager(Manager);
         if (result == 0) {
         	return new Result(403, "添加失败，该账号或手机号已存在。");
@@ -142,4 +145,15 @@ public class ManagerController {
 
         return new Result(200, "删除操作成功");
     }
+
+	@RequestMapping(value = "/enable_batch", method = RequestMethod.PUT)
+	public Result bulk_operate(@RequestBody Map<String, Object> params) {
+		int result = managerService.updateManagerBatch(params);
+		
+		if (result == 0) {
+        	return new Result(403, "失败。");
+        }
+
+        return new Result(200, "成功。");
+	}
 }

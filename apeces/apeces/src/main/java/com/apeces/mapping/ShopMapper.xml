@@ -43,4 +43,28 @@
 		</set>
 		WHERE id = #{id};
 	</update>
+	
+	
+	<!-- APP -->
+    <resultMap id="shopCount" type="java.lang.Integer">
+        <result column="count"/>
+    </resultMap>
+    
+	<select id="queryAppShopList" resultMap="shop, shopCount">
+		SELECT SQL_CALC_FOUND_ROWS
+			s.*,
+			AVG(c.score) as score
+		FROM
+			shop AS s 
+			LEFT JOIN comment AS c ON c.shop_id = s.id
+		GROUP BY 
+			s.id
+		<if test="limit > 0">
+			limit #{limit} offset #{offset}
+		</if>
+		ORDER BY
+			score DESC;
+			
+		SELECT FOUND_ROWS() as count;
+	</select>
 </mapper>

@@ -39,4 +39,15 @@ public class NewsDaoImpl implements NewsDao {
 	public int delNews(int id){
 		return ssTemplate.getMapper(NewsDao.class).delNews(id);
 	}
+
+	
+	@Override
+	public List<List<?>> queryAppNews(Map<String, Object> param){
+		return ssTemplate.getMapper(NewsDao.class).queryAppNews(param);
+	}
+	
+	@Override
+	public News queryAppNew(int id){
+		return ssTemplate.getMapper(NewsDao.class).queryAppNew(id);
+	}
 }

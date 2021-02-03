@@ -15,4 +15,9 @@ public interface NewsDao {
 	int editNews(News news);
 	
 	int delNews(int id);
+	
+	
+	List<List<?>> queryAppNews(Map<String, Object> param);
+	
+	News queryAppNew(int id);
 }

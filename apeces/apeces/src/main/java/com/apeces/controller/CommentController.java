@@ -20,7 +20,7 @@ public class CommentController {
 	CommentService commentService;
 	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public Result index(int shop_id, int offset, int limit) {
+	public Result index(Integer shop_id, Integer offset, Integer limit) {
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("shop_id", shop_id);
 		param.put("offset", offset);
@@ -35,7 +35,7 @@ public class CommentController {
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	public Result delete(@PathVariable int id) {
+	public Result delete(@PathVariable Integer id) {
 		int result = commentService.delComm(id);
         if (result == 0) {
         	return new Result(5000, "Ê§°Ü¡£", null);

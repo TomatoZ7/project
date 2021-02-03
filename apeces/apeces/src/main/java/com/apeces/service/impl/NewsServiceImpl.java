@@ -39,4 +39,15 @@ public class NewsServiceImpl implements NewsService {
 	public int delNews(int id){
 		return newsDao.delNews(id);
 	}
+
+	
+	@Override
+	public List<List<?>> queryAppNews(Map<String, Object> param){
+		return newsDao.queryAppNews(param);
+	}
+	
+	@Override
+	public News queryAppNew(int id){
+		return newsDao.queryAppNew(id);
+	}
 }

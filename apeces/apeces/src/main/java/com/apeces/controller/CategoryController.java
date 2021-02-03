@@ -22,7 +22,7 @@ public class CategoryController {
 	CategoryService categoryService;
 	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public Result index(int shop_id, int offset, int limit) {
+	public Result index(Integer shop_id, Integer offset, Integer limit) {
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("shop_id", shop_id);
 		param.put("offset", offset);
@@ -37,7 +37,7 @@ public class CategoryController {
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public Result single(@PathVariable int id) {
+	public Result single(@PathVariable Integer id) {
 		Category category = categoryService.queryCateSingle(id);
 		
 		if (category == null) {
@@ -62,7 +62,7 @@ public class CategoryController {
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-	public Result update(@PathVariable int id, @RequestBody Category category) {
+	public Result update(@PathVariable Integer id, @RequestBody Category category) {
 		category.setId(id);
 		int result = categoryService.editCate(category);
         if (result == 0) {
@@ -73,7 +73,7 @@ public class CategoryController {
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	public Result delete(@PathVariable int id) {
+	public Result delete(@PathVariable Integer id) {
 		int result = categoryService.delCate(id);
         if (result == 0) {
         	return new Result(5000, "Ê§°Ü¡£", null);

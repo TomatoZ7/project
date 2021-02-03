@@ -49,4 +49,9 @@ public class ManagerServiceImpl implements ManagerService {
 	public Manager getManagerByLogin(Manager manager) {
 		return managerDao.getManagerByLogin(manager);
 	}
+	
+	@Override
+	public int updateManagerBatch(Map<?,?> param) {
+		return managerDao.updateManagerBatch(param);
+	}
 }

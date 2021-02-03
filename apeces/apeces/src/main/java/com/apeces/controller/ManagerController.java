@@ -45,7 +45,7 @@ public class ManagerController {
 	}
 	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public Result index(int limit, int offset) {
+	public Result index(Integer limit, Integer offset) {
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("offset", offset);
 		param.put("limit", limit);
@@ -59,7 +59,7 @@ public class ManagerController {
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public Result single(@PathVariable int id) {
+	public Result single(@PathVariable Integer id) {
 		Manager manager = managerService.queryManagerSingle(id);
 		
 		if (manager == null) {
@@ -96,7 +96,7 @@ public class ManagerController {
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	public Result delete(@PathVariable int id) {
+	public Result delete(@PathVariable Integer id) {
 		int result = managerService.delManager(id);
         if (result == 0) {
         	return new Result(5000, "Ê§°Ü¡£", null);

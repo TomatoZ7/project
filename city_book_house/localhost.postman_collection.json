@@ -70,7 +70,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"account\" : \"test0119-1109\",\r\n    \"name\" : \"test0119-1109\",  \r\n    \"gender\" : 1,\r\n    \"phone\" : \"13501191109\"\r\n}",
+							"raw": "{\r\n    \"account\" : \"admin\",\r\n    \"name\" : \"admin\",  \r\n    \"gender\" : 1,\r\n    \"phone\" : \"15013515010\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -197,21 +197,33 @@
 						"method": "POST",
 						"header": [],
 						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "account",
-									"value": "test20210118",
-									"type": "text"
-								},
-								{
-									"key": "password",
-									"value": "123456",
-									"type": "text"
+							"mode": "raw",
+							"raw": "{\r\n    \"account\" : \"admin\",\r\n    \"password\" : \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
 								}
-							]
+							}
 						},
 						"url": "http://localhost:8079/city_book/manager/login"
+					},
+					"response": []
+				},
+				{
+					"name": "enable_batch",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\" : [1],\r\n    \"status\" : 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8079/city_book/manager/enable_batch"
 					},
 					"response": []
 				}
@@ -1372,7 +1384,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"account\" : \"test0118-1452\",\r\n    \"password\" : \"01181452\"\r\n}",
+							"raw": "{\r\n    \"account\" : \"KingJames\",\r\n    \"password\" : \"james23\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1415,7 +1427,7 @@
 						{
 							"key": "file",
 							"type": "file",
-							"src": "/C:/Users/12143/Desktop/img/2.jpg"
+							"src": "/C:/Users/12143/Desktop/img/微信图片_20210128130219.jpg"
 						}
 					]
 				},

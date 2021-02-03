@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.apeces.domain.Product;
+import com.apeces.pojo.AppProDetail;
 import com.apeces.pojo.ProCatePivot;
 
 public interface ProductDao {
@@ -16,4 +17,9 @@ public interface ProductDao {
 	int editPro(Product pro);
 	
 	int delPro(int id);
+	
+	
+	List<List<?>> queryAppPro(Map<String, Object> param);
+	
+	AppProDetail queryAppProDetail(int id);
 }

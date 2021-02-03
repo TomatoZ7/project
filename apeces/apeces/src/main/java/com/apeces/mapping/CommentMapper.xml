@@ -44,4 +44,51 @@
 	<delete id="delComm">
 		DELETE FROM comment WHERE id = #{id};
 	</delete>
+	
+	
+	
+	<!-- APP -->
+	<resultMap id="appCommList" type="com.apeces.domain.Comment">
+		<result column="id" property="id"/>
+		<result column="content" property="content"/>
+		<result column="score" property="score"/>
+		<result column="create_time" property="create_time"/>
+		
+		<result column="uid" property="user_id"/>
+		<result column="nickname" property="user_nickname"/>
+		<result column="avatar" property="user_avatar"/>
+		
+		<result column="pid" property="product_id"/>
+		<result column="name" property="product_name"/>
+		<result column="cover_img" property="product_img"/>
+	</resultMap>
+	
+	<select id="queryAppComm" parameterType="Map" resultMap="appCommList, commCount">
+		SELECT SQL_CALC_FOUND_ROWS
+			c.*,
+			p.id as pid, p.name, p.cover_img,
+			u.id as uid, u.nickname, u.avatar
+		FROM 
+			comment AS c
+			INNER JOIN user AS u ON u.id = c.user_id
+			INNER JOIN product AS p ON p.id = c.product_id
+		<where>
+			<if test="user_id != null">
+				c.user_id = #{user_id}
+			</if>
+			<if test="shop_id != null">
+				c.shop_id = #{shop_id}
+			</if>
+			<if test="product_id != null">
+				c.product_id = #{product_id}
+			</if>
+		</where>
+		<if test="limit > 0">
+			limit #{limit} offset #{offset}
+		</if>
+		ORDER BY 
+			id DESC;
+			
+		SELECT FOUND_ROWS() as count;
+	</select>
 </mapper>

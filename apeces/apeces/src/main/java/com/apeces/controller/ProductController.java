@@ -23,7 +23,7 @@ public class ProductController {
 	ProductService productService;
 	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public Result index(int shop_id, int offset, int limit) {
+	public Result index(Integer shop_id, Integer offset, Integer limit) {
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("shop_id", shop_id);
 		param.put("offset", offset);
@@ -38,7 +38,7 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public Result single(@PathVariable int id) {
+	public Result single(@PathVariable Integer id) {
 		ProCatePivot pro = productService.queryPro(id);
 		
 		if (pro == null) {
@@ -70,7 +70,7 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-	public Result edit(@PathVariable int id, @RequestBody Product pro) {
+	public Result edit(@PathVariable Integer id, @RequestBody Product pro) {
 		pro.setId(id);
 		int result = productService.editPro(pro);
         if (result == 0) {
@@ -81,7 +81,7 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	public Result delete(@PathVariable int id) {
+	public Result delete(@PathVariable Integer id) {
 		int result = productService.delPro(id);
         if (result == 0) {
         	return new Result(5000, "Ê§°Ü¡£", null);

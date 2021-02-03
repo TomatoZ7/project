@@ -98,4 +98,12 @@
     <select id="getManagerByLogin" parameterType="com.cbh.domain.Manager" resultMap="list">
     	SELECT id, avatar, account, name, gender, phone, status, has_rights FROM cb_manager WHERE password = #{password} AND (account = #{account} OR phone = #{account}) LIMIT 1;
     </select>
+    
+    <!-- 批量启用/禁用 -->
+    <update id="updateManagerBatch">
+    	UPDATE cb_manager set status = #{status}
+    	WHERE
+    		id IN
+    	<foreach collection="id" item="name" index="index" open="(" close=")" separator=",">#{name}</foreach>	
+    </update>
 </mapper>

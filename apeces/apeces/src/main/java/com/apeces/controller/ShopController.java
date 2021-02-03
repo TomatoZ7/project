@@ -21,7 +21,7 @@ public class ShopController {
 	ShopService shopService;
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public Result single(@PathVariable int id) {
+	public Result single(@PathVariable Integer id) {
 		Shop shop = shopService.queryShop(id);
 		
 		if (shop == null) {
@@ -39,7 +39,7 @@ public class ShopController {
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-	public Result update(@PathVariable int id, @RequestBody Shop shop) {
+	public Result update(@PathVariable Integer id, @RequestBody Shop shop) {
 		shop.setId(id);
 		int result = shopService.updateShop(shop);
         if (result == 0) {

@@ -1,5 +1,8 @@
 package com.apeces.service.impl;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,5 +28,10 @@ public class ShopServiceImpl implements ShopService {
 	@Override
 	public int updateShop(Shop shop) {
 		return shopDao.updateShop(shop);
+	}
+	
+	@Override
+	public List<List<?>> queryAppShopList(Map<String, Object> param){
+		return shopDao.queryAppShopList(param);
 	}
 }

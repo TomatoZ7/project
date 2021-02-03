@@ -30,7 +30,7 @@ public class OrderController {
 	}
 	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public Result index(int shop_id, int offset, int limit) {
+	public Result index(Integer shop_id, Integer offset, Integer limit) {
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("shop_id", shop_id);
 		param.put("offset", offset);
@@ -45,7 +45,7 @@ public class OrderController {
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public Result single(@PathVariable int id) {
+	public Result single(@PathVariable Integer id) {
 		Order order = orderService.queryOrder(id);
 		
 		if (order == null) {

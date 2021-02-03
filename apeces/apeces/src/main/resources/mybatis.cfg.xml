@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 <configuration>
 
 	<typeAliases>
-		 <!-- <typeAlias alias="User" type="com.apeces.domain.User"/> -->
+		 <typeAlias alias="User" type="com.apeces.domain.User"/>
 		 <typeAlias alias="Manager" type="com.apeces.domain.Manager"/>
 	</typeAliases>
 
