@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.apeces.dao.AddressDao">
+	<resultMap id="address" type="com.apeces.domain.Address">
+		<result column="id" property="id"/>
+		<result column="name" property="name"/>
+		<result column="phone" property="phone"/>
+		<result column="address" property="address"/>
+		<result column="user_id" property="user_id"/>
+	</resultMap>
+
+    <resultMap id="addrCount" type="java.lang.Integer">
+        <result column="count"/>
+    </resultMap>
+    
+    <select id="queryAddrByUser" parameterType="Map" resultMap="address, addrCount">
+		SELECT SQL_CALC_FOUND_ROWS * FROM address
+		<if test="user_id != null">
+			WHERE user_id = #{user_id}
+		</if>
+		<if test="limit > 0">
+			limit #{limit} offset #{offset}
+		</if>
+		;
+		SELECT FOUND_ROWS() as count;
+	</select>
+	
+	<select id="queryAddr" resultMap="address">
+		SELECT * FROM address WHERE id = #{id} ORDER BY id DESC;
+	</select>
+	
+	<insert id="insertAddr">
+		INSERT INTO address(phone, name, address, user_id) VALUES(#{phone}, #{name}, #{address}, #{user_id});
+	</insert>
+	
+	<update id="updateAddr">
+		UPDATE address SET phone=#{phone}, address=#{address}, name=#{name} WHERE id = #{id};
+	</update>
+	
+	<delete id="delAddr">
+		DELETE FROM address WHERE id = #{id};
+	</delete>
+</mapper>

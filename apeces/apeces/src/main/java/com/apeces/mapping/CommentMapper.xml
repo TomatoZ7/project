@@ -91,4 +91,9 @@
 			
 		SELECT FOUND_ROWS() as count;
 	</select>
+	
+	<insert id="insertComm">
+		INSERT INTO comment(content, score, user_id, product_id, shop_id, order_id, create_time)
+		VALUES(#{content}, #{score}, #{user_id}, #{product_id}, #{shop_id}, #{order_id}, #{create_time});
+	</insert>
 </mapper>

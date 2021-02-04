@@ -746,6 +746,24 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "add",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"content\" : \"test\",\r\n    \"score\" : \"5\",\r\n    \"user_id\" : \"1\",\r\n    \"product_id\" : \"1\",\r\n    \"shop_id\" : \"1\",\r\n    \"order_id\" : \"1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:8079/apeces/api/comment"
+							},
+							"response": []
 						}
 					],
 					"protocolProfileBehavior": {},
@@ -759,7 +777,34 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"url": ""
+								"url": {
+									"raw": "http://localhost:8079/apeces/api/news/list?limit=-1&offset=0&shop_id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8079",
+									"path": [
+										"apeces",
+										"api",
+										"news",
+										"list"
+									],
+									"query": [
+										{
+											"key": "limit",
+											"value": "-1"
+										},
+										{
+											"key": "offset",
+											"value": "0"
+										},
+										{
+											"key": "shop_id",
+											"value": null
+										}
+									]
+								}
 							},
 							"response": []
 						},
@@ -768,7 +813,244 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"url": ""
+								"url": "http://localhost:8079/apeces/api/news/2"
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "address",
+					"item": [
+						{
+							"name": "list",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8079/apeces/api/address/list?limit=-1&offset=0&user_id=1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8079",
+									"path": [
+										"apeces",
+										"api",
+										"address",
+										"list"
+									],
+									"query": [
+										{
+											"key": "limit",
+											"value": "-1"
+										},
+										{
+											"key": "offset",
+											"value": "0"
+										},
+										{
+											"key": "user_id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "single",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:8079/apeces/api/address/1"
+							},
+							"response": []
+						},
+						{
+							"name": "add",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\" : \"kris\",\r\n    \"phone\" : \"13515013510\",\r\n    \"address\" : \"潮汕普揭\",\r\n    \"user_id\" : 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:8079/apeces/api/address"
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\" : \"kris_wu\",\r\n    \"phone\" : \"13515013510\",\r\n    \"address\" : \"潮汕普揭\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:8079/apeces/api/address/1"
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:8079/apeces/api/address/2"
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "order",
+					"item": [
+						{
+							"name": "order",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"user_id\" : 1,\r\n    \"product_id\" : 1,\r\n    \"shop_id\" : 1,\r\n    \"address_id\" : 1,\r\n    \"nums\" : 5,\r\n    \"amount\" : 888.5\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:8079/apeces/api/order"
+							},
+							"response": []
+						},
+						{
+							"name": "pay",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": "http://localhost:8079/apeces/api/order/pay/7"
+							},
+							"response": []
+						},
+						{
+							"name": "list",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8079/apeces/api/order/list?user_id=1&offset=0&limit=-1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8079",
+									"path": [
+										"apeces",
+										"api",
+										"order",
+										"list"
+									],
+									"query": [
+										{
+											"key": "user_id",
+											"value": "1"
+										},
+										{
+											"key": "offset",
+											"value": "0"
+										},
+										{
+											"key": "limit",
+											"value": "-1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "detail",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:8079/apeces/api/order/1"
+							},
+							"response": []
+						},
+						{
+							"name": "remind 催单",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": "http://localhost:8079/apeces/api/order/remind/1"
+							},
+							"response": []
+						},
+						{
+							"name": "refund 退款",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": "http://localhost:8079/apeces/api/order/refund/1"
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "logistics",
+					"item": [
+						{
+							"name": "list for order",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8079/apeces/api/logistics?order_id=7",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8079",
+									"path": [
+										"apeces",
+										"api",
+										"logistics"
+									],
+									"query": [
+										{
+											"key": "order_id",
+											"value": "7"
+										}
+									]
+								}
 							},
 							"response": []
 						}

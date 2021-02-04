@@ -43,6 +43,6 @@ public class Result {
 
 	@Override
 	public String toString() {
-		return "Result [stateCode=" + code + ", message=" + message + ", data=" + data + "]";
+		return "Result [code=" + code + ", message=" + message + ", data=" + data + "]";
 	}
 }

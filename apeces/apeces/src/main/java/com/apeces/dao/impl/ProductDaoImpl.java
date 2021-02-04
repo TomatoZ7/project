@@ -52,4 +52,9 @@ public class ProductDaoImpl implements ProductDao {
 	public AppProDetail queryAppProDetail(int id){
 		return ssTemplate.getMapper(ProductDao.class).queryAppProDetail(id);
 	}
+	
+	@Override
+	public int updateNums(Map<String, Object> param) {
+		return ssTemplate.getMapper(ProductDao.class).updateNums(param);
+	}
 }

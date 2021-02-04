@@ -53,4 +53,9 @@ public class ProductServiceImpl implements ProductService {
 	public AppProDetail queryAppProDetail(int id) {
 		return productDao.queryAppProDetail(id);
 	}
+	
+	@Override
+	public int updateNums(Map<String, Object> param) {
+		return productDao.updateNums(param);
+	}
 }

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.apeces.dao.CommentDao;
+import com.apeces.domain.Comment;
 import com.apeces.service.CommentService;
 
 @Service
@@ -29,5 +30,10 @@ public class CommentServiceImpl implements CommentService {
 	@Override
 	public List<List<?>> queryAppComm(Map<String, Object> param) {
 		return commentDao.queryAppComm(param);
+	}
+	
+	@Override
+	public int insertComm(Comment comment) {
+		return commentDao.insertComm(comment);
 	}
 }

@@ -22,4 +22,6 @@ public interface ProductService {
 	List<List<?>> queryAppPro(Map<String, Object> param);
 	
 	AppProDetail queryAppProDetail(int id);
+	
+	int updateNums(Map<String, Object> param);
 }

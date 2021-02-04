@@ -8,7 +8,7 @@ public class AppProDetail {
 	private String cover_img;
 	private String introduction;
 	private String detail_img;
-	private String nums;
+	private int nums;
 	
 	private int category_id;
 	private String category_name;
@@ -22,7 +22,7 @@ public class AppProDetail {
 	}
 
 	public AppProDetail(int id, String name, double price, String unit, String cover_img, String introduction,
-			String detail_img, String nums, int category_id, String category_name, int shop_id, String shop_name,
+			String detail_img, int nums, int category_id, String category_name, int shop_id, String shop_name,
 			String shop_logo) {
 		super();
 		this.id = id;
@@ -96,11 +96,11 @@ public class AppProDetail {
 		this.detail_img = detail_img;
 	}
 
-	public String getNums() {
+	public int getNums() {
 		return nums;
 	}
 
-	public void setNums(String nums) {
+	public void setNums(int nums) {
 		this.nums = nums;
 	}
 

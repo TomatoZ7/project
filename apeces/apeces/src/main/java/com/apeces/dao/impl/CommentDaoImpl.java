@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.apeces.dao.CommentDao;
+import com.apeces.domain.Comment;
 
 @Component
 public class CommentDaoImpl implements CommentDao {
@@ -29,5 +30,10 @@ public class CommentDaoImpl implements CommentDao {
 	@Override
 	public List<List<?>> queryAppComm(Map<String, Object> param) {
 		return ssTemplate.getMapper(CommentDao.class).queryAppComm(param);
+	}
+	
+	@Override
+	public int insertComm(Comment comment) {
+		return ssTemplate.getMapper(CommentDao.class).insertComm(comment);
 	}
 }

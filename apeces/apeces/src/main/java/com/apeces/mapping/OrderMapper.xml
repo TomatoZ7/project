@@ -88,6 +88,80 @@
  	
  	
  	
+ 	<!-- APP -->
+ 	<insert id="genOrder">
+ 		INSERT INTO orders(order_no, user_id, product_id, shop_id, address_id, nums, amount, status, create_time)
+ 		VALUES(#{order_no}, #{user_id}, #{product_id}, #{shop_id}, #{address_id}, #{nums}, #{amount}, #{status}, #{create_time});
+ 	</insert>
  	
  	
+ 	<update id="payOrder">
+ 		UPDATE orders SET status = 2 WHERE id = #{id};
+ 	</update>
+ 	
+ 	<resultMap id="appOrder" type="com.apeces.pojo.AppOrder">
+		<result column="id" property="id"/>
+		<result column="order_no" property="order_no"/>
+		<result column="nums" property="nums"/>
+		<result column="amount" property="amount"/>
+		<result column="status" property="status"/>
+		
+		<result column="product_id" property="product_id"/>
+		<result column="pname" property="product_name"/>
+		<result column="cover_img" property="product_cover_img"/>
+		
+		<result column="shop_id" property="shop_id"/>
+		<result column="sname" property="shop_name"/>
+		<result column="sphone" property="shop_phone"/>
+		
+		<result column="address_id" property="address_id"/>
+		<result column="aname" property="address_name"/>
+		<result column="aphone" property="address_phone"/>
+		<result column="address" property="address"/>
+	</resultMap>
+ 	
+ 	<select id="queryAppOrderByUser" parameterType="Map" resultMap="appOrder, orderCount">
+ 		SELECT SQL_CALC_FOUND_ROWS 
+ 			o.*,
+ 			p.name as pname, p.cover_img,
+ 			s.name as sname,
+ 			a.name as aname, a.phone as aphone, a.address
+ 		FROM
+			orders AS o
+			INNER JOIN product AS p ON p.id = o.product_id
+			INNER JOIN shop AS s ON s.id = o.shop_id
+			LEFT JOIN address AS a ON a.id = o.address_id
+		<if test="user_id != null">
+			WHERE o.user_id = #{user_id}			
+		</if>
+ 		<if test="limit > 0">
+ 			limit #{limit} offset{#offset}
+ 		</if>
+ 		;
+		
+		SELECT FOUND_ROWS() as count;
+ 	</select>
+ 	
+ 	<select id="queryAppOrder" resultMap="appOrder">
+ 		SELECT SQL_CALC_FOUND_ROWS 
+ 			o.*,
+ 			p.name as pname, p.cover_img,
+ 			s.name as sname, s.phone as sphone,
+ 			a.name as aname, a.phone as aphone, a.address
+ 		FROM
+			orders AS o
+			LEFT JOIN product AS p ON p.id = o.product_id
+			LEFT JOIN shop AS s ON s.id = o.shop_id
+			LEFT JOIN address AS a ON a.id = o.address_id
+		WHERE
+			o.id = #{id}
+ 	</select>
+ 	
+ 	<update id="remind">
+ 		UPDATE orders SET remark = '客户已催单' WHERE id = #{id};
+ 	</update>
+ 	
+ 	<update id="refund" parameterType="Map">
+ 		UPDATE orders SET status = #{status} WHERE id = #{id};
+ 	</update>
 </mapper>

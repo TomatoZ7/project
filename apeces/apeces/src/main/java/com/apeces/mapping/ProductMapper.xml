@@ -155,4 +155,8 @@
 		WHERE
 			p.id = #{id};
 	</select>
+	
+	<update id="updateNums" parameterType="Map">
+		UPDATE product SET nums = #{nums} WHERE id = #{id};
+	</update>
 </mapper>

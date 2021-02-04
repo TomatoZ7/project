@@ -11,7 +11,7 @@
  Target Server Version : 80012
  File Encoding         : 65001
 
- Date: 03/02/2021 18:37:34
+ Date: 04/02/2021 18:55:06
 */
 
 SET NAMES utf8mb4;
@@ -22,12 +22,20 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- ----------------------------
 DROP TABLE IF EXISTS `address`;
 CREATE TABLE `address`  (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `phone` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   `address` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `user_id` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of address
+-- ----------------------------
+INSERT INTO `address` VALUES (1, '13515013510', 'kris_wu', '潮汕普揭', 0);
+INSERT INTO `address` VALUES (3, '13515013510', 'kris', '潮汕普揭', 0);
+INSERT INTO `address` VALUES (4, '13515013510', 'kris', '潮汕普揭', 1);
 
 -- ----------------------------
 -- Table structure for category
@@ -76,7 +84,7 @@ INSERT INTO `category` VALUES (29, '瓜类');
 -- ----------------------------
 DROP TABLE IF EXISTS `comment`;
 CREATE TABLE `comment`  (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `content` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   `score` tinyint(4) NOT NULL DEFAULT 5,
   `user_id` int(11) NOT NULL DEFAULT 0,
@@ -86,6 +94,29 @@ CREATE TABLE `comment`  (
   `create_time` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of comment
+-- ----------------------------
+INSERT INTO `comment` VALUES (1, 'test', 5, 1, 1, 1, 1, '2021-02-04 18:54:53');
+
+-- ----------------------------
+-- Table structure for logistics
+-- ----------------------------
+DROP TABLE IF EXISTS `logistics`;
+CREATE TABLE `logistics`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `order_id` int(11) NOT NULL,
+  `info` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `create_time` timestamp(0) NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of logistics
+-- ----------------------------
+INSERT INTO `logistics` VALUES (3, 7, '您已提交订单，请等待系统确认', '2021-02-04 16:26:56');
+INSERT INTO `logistics` VALUES (4, 7, '订单确认，已通知商家配货', '2021-02-04 16:26:56');
 
 -- ----------------------------
 -- Table structure for manager
@@ -138,20 +169,22 @@ CREATE TABLE `orders`  (
   `address_id` int(11) NOT NULL DEFAULT 0,
   `nums` int(11) NOT NULL DEFAULT 1 COMMENT '成交数量',
   `amount` decimal(10, 2) NOT NULL DEFAULT 0.00 COMMENT '成交金额',
-  `status` tinyint(4) NOT NULL DEFAULT 1 COMMENT '1未支付 2已支付 3已发货 4已退款',
+  `status` tinyint(4) NOT NULL DEFAULT 1 COMMENT '1未支付 2已支付 3已发货 4申请退款 5已退款',
   `create_time` timestamp(0) NULL DEFAULT NULL COMMENT '时间',
+  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 8 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of orders
 -- ----------------------------
-INSERT INTO `orders` VALUES (1, 'test111111', 1, 1, 1, 1, 2, 5000.00, 2, '2020-01-01 17:50:08');
-INSERT INTO `orders` VALUES (2, 'test222222', 1, 2, 1, 2, 1, 10000.00, 3, '2020-03-01 17:51:00');
-INSERT INTO `orders` VALUES (3, 'test333333', 1, 3, 1, 3, 3, 600.00, 2, '2020-05-29 17:52:00');
-INSERT INTO `orders` VALUES (4, 'test444444', 1, 4, 2, 4, 1, 20000.00, 3, '2020-07-29 17:53:04');
-INSERT INTO `orders` VALUES (5, 'test555555', 1, 5, 1, 5, 4, 8000.00, 2, '2020-09-17 17:54:06');
-INSERT INTO `orders` VALUES (6, 'test666666', 1, 6, 1, 6, 8, 60000.88, 3, '2020-11-08 17:55:22');
+INSERT INTO `orders` VALUES (1, 'test111111', 1, 1, 1, 1, 2, 5000.00, 5, '2020-01-01 17:50:08', '客户已催单');
+INSERT INTO `orders` VALUES (2, 'test222222', 1, 2, 1, 2, 1, 10000.00, 3, '2020-03-01 17:51:00', NULL);
+INSERT INTO `orders` VALUES (3, 'test333333', 1, 3, 1, 3, 3, 600.00, 2, '2020-05-29 17:52:00', NULL);
+INSERT INTO `orders` VALUES (4, 'test444444', 1, 4, 2, 4, 1, 20000.00, 3, '2020-07-29 17:53:04', NULL);
+INSERT INTO `orders` VALUES (5, 'test555555', 1, 5, 1, 5, 4, 8000.00, 2, '2020-09-17 17:54:06', NULL);
+INSERT INTO `orders` VALUES (6, 'test666666', 1, 6, 1, 6, 8, 60000.88, 3, '2020-11-08 17:55:22', NULL);
+INSERT INTO `orders` VALUES (7, '51405871000000', 1, 1, 1, 1, 5, 888.50, 2, '2021-02-04 12:11:15', NULL);
 
 -- ----------------------------
 -- Table structure for product
@@ -174,7 +207,7 @@ CREATE TABLE `product`  (
 -- ----------------------------
 -- Records of product
 -- ----------------------------
-INSERT INTO `product` VALUES (2, '东北小麦', 22.00, '斤', 1, '', '东北小麦比较饱满', '', 1, 200);
+INSERT INTO `product` VALUES (1, '东北小麦', 22.00, '斤', 1, '', '东北小麦比较饱满', '', 1, 195);
 
 -- ----------------------------
 -- Table structure for shop
@@ -205,7 +238,7 @@ CREATE TABLE `user`  (
   `nickname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   `avatar` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of user

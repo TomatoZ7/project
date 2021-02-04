@@ -13,6 +13,7 @@ public class Order {
 	private double amount;
 	private int status;
 	private String create_time;
+	private String remark;
 	
 	private ProSimple product;
 	private Address address;
@@ -22,7 +23,7 @@ public class Order {
 	}
 
 	public Order(int id, String order_no, int user_id, int product_id, int shop_id, int address_id, int nums,
-			double amount, int status, String create_time) {
+			double amount, int status, String create_time, String remark, ProSimple product, Address address) {
 		super();
 		this.id = id;
 		this.order_no = order_no;
@@ -34,6 +35,9 @@ public class Order {
 		this.amount = amount;
 		this.status = status;
 		this.create_time = create_time;
+		this.remark = remark;
+		this.product = product;
+		this.address = address;
 	}
 
 	public int getId() {
@@ -130,6 +134,14 @@ public class Order {
 
 	public void setAddress(Address address) {
 		this.address = address;
+	}
+
+	public String getRemark() {
+		return remark;
+	}
+
+	public void setRemark(String remark) {
+		this.remark = remark;
 	}
 	
 	
