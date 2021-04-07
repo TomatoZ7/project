@@ -50,8 +50,12 @@ public class appOrderController {
         if (result == 0) {
         	return new Result(5000, "失败。", null);
         }
+        
+        Map<String, Object> res = new HashMap<String, Object>();
+		res.put("id", order.getId());
+		res.put("status", order.getStatus());
 
-        return new Result(2000, "成功。", null);
+        return new Result(2000, "成功。", res);
 	}
 	
 	/**

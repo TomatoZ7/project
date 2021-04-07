@@ -13,6 +13,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.poi.hssf.usermodel.DVConstraint;
+import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFDataValidation;
 import org.apache.poi.hssf.usermodel.HSSFDataValidationHelper;
 import org.apache.poi.hssf.usermodel.HSSFRow;
@@ -50,16 +52,15 @@ public class BookController {
 	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public HashMap<?,?> index(Integer offset, Integer limit, Integer first_category_id, Integer second_category_id, 
-			String book_name, Integer status, String content) {
+			String keyword, Integer status) {
 
 		Map<String,Object> param = new HashMap<>();
 		param.put("offset", offset);
 		param.put("limit", limit);
 		param.put("first_category_id", first_category_id);
 		param.put("second_category_id", second_category_id);
-		param.put("book_name", book_name);
+		param.put("keyword", keyword);
 		param.put("status", status);
-		param.put("content", content);
 		
 		List<List<?>> list = bookservice.getBookList(param);
 		HashMap<String,Object> res = new HashMap<>();
@@ -112,6 +113,19 @@ public class BookController {
         return new Result(200, "删除成功");
     }
 	
+	@RequestMapping(value="/offshelf/{id}",method = RequestMethod.PUT)
+    public Result offShelf(@PathVariable int id, @RequestBody Book book){
+		book.setId(id);
+    	
+        int result = bookservice.offShelf(book);
+//		int result = 1;
+        if (result == 0) {
+        	return new Result(403, "失败。");
+        }
+
+        return new Result(200, "成功。");
+    }
+	
 	/**
 	 * 模板导出
 	 * 
@@ -126,14 +140,14 @@ public class BookController {
 		Map<String, List<String>> secondCateMap = new HashMap<String, List<String>>();
 		// 封装数据
 		for (firstCategory category : listCate) {
-			firstCateList.add("C" + category.getId() + "_" + category.getCategory_name());
-			
+			firstCateList.add("C" + category.getId() + "_" + (category.getCategory_name().replace("/", "")));
+
 			List<String> secondCateList = new ArrayList<String>();
 			List<Category> secondCate = category.getSecond_cate();
 			for (Category child : secondCate) {
-				secondCateList.add("C" + child.getId() + "_" + child.getCategory_name());
+				secondCateList.add("C" + child.getId() + "_" + (child.getCategory_name().replace("/", "")));
 			}
-			secondCateMap.put("C" + category.getId() + "_" + category.getCategory_name(), secondCateList);
+			secondCateMap.put("C" + category.getId() + "_" + (category.getCategory_name().replace("/", "")), secondCateList);
 		}
 		
 		response.setCharacterEncoding("UTF-8");
@@ -150,6 +164,7 @@ public class BookController {
         titleRow.createCell(4).setCellValue("书籍编码");
         titleRow.createCell(5).setCellValue("书籍位置");
         titleRow.createCell(6).setCellValue("书籍简介");
+        titleRow.createCell(7).setCellValue("作者");
         // 隐藏sheet，用于隐藏分类数据
         HSSFSheet cateSheet = wb.createSheet("cateSheet");
         // 设置sheet是否隐藏 true:隐藏/false:显示
@@ -232,7 +247,8 @@ public class BookController {
 		DataValidation cateDataValidation = dvHelper.createValidation(cateConstraint, cateRangeAddressList);
 		cateDataValidation.createErrorBox("error", "请选择正确的分类");
 		cateDataValidation.setShowErrorBox(true);
-		sheet.addValidationData(cateDataValidation);
+//		sheet.addValidationData(cateDataValidation);
+		getDataValidationList4Col(sheet, 1, 1, 100, 1, firstCateList, HSSFWorkBook);
 		
 		// 设置二级分类下拉
 		for (int i = 0; i <= 100; i++) {
@@ -262,6 +278,39 @@ public class BookController {
 		// 设置输入信息提示信息
 		data_validation_list.createPromptBox("下拉选择提示", "请使用下拉方式选择合适的值！");
 		return data_validation_list;
+	}
+
+	private static HSSFDataValidation getDataValidationList4Col(HSSFSheet sheet, int firstRow, int firstCol, int endRow, int endCol, List<String> colName,
+            HSSFWorkbook wbCreat){
+		String[] dataArray = colName.toArray(new String[0]);
+		HSSFSheet hidden = wbCreat.createSheet("hidden");
+		HSSFCell cell = null;
+		for (int i = 0, length = dataArray.length; i < length; i++)
+		{
+		String name = dataArray[i];
+		HSSFRow row = hidden.createRow(i);
+		cell = row.createCell(0);
+		cell.setCellValue(name);
+		}
+		
+		Name namedCell = wbCreat.createName();
+		namedCell.setNameName("hidden");
+		namedCell.setRefersToFormula("hidden!$A$1:$A$" + dataArray.length);
+		//加载数据,将名称为hidden的
+		DVConstraint constraint = DVConstraint.createFormulaListConstraint("hidden");
+		
+		// 设置数据有效性加载在哪个单元格上,四个参数分别是：起始行、终止行、起始列、终止列
+		CellRangeAddressList addressList = new CellRangeAddressList(firstRow, endRow, firstCol, endCol);
+		HSSFDataValidation validation = new HSSFDataValidation(addressList, constraint);
+		
+		//将第二个sheet设置为隐藏
+		wbCreat.setSheetHidden(1, true);
+		
+		if (null != validation)
+		{
+		sheet.addValidationData(validation);
+		}
+		return validation;
 	}
 	
 	/**
@@ -320,6 +369,7 @@ public class BookController {
 				errRowData.put("code", row.getCell(4) == null ? "" : row.getCell(4).getStringCellValue());
 				errRowData.put("place", row.getCell(5) == null ? "" : row.getCell(5).getStringCellValue());
 				errRowData.put("introduction", row.getCell(6) == null ? "" : row.getCell(6).getStringCellValue());
+				errRowData.put("author", row.getCell(7) == null ? "" : row.getCell(7).getStringCellValue());
 				// 错误判断
 				if (row == null || row.getCell(0) == null || row.getCell(0).getStringCellValue().trim().isEmpty()) {
 					errRowData.put("errMsg", "书籍名称不能为空");
@@ -368,6 +418,12 @@ public class BookController {
 					res.setErrorNum(res.getErrorNum()+1);
 					continue;
 				}
+				if (row.getCell(7) == null || row.getCell(7).getStringCellValue().trim().isEmpty()) {
+					errRowData.put("errMsg", "书籍作者不能为空");
+					errData.add(errRowData);
+					res.setErrorNum(res.getErrorNum()+1);
+					continue;
+				}
 				// 未发现错误且错误数为0
 				if (res.getErrorNum() == 0) {
 					String fc = row.getCell(1).getStringCellValue().trim();
@@ -376,7 +432,7 @@ public class BookController {
 					int scid = Integer.parseInt(sc.substring(1, fc.indexOf("_")));
 					int stock = Integer.parseInt(row.getCell(3).getStringCellValue().trim());
 					
-					listBook.add(new Book(0, (String)errRowData.get("bookName"), "", fcid, scid, stock, stock, (String)errRowData.get("code"), 2,
+					listBook.add(new Book(0, (String)errRowData.get("bookName"), (String)errRowData.get("author"), fcid, scid, stock, stock, (String)errRowData.get("code"), 2,
 							(String)errRowData.get("place"), (String)errRowData.get("introduction"), "", time));
 				}
 			}

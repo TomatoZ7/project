@@ -52,6 +52,6 @@
         	SELECT #{user_id},#{name},#{gender},#{phone},#{id_card},#{id_card_positive_img},#{id_card_negative_img},#{status},#{create_time}
 			FROM DUAL
        		WHERE NOT EXISTS 
-        		(SELECT id FROM cb_user_apply WHERE status != 2 AND (id_card = #{id_card} OR phone = #{phone}));
+        		(SELECT id FROM cb_user_apply WHERE status != 2 AND user_id = #{user_id});
     </insert>
   </mapper>

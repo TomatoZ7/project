@@ -24,7 +24,7 @@
  	<!-- ADMIN -->
  	<!-- 登录 -->
  	<select id="login" parameterType="com.apeces.domain.Manager" resultMap="manager">
- 		SELECT * FROM manager WHERE phone=#{phone} AND password=#{password};
+ 		SELECT * FROM manager WHERE phone=#{phone} AND password=#{password} LIMIT 1;
  	</select>
  	
  	<select id="queryManager" resultMap="manager, managerCount">

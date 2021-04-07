@@ -1,6 +1,10 @@
 package com.apeces.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -8,11 +12,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.apeces.domain.Order;
 import com.apeces.service.OrderService;
 import com.apeces.utils.Result;
+import com.apeces.utils.Season;
 
 @RequestMapping(value = "/admin/order")
 @RestController
@@ -25,8 +31,39 @@ public class OrderController {
 	 * 
 	 */
 	@RequestMapping(value = "/count", method = RequestMethod.GET)
-	public void count() {
-		// TODO 获取最近四个季度的数据
+	public Result count(Integer shop_id) {
+		if (shop_id == null) {
+			shop_id = 0;
+		}
+		
+		Date date = new Date();
+		LinkedHashMap<String, Object> res = new LinkedHashMap<String, Object>();
+		List<Object> list = new ArrayList<Object>();
+		
+		for (int i = 0; i < 4; ++i) {
+			Date curDate = Season.getBeforQuarterStartDate(date, i);
+			Date preDate = Season.getBeforQuarterStartDate(date, i+1);
+
+			String curFormattedDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(curDate);
+			String preFormattedDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(preDate);
+
+			Map<String, Object> param = new HashMap<String, Object>();
+			param.put("start_time", preFormattedDate);
+			param.put("end_time", curFormattedDate);
+			param.put("shop_id", shop_id);
+			String amount = orderService.count(param);
+			
+			String season = "" + Season.getSeason(preDate);
+			
+			Map<String, Object> tempMap = new HashMap<String, Object>();
+			tempMap.put("key", season);
+			tempMap.put("value", amount);
+			list.add(tempMap);
+		}
+		
+		res.put("data", list);
+		
+		return new Result(2000, "成功", res);
 	}
 	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)

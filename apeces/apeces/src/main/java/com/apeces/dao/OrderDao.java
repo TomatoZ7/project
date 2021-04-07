@@ -7,7 +7,7 @@ import com.apeces.domain.Order;
 import com.apeces.pojo.AppOrder;
 
 public interface OrderDao {
-	double count();
+	String count(Map<String, Object> param);
 	
 	List<List<?>> queryOrderByShop(Map<String, Object> param);
 	

@@ -128,7 +128,7 @@
     <select id="getMyRecordList" parameterType="Map" resultMap="myRecordList, recordCount">
     	SELECT SQL_CALC_FOUND_ROWS
 			record.*,
-			book.id as bid, book.book_name, book.author as book_author, 
+			book.id as bid, book.book_name, book.author as book_author, book.image as book_image,
 			c.id as cid, c.category_name as book_first_cate
 		FROM
 			cb_borrow_record AS record

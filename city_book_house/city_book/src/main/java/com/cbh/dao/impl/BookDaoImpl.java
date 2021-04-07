@@ -53,6 +53,11 @@ public class BookDaoImpl implements BookDao {
 		return ssTemplate.getMapper(BookDao.class).countBookByCategory();
 	}
 	
+	@Override
+	public int offShelf(Book book) {
+		return ssTemplate.getMapper(BookDao.class).offShelf(book);
+	}
+	
 	
 	/******  ÒÆ¶¯¶Ë  *******/
 	@Override

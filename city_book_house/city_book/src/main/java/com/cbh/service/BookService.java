@@ -23,6 +23,8 @@ public interface BookService {
 	
 	List<Object> countBookByCategory();
 	
+	int offShelf(Book book);
+	
 	
 	/******  ÒÆ¶¯¶Ë  *******/
 	List<Book> getBookOfPopular();

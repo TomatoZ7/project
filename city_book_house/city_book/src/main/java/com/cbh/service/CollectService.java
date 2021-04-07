@@ -1,6 +1,7 @@
 package com.cbh.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.cbh.domain.Collect;
 
@@ -9,5 +10,5 @@ public interface CollectService {
 	
 	int insertCollect(Collect collect);
 	
-	int deleteCollect(int id);
+	int deleteCollect(Map<String, Object> params);
 }

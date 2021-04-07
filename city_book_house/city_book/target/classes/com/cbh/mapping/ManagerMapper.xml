@@ -65,7 +65,7 @@
         	password = #{password},
         </if>
         <if test="name != null">
-        	account = #{name},
+        	name = #{name},
         </if>
         <if test="gender != null">
         	gender = #{gender},

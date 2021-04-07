@@ -17,8 +17,8 @@ public class Book {
 	private String image;
 	private String create_time;
 	
-	private Integer collectCount;
-	private Double scoreAvg;
+	private Integer collect_count;
+	private Double score;
 	private Integer readCount;
 	
 	private Integer is_collect;
@@ -179,20 +179,20 @@ public class Book {
 		this.borrowRecord = borrowRecord;
 	}
 
-	public Integer getCollectCount() {
-		return collectCount;
+	public Integer getCollect_count() {
+		return collect_count;
 	}
 
-	public void setCollectCount(Integer collectCount) {
-		this.collectCount = collectCount;
+	public void setCollect_count(Integer collectCount) {
+		this.collect_count = collectCount;
 	}
 
-	public Double getScoreAvg() {
-		return scoreAvg;
+	public Double getScore() {
+		return score;
 	}
 
-	public void setScoreAvg(Double scoreAvg) {
-		this.scoreAvg = scoreAvg;
+	public void setScore(Double scoreAvg) {
+		this.score = scoreAvg;
 	}
 
 	public Integer getIs_collect() {

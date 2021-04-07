@@ -3,6 +3,7 @@ package com.cbh.controller;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -44,9 +45,13 @@ public class apiCollectController {
         return new Result(200, "成功。");
 	}
 	
-	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	public Result delete(@PathVariable int id) {
-		int result = collectService.deleteCollect(id);
+	@RequestMapping(value = "", method = RequestMethod.DELETE)
+	public Result delete(@RequestBody Map<String, Object> params) {
+		if (!params.containsKey("user_id") ||  !params.containsKey("book_id")) {
+			return new Result(400, "参数错误");
+		}
+		
+		int result = collectService.deleteCollect(params);
 		if (result == 0) {
         	return new Result(403, "失败。");
         }

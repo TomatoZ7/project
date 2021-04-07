@@ -17,14 +17,12 @@ public class Result {
         this.setData(data);
     }
 
-	public int getStateCode() {
+	public int getCode() {
 		return code;
 	}
-
-	public void setStateCode(int stateCode) {
-		this.code = stateCode;
+	public void setCode(int code) {
+		this.code = code;
 	}
-
 	public String getMessage() {
 		return message;
 	}

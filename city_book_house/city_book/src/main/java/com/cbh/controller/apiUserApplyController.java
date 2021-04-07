@@ -28,14 +28,15 @@ public class apiUserApplyController {
 		userApply.setCreate_time(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
 		
 		int result = userApplyService.insertUserApply(userApply);
-		if (result == 0) {
-        	return new Result(403, "你已经认证过了");
-        }
+//		if (result == 0) {
+//        	return new Result(403, "你的认证正在审核，请稍后");
+//        }
 		
 		// 更新 user 手机&性别
 		User user = userService.getUserById(userApply.getUser_id());
 		user.setPhone(userApply.getPhone());
 		user.setGender(userApply.getGender());
+		user.setAuth(3);
 		userService.updateUser(user);
 
         return new Result(200, "成功。");

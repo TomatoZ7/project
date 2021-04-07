@@ -32,20 +32,23 @@
     <resultMap id="orderCount" type="java.lang.Integer">
         <result column="count"/>
     </resultMap>
+
+    <resultMap id="orderSum" type="java.lang.Double">
+        <result column="amount"/>
+    </resultMap>
 	
 	<!-- ADMIN -->
-	<!-- 首页销售额统计 -->
- 	<select id="count">
- 		SELECT SUM(amount) FROM orders
+ 	<select id="count" parameterType="Map" resultType="string">
+ 		SELECT SUM(amount) as amount FROM orders
  		<where>
  			<if test="start_time != null">
  				create_time >= #{start_time}
  			</if>
  			<if test="end_time != null">
- 				create_time &lt;= #{end_time}
+ 				AND create_time &lt; #{end_time}
  			</if>
- 			<if test="shop_id">
- 				shop_id = #{shop_id}
+ 			<if test="shop_id > 0">
+ 				AND shop_id = #{shop_id}
  			</if>
  		</where>
  		;
@@ -66,7 +69,7 @@
  			</if>
  		</where>
  		<if test="limit > 0">
- 			limit #{limit} offset{#offset}
+ 			limit #{limit} offset #{offset}
  		</if>
  		;
 			
@@ -90,13 +93,16 @@
  	
  	<!-- APP -->
  	<insert id="genOrder">
+ 		<selectKey keyProperty="id" keyColumn="id" resultType="int" order="AFTER">
+	        SELECT last_insert_id();
+	    </selectKey>
  		INSERT INTO orders(order_no, user_id, product_id, shop_id, address_id, nums, amount, status, create_time)
  		VALUES(#{order_no}, #{user_id}, #{product_id}, #{shop_id}, #{address_id}, #{nums}, #{amount}, #{status}, #{create_time});
  	</insert>
  	
  	
  	<update id="payOrder">
- 		UPDATE orders SET status = 2 WHERE id = #{id};
+ 		UPDATE orders SET status = 3 WHERE id = #{id};
  	</update>
  	
  	<resultMap id="appOrder" type="com.apeces.pojo.AppOrder">
@@ -118,6 +124,10 @@
 		<result column="aname" property="address_name"/>
 		<result column="aphone" property="address_phone"/>
 		<result column="address" property="address"/>
+		
+		<result column="cid" property="comment_id"/>
+		<result column="content" property="comment_content"/>
+		<result column="score" property="comment_score"/>
 	</resultMap>
  	
  	<select id="queryAppOrderByUser" parameterType="Map" resultMap="appOrder, orderCount">
@@ -125,12 +135,14 @@
  			o.*,
  			p.name as pname, p.cover_img,
  			s.name as sname,
- 			a.name as aname, a.phone as aphone, a.address
+ 			a.name as aname, a.phone as aphone, a.address,
+ 			c.id as cid, c.content, c.score
  		FROM
 			orders AS o
 			INNER JOIN product AS p ON p.id = o.product_id
 			INNER JOIN shop AS s ON s.id = o.shop_id
 			LEFT JOIN address AS a ON a.id = o.address_id
+			LEFT JOIN comment AS c ON c.order_id = o.id
 		<if test="user_id != null">
 			WHERE o.user_id = #{user_id}			
 		</if>

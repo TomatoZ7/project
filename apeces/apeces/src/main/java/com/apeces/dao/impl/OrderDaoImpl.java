@@ -17,8 +17,8 @@ public class OrderDaoImpl implements OrderDao {
     SqlSessionTemplate ssTemplate;
 
 	@Override
-	public double count() {
-		return ssTemplate.getMapper(OrderDao.class).count();
+	public String count(Map<String, Object> param) {
+		return ssTemplate.getMapper(OrderDao.class).count(param);
 	}
 
 	@Override

@@ -1,6 +1,7 @@
 package com.cbh.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
@@ -11,5 +12,5 @@ public interface CollectDao {
 	
 	int insertCollect(Collect collect);
 	
-	int deleteCollect(int id);
+	int deleteCollect(Map<String, Object> params);
 }

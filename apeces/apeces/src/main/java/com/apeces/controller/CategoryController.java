@@ -46,7 +46,7 @@ public class CategoryController {
 		
 		Map<String, Object> res = new HashMap<String, Object>();
 		res.put("id", category.getId());
-		res.put("title", category.getCategory_name());
+		res.put("category_name", category.getCategory_name());
 		
 		return new Result(2000, "³É¹¦", res);
 	}

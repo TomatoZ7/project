@@ -1,6 +1,7 @@
 package com.cbh.dao.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ public class CollectDaoImpl implements CollectDao {
 	}
 	
 	@Override
-	public int deleteCollect(int id) {
-		return ssTemplate.getMapper(CollectDao.class).deleteCollect(id);
+	public int deleteCollect(Map<String, Object> params) {
+		return ssTemplate.getMapper(CollectDao.class).deleteCollect(params);
 	}
 }

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cbh.domain.User;
+import com.cbh.service.BorrowRecordService;
 import com.cbh.service.UserService;
 import com.cbh.utils.Result;
 
@@ -21,6 +22,8 @@ import com.cbh.utils.Result;
 public class apiUserController {
 	@Autowired
 	UserService userService;
+	@Autowired
+	BorrowRecordService borrowRecordService;
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public User login(@RequestBody User user) {
@@ -33,10 +36,18 @@ public class apiUserController {
 			return new User();
 		}
     	
+    	// 统计当前借阅数量
+    	int nowBorrow = borrowRecordService.getMyRecordNow(loginUser.getId());
+    	
+    	int borrowNum = 5 - nowBorrow;
+    	if (loginUser.getManager_id() > 0) {
+    		borrowNum = 10 - nowBorrow;
+    	}
+    	
+    	loginUser.setBorrow_num(borrowNum);
     	return loginUser;
 	}
 	
-	// TODO 注册验证码
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public User register(@RequestBody User user) {
 		// 加密密码
@@ -53,6 +64,7 @@ public class apiUserController {
 			return new User();
 		}
     	
+    	user.setBorrow_num(5);
     	return user;
 	}
 	

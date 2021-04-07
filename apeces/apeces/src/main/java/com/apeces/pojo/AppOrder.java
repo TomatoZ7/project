@@ -20,13 +20,18 @@ public class AppOrder {
 	private String address_phone;
 	private String address;
 	
+	private int comment_id;
+	private String comment_content;
+	private int comment_score;
+	
 	public AppOrder() {
 		super();
 	}
 
 	public AppOrder(int id, String order_no, int nums, double amount, int status, int product_id, String product_name,
-			String product_cover_img, int shop_id, String shop_name, String shop_phone, int address_id, String address_name,
-			String address_phone, String address) {
+			String product_cover_img, int shop_id, String shop_name, String shop_phone, int address_id,
+			String address_name, String address_phone, String address, int comment_id, String comment_content,
+			int comment_score) {
 		super();
 		this.id = id;
 		this.order_no = order_no;
@@ -38,11 +43,14 @@ public class AppOrder {
 		this.product_cover_img = product_cover_img;
 		this.shop_id = shop_id;
 		this.shop_name = shop_name;
-		this.setShop_phone(shop_phone);
+		this.shop_phone = shop_phone;
 		this.address_id = address_id;
 		this.address_name = address_name;
 		this.address_phone = address_phone;
 		this.address = address;
+		this.comment_id = comment_id;
+		this.comment_content = comment_content;
+		this.comment_score = comment_score;
 	}
 
 	public int getId() {
@@ -163,6 +171,30 @@ public class AppOrder {
 
 	public void setShop_phone(String shop_phone) {
 		this.shop_phone = shop_phone;
+	}
+
+	public int getComment_id() {
+		return comment_id;
+	}
+
+	public void setComment_id(int comment_id) {
+		this.comment_id = comment_id;
+	}
+
+	public String getComment_content() {
+		return comment_content;
+	}
+
+	public void setComment_content(String comment_content) {
+		this.comment_content = comment_content;
+	}
+
+	public int getComment_score() {
+		return comment_score;
+	}
+
+	public void setComment_score(int comment_score) {
+		this.comment_score = comment_score;
 	}
 	
 	

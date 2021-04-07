@@ -16,7 +16,11 @@
         <property name="prefix" value="/WEB-INF/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
-
+    
+    <!-- 解除servlet对静态资源文件访问的限制 -->  
+	<mvc:default-servlet-handler/>
+	<mvc:resources mapping="/dist/css/**" location="/dist/css/" />
+	<mvc:resources mapping="/dist/js/**" location="/dist/js/" />
     <mvc:annotation-driven/>
 
 </beans>

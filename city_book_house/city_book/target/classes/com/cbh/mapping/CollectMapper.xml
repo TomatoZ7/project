@@ -48,6 +48,6 @@
 	</insert>
 	
 	<delete id="deleteCollect">
-		DELETE FROM cb_collect WHERE id = #{id};
+		DELETE FROM cb_collect WHERE user_id = #{user_id} AND book_id = #{book_id};
 	</delete>
 </mapper>

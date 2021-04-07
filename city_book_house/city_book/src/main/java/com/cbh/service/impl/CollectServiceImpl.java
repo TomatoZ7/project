@@ -1,6 +1,7 @@
 package com.cbh.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,7 +26,7 @@ public class CollectServiceImpl implements CollectService {
 	}
 	
 	@Override
-	public int deleteCollect(int id) {
-		return collectDao.deleteCollect(id);
+	public int deleteCollect(Map<String, Object> params) {
+		return collectDao.deleteCollect(params);
 	}
 }

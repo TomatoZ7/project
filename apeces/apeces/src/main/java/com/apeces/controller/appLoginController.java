@@ -29,8 +29,14 @@ public class appLoginController {
         if (result == 0) {
         	return new Result(4003, "失败,该手机号已注册。", null);
         }
+        
+        User u = userService.login(user);
+        
+        Map<String, Object> res = new HashMap<String, Object>();
+		res.put("id", u.getId());
+		res.put("nick_name", u.getNickname());
 
-        return new Result(2000, "成功。", null);
+        return new Result(2000, "成功。", res);
 	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -46,6 +52,7 @@ public class appLoginController {
 
 		Map<String, Object> res = new HashMap<String, Object>();
 		res.put("id", u.getId());
+		res.put("nick_name", u.getNickname());
 		
         return new Result(2000, "成功。", res);
 	}

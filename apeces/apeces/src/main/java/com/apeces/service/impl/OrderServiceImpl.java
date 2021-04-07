@@ -17,8 +17,8 @@ public class OrderServiceImpl implements OrderService {
     OrderDao orderDao;
 	
 	@Override
-	public double count() {
-		return orderDao.count();
+	public String count(Map<String, Object> param) {
+		return orderDao.count(param);
 	}
 	
 	@Override

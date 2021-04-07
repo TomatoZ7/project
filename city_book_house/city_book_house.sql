@@ -11,7 +11,7 @@
  Target Server Version : 80012
  File Encoding         : 65001
 
- Date: 02/02/2021 17:55:17
+ Date: 24/02/2021 11:00:02
 */
 
 SET NAMES utf8mb4;
@@ -38,20 +38,20 @@ CREATE TABLE `cb_books`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `first_category_id`(`first_category_id`) USING BTREE,
   INDEX `second_category_id`(`second_category_id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 10 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 21 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of cb_books
 -- ----------------------------
-INSERT INTO `cb_books` VALUES (1, '墙上的集体记忆', '吴志菲', 357, 359, 10, 10, '9787512620353', 1, '1F A101', '一条标语，一段历史。在故乡一处显眼地方的同一堵墙壁上，就曾被写了又刷、刷了又写，年复一年，不知曾被写了多少条标语，其中每条标语对应的是一项历史，五味杂陈。让我们通过本书一起开始阅读标语，回到当年的历史现场，再从历史中感知今天、启迪未来吧！', '/upload/20210202/5bd26f10-4b4a-472e-879d-02da10dd2357_s6456960.jpg', '2021-02-02 17:03:35');
-INSERT INTO `cb_books` VALUES (2, '谁统治世界?', '[美]诺姆·乔姆斯基 著，钱镇/秘春茜 译', 357, 359, 20, 20, '9787569925203', 1, '', '自二战以来，美国就成为我们所在星球的老大，在很大程度上确定了全球性议题的条款。然而，美国的力量正在衰减，那么，未来的世界又如何变化呢？\r\n《谁统治世界？》以知识分子的视角对二战以来的国际形势进行了回顾与分析，指出自二战以来，虽然欧洲和亚洲在崛起，但美国仍旧设定着全球议程，从干涉古巴到近来干涉中国的发展，从酷刑纪录到对伊朗的制裁，详尽解说了美国的自由和人权的漂亮言辞经常与其实际行动相脱节。\r\n全书旁征博引，出色地分析了美国精英的行为如何越来越不受任何民主的限制，推行军事优先政策，深入分析了发生在伊拉克、阿富汗和巴勒斯坦与以色列的冲突，解读了美国是如何在这个日益混乱的星球上行使权力的，见解既出人意料、又鞭辟入里。', '/upload/20210202/f26fb5ba-c898-4b48-a6f0-6be56597273c_B8016523.jpg', '2021-02-02 17:11:32');
-INSERT INTO `cb_books` VALUES (3, '五代状元奇谈·五代状元谱', '周腊生', 357, 359, 10, 10, '9787800474330', 1, '', '这套书每书皆分上下两编。上编为状元的趣事轶闻，大体上都是对状元们的求学生涯、夺魁情状、宦海浮沉、秉性风范、奇遇怪癖、成败得失等诸多方面所作的生动描绘，同时还涉及当时社会生活的方方面面，构成了一幅幅封建时代不同时期的社会生活风情图，读来颇感有厚度，亦颇有兴趣。其描述不索隐行怪，不宣扬文人无行的东西，虽日“奇谈”，实很健康，品味甚高，潜移默化，寓教于乐，很有意义。\r\n下编为状元名录小传，既可了解每个状元的生平事迹，又可统观各代状元全貌，可以作工具书用，查阅起来十分方便，有极高的使用价值。', '/upload/20210202/5f2039e8-aec1-432a-afd7-832cc782167c_s803899.jpg', '2021-02-02 17:15:20');
-INSERT INTO `cb_books` VALUES (4, '冷战的静谧边界', '[美]尤利娅·科姆斯卡 著，宋世锋 译', 357, 358, 5, 5, '9787547418017', 1, '', '尤利娅·科姆斯卡带领读者去往波西米亚森林的西缘，这是欧洲*古老的分界线之一，20世纪50年代，民众开始在这里构建所谓的祈祷墙。祈祷墙是一系列新建的、目的明确的朝圣地点、瞭望塔和纪念碑，将长久以来即属于德国的森林和边界置于20世纪*旷日持久的冲突之中。科姆斯卡说明了民众是如何通过祈祷墙投身于新的政治和宗教版图的构建之中，并有所成就的。在这一过程中，她将西德静谧的森林边缘与铁幕沿线弥漫的悲剧氛围联系在了一起。', '/upload/20210202/d11a3c80-4222-4559-9627-e466c0c96933_s7825158.jpg', '2021-02-02 17:18:33');
-INSERT INTO `cb_books` VALUES (5, '中国古代火药火器史', '刘旭', 357, 358, 10, 10, '9787534730283', 1, '', '火药是中国古代的四大发明之一，把火药制成兵器用于军事，中国也走在世界各国前面。中国火药火器技术的西传，影响和推动了其他国家军事科技的发展。但明清以后，中国火药火器技术的研制和发展却陷入停滞，反而大大落后于欧美各国。\r\n本书作者在广泛查证史料、吸取国内外大量研究成果的基础上，以中国古代火药火器技术的发展为线索，探讨了各类火药、火器的产生时间、研制工艺、使用状况、理论著述，以及火药火器技术的西传东渐和兴盛衰落等重大问题，对有争论的学术论题提出了自己的观点，弥补了在我国相对薄弱的古代科学技术史、尤其是火药火器史研究上的不足。', '/upload/20210202/6b59df3d-6f61-4638-b464-a6da0499beee_s1589719.jpg', '2021-02-02 17:20:35');
+INSERT INTO `cb_books` VALUES (1, '墙上的集体记忆', '吴志菲', 357, 359, 10, 8, '9787512620353', 1, '1F A101', '一条标语，一段历史。在故乡一处显眼地方的同一堵墙壁上，就曾被写了又刷、刷了又写，年复一年，不知曾被写了多少条标语，其中每条标语对应的是一项历史，五味杂陈。让我们通过本书一起开始阅读标语，回到当年的历史现场，再从历史中感知今天、启迪未来吧！', '/upload/20210202/5bd26f10-4b4a-472e-879d-02da10dd2357_s6456960.jpg', '2021-02-02 17:03:35');
+INSERT INTO `cb_books` VALUES (2, '谁统治世界?', '[美]诺姆·乔姆斯基 著，钱镇/秘春茜 译', 357, 359, 20, 18, '9787569925203', 1, '', '自二战以来，美国就成为我们所在星球的老大，在很大程度上确定了全球性议题的条款。然而，美国的力量正在衰减，那么，未来的世界又如何变化呢？\r\n《谁统治世界？》以知识分子的视角对二战以来的国际形势进行了回顾与分析，指出自二战以来，虽然欧洲和亚洲在崛起，但美国仍旧设定着全球议程，从干涉古巴到近来干涉中国的发展，从酷刑纪录到对伊朗的制裁，详尽解说了美国的自由和人权的漂亮言辞经常与其实际行动相脱节。\r\n全书旁征博引，出色地分析了美国精英的行为如何越来越不受任何民主的限制，推行军事优先政策，深入分析了发生在伊拉克、阿富汗和巴勒斯坦与以色列的冲突，解读了美国是如何在这个日益混乱的星球上行使权力的，见解既出人意料、又鞭辟入里。', '/upload/20210202/f26fb5ba-c898-4b48-a6f0-6be56597273c_B8016523.jpg', '2021-02-02 17:11:32');
+INSERT INTO `cb_books` VALUES (3, '五代状元奇谈·五代状元谱', '周腊生', 357, 359, 10, 9, '9787800474330', 1, '', '这套书每书皆分上下两编。上编为状元的趣事轶闻，大体上都是对状元们的求学生涯、夺魁情状、宦海浮沉、秉性风范、奇遇怪癖、成败得失等诸多方面所作的生动描绘，同时还涉及当时社会生活的方方面面，构成了一幅幅封建时代不同时期的社会生活风情图，读来颇感有厚度，亦颇有兴趣。其描述不索隐行怪，不宣扬文人无行的东西，虽日“奇谈”，实很健康，品味甚高，潜移默化，寓教于乐，很有意义。\r\n下编为状元名录小传，既可了解每个状元的生平事迹，又可统观各代状元全貌，可以作工具书用，查阅起来十分方便，有极高的使用价值。', '/upload/20210202/5f2039e8-aec1-432a-afd7-832cc782167c_s803899.jpg', '2021-02-02 17:15:20');
+INSERT INTO `cb_books` VALUES (4, '冷战的静谧边界', '[美]尤利娅·科姆斯卡 著，宋世锋 译', 357, 358, 5, 4, '9787547418017', 1, '', '尤利娅·科姆斯卡带领读者去往波西米亚森林的西缘，这是欧洲*古老的分界线之一，20世纪50年代，民众开始在这里构建所谓的祈祷墙。祈祷墙是一系列新建的、目的明确的朝圣地点、瞭望塔和纪念碑，将长久以来即属于德国的森林和边界置于20世纪*旷日持久的冲突之中。科姆斯卡说明了民众是如何通过祈祷墙投身于新的政治和宗教版图的构建之中，并有所成就的。在这一过程中，她将西德静谧的森林边缘与铁幕沿线弥漫的悲剧氛围联系在了一起。', '/upload/20210202/d11a3c80-4222-4559-9627-e466c0c96933_s7825158.jpg', '2021-02-02 17:18:33');
+INSERT INTO `cb_books` VALUES (5, '中国古代火药火器史', '刘旭', 357, 358, 10, 8, '9787534730283', 1, '', '火药是中国古代的四大发明之一，把火药制成兵器用于军事，中国也走在世界各国前面。中国火药火器技术的西传，影响和推动了其他国家军事科技的发展。但明清以后，中国火药火器技术的研制和发展却陷入停滞，反而大大落后于欧美各国。\r\n本书作者在广泛查证史料、吸取国内外大量研究成果的基础上，以中国古代火药火器技术的发展为线索，探讨了各类火药、火器的产生时间、研制工艺、使用状况、理论著述，以及火药火器技术的西传东渐和兴盛衰落等重大问题，对有争论的学术论题提出了自己的观点，弥补了在我国相对薄弱的古代科学技术史、尤其是火药火器史研究上的不足。', '/upload/20210202/6b59df3d-6f61-4638-b464-a6da0499beee_s1589719.jpg', '2021-02-02 17:20:35');
 INSERT INTO `cb_books` VALUES (6, '1927-1945-海因里希.希姆莱与妻书信集', '[德]米卡尔·维尔特/卡特琳·希姆莱 著，陈伟 译', 357, 358, 10, 10, '9787532151585', 1, '', '2015年是是世界反法西斯战争胜利70年，也是中国人民抗日战争胜利70周年，《海因里希·希姆莱与妻书信集（1927—1945年）》是恰逢此时出版的一本具有重要意义的二战题材读物。　　海因里希·希姆莱外表斯文，内心极度变态，狂躁、凶残、邪恶、偏执，是德国二战纳粹阵营中仅次于希特勒的二号人物，在整个二战中起着举足轻重的作用。《海因里希·希姆莱与妻书信集（1927—1945年）》第1次将希姆莱人生中重要的19年间与妻子的玛佳的来往书信公诸于世，同时根据来往书信时间顺序，穿插着史料，严谨叙述了同时期德国法西斯阵营所处的政治社会环境和整个二战期间纳粹德军的发展演变过程。《海因里希·希姆莱与妻书信集（1927-1945）》由两部分构成，海因里希·希姆莱与妻书信往来，及史料叙述纳粹在欧洲犯下的滔天罪行。　　《海因里希·希姆莱与妻书信集（1927-1945）》有着非常多首次公布的史料，具有极高的学术价值。　　2014年一出版就在整个欧洲评论界引起极大反响，被认为是具有特别重要的历史价值。', '/upload/20210202/e9dcc6d1-10b9-4665-a802-097da775ffba_s6888165.jpg', '2021-02-02 17:21:56');
-INSERT INTO `cb_books` VALUES (7, '三国时期军事情报问题研究', '丰建泉', 357, 358, 16, 16, '9787564903756', 1, '', '《三国时期军事情报问题研究》以三国时期的斗争历史为背景，以军事情报问题为主线，从情报人物和情报战例两方面入手研究三国情报史，抓住了这一历史时期军事情报问题的精髓和要旨——即战略情报分析与研究。', '/upload/20210202/018f46dd-fdec-445a-9c96-cca59aaf7769_s5181575.jpg', '2021-02-02 17:23:31');
+INSERT INTO `cb_books` VALUES (7, '三国时期军事情报问题研究', '丰建泉', 357, 358, 16, 11, '9787564903756', 1, '', '《三国时期军事情报问题研究》以三国时期的斗争历史为背景，以军事情报问题为主线，从情报人物和情报战例两方面入手研究三国情报史，抓住了这一历史时期军事情报问题的精髓和要旨——即战略情报分析与研究。', '/upload/20210202/018f46dd-fdec-445a-9c96-cca59aaf7769_s5181575.jpg', '2021-02-02 17:23:31');
 INSERT INTO `cb_books` VALUES (8, '海上大征服', '白海军', 357, 358, 10, 10, '9787801868961', 1, '', '海权论之父阿尔弗雷德·塞耶。马汉的思想主旨是：任何大国，无论是维护国家利益还是称霸世界，首先必须要有一支强大的海上力量，只有拥有了制海权，才能实现国家战略。\r\n实际上，早在马汉的海权论确立之前，人类就已经在海上进行了数千年的争霸与征服，从古埃及到雅典，从罗马到美国，海上的争霸战与征服战从来没有停止过。\r\n一个事实是，在希波战争中，如果雅典没能赢得萨拉米海战，那么欧洲文明必将改写；\r\n第二个事实是，两次世界大战说明，英美如果未能控制海洋就无法打败德国；\r\n第三个事实是，每当世界发生危机，美国总统总是要问，“我们的航母在哪儿?”', '/upload/20210202/1c4df927-b38a-425f-98d6-004679c426cc_s3193687.jpg', '2021-02-02 17:24:45');
-INSERT INTO `cb_books` VALUES (9, '希特勒.永不消散的阴云?-德国历史学家之争', '哈贝马斯', 357, 358, 10, 10, '9787108036889', 1, '', '1980年代，在当时的联邦德国发生了一场著名的争论，后来被称为“德国历史学家之争”。争论围绕纳粹罪行的独特性、如何评价第三帝国在德国历史中的地位和作用、如何评价和书写历史等问题展开。参加争论的有著名哲学家哈贝马斯和德国一大批著名的历史学家，如恩斯特诺尔特等人。争论并不局限于学术圈和思想界，而是在德国的报纸、期刊等公共媒体上展开，因而在公众中产生了广泛的影响，并且在西方世界引起重视。参与论战的各方，虽然也有言辞激烈之处，但总体上而言，较好地遵守了学术讨论或者思想论争的基本规则，力争以逻辑力量阐明自己的观点，取得上风。 　　虽然这场争论没有明确的*终结论，但提出的问题是整个德国社会二战以后虽未明言却普遍关心的，参与争论的学者从历史和现实的多个角度进入，没有使用过多的学术语言，公众理解起来没有障碍，各方的观点也得到了充分的展开，各自的逻辑非常清晰，因此，对整个社会开放数十年以来的思想禁区，加深关于德意志第三帝国历史的思考，确认德国在历史和世界中的位置，有很大的推进作用。了解这场争论，中国的读者解读东亚的历史和自己的当代史，都很有借鉴作用。', '/upload/20210202/20e418d2-a267-48c4-a674-05152be16cee_s6687892.jpg', '2021-02-02 17:26:06');
+INSERT INTO `cb_books` VALUES (9, '希特勒.永不消散的阴云?-德国历史学家之争', '哈贝马斯', 357, 358, 10, 9, '9787108036889', 1, '', '1980年代，在当时的联邦德国发生了一场著名的争论，后来被称为“德国历史学家之争”。争论围绕纳粹罪行的独特性、如何评价第三帝国在德国历史中的地位和作用、如何评价和书写历史等问题展开。参加争论的有著名哲学家哈贝马斯和德国一大批著名的历史学家，如恩斯特诺尔特等人。争论并不局限于学术圈和思想界，而是在德国的报纸、期刊等公共媒体上展开，因而在公众中产生了广泛的影响，并且在西方世界引起重视。参与论战的各方，虽然也有言辞激烈之处，但总体上而言，较好地遵守了学术讨论或者思想论争的基本规则，力争以逻辑力量阐明自己的观点，取得上风。 　　虽然这场争论没有明确的*终结论，但提出的问题是整个德国社会二战以后虽未明言却普遍关心的，参与争论的学者从历史和现实的多个角度进入，没有使用过多的学术语言，公众理解起来没有障碍，各方的观点也得到了充分的展开，各自的逻辑非常清晰，因此，对整个社会开放数十年以来的思想禁区，加深关于德意志第三帝国历史的思考，确认德国在历史和世界中的位置，有很大的推进作用。了解这场争论，中国的读者解读东亚的历史和自己的当代史，都很有借鉴作用。', '/upload/20210202/20e418d2-a267-48c4-a674-05152be16cee_s6687892.jpg', '2021-02-02 17:26:06');
 INSERT INTO `cb_books` VALUES (10, '庄子选译', '王寅生', 354, 355, 50, 50, '9787500068648', 1, '', '《逍遥游》是《庄子·内篇》的首篇，是庄子的代表作，比较集中地反映了庄子追求绝对自由的人生观。《逍遥游》书全书分两大部分。**部分是总论，论证世间万物都是“有所待”而不自由的，自己追求的是“无所待”*高境界。第二部分通过一系列寓言故事，论证**部分提出的“至人无己”“神人无功”“圣人无名”的境界，以及通过“无为”达到这一境界的主张。全篇集中表现了庄子哲学思想的一个重要方面，即绝对自由。', '/upload/20210202/b6a59b81-785a-4a79-b669-db7c47ec871a_s1104563.jpg', '2021-02-02 17:28:08');
 INSERT INTO `cb_books` VALUES (11, '周易古礼研究', '兰甲云', 354, 355, 10, 10, '9787811133608', 1, '', '部对《周易》经传及易学史上有关古礼问题进行专门探讨的专著。考察了易学史上以礼释易的学术源流，研究了相关的以礼释易著作，对《周易》经传中蕴含的商周古礼进行了挖掘、分析和考证，阐述了《周易》所反映的当时社会的礼制情况，解决了许多卦爻辞阐释中存在的疑难问题。', '/upload/20210202/6ea46f04-b513-4522-9bf7-f2ecb42c386f_s3098604.jpg', '2021-02-02 17:29:31');
 INSERT INTO `cb_books` VALUES (12, '亚瑟·叔本华的经典传世之作:人生的智慧(全译本)', '［德］亚瑟·叔本华 著，余荃 ', 354, 355, 10, 10, '9787513926690', 1, '', '本书中“人生的智慧”完全是意识领域里的概念：所谓“人生的智慧”，指的是能够让我们幸福愉快地度过一生的一门艺术。在哲学上也可称之为“幸福论”。本书为人们如何才能拥有“幸福的存在”提供了指导和启发。', '/upload/20210202/50368145-0cc9-4247-aeac-afb8c2cd1f92_s8274374.jpg', '2021-02-02 17:31:17');
@@ -62,7 +62,7 @@ INSERT INTO `cb_books` VALUES (16, '远离迷茫,从学会赚钱开始', '曾鹏
 INSERT INTO `cb_books` VALUES (17, '好看的外表千篇一律,有趣的灵魂万里挑一\r\n', '魏素宣 著', 320, 322, 10, 10, '9787518063512', 1, '', '一辈子很短，灿如烟火，而我们都想做“不一样的烟火”，都想让有限的人生充实而有意义，*的途径就是成为一个有着丰富且有趣灵魂之人。\r\n一辈子的才情，并且引导我们如何塑造有趣的灵魂，相信在阅读本书后，你会有所启发，也能发现自我，快乐一生。', '/upload/20210202/4eadfdef-c1c2-483a-80bf-f9649506cd9f_s8187392.jpg', '2021-02-02 17:39:01');
 INSERT INTO `cb_books` VALUES (18, '温暖的荆棘:中英双语版', '毕淑敏[著]', 320, 322, 10, 10, '9787545530636', 1, '', '1、百万畅销书作家、心灵导师毕淑敏联手翻译大家朱虹，为年轻人奉上一次触动心灵的成长之旅！ 2、人生路上不会总铺满鲜花，偶尔也会荆棘密布。20则温暖心灵的故事 20剂治愈心灵的处方，献给所有在不安中眺望未来的年轻人。 3、故事里有你，也有我，作者以细腻而不失力度的笔触，讲述人生的孤独与困惑，迷惘与思考、痛楚与撕裂、沉沦与挣扎、无边的阴郁与微弱的光明……让年轻读者将心理垃圾转化为积极的能量，温暖心底冰冷的地方。愿你能在阅读中受到启迪和鼓舞，心中多一分安定和从容，勇敢面对困难，原谅生活所有的刁难。 4、全书四色精美装帧，内含专属定制主题插图，带来非凡的阅读享受。读真实故事，品纯正英语，解成长谜题。', '/upload/20210202/8474f55c-ee0d-4f04-acf9-4ae96b59ad80_s7671312.jpg', '2021-02-02 17:40:10');
 INSERT INTO `cb_books` VALUES (19, '网络困境与商务新规则', '[美]劳利·温厄姆[LaurieWindham', 290, 294, 22, 22, '9787508023168', 1, '', '本书阐述了网络商务的六个新规则，并详细论述了各种*佳战略与方法，其中包括：如何了解并满足顾客的电子商务要求、如何解决与现有商务战略的冲突、如何投资于适当技术、如何实现网络战略和网络运作的国际化等。', '/upload/20210202/df991fa8-074b-4e45-bd08-8f4eee5827f1_2031366.jpg', '2021-02-02 17:42:27');
-INSERT INTO `cb_books` VALUES (20, '唐诗现场', '章雪峰 著', 103, 106, 10, 10, '9787532955879', 1, '', '★一场发自唐朝的现场报道。每首唐诗都是一个案发现场，本书带你穿越回唐朝，亲历每个重大历史事件的关键节点\r\n★一部别样的欢乐唐史。发掘那些不为人知却又新奇有趣的历史细节，嬉笑怒骂间读懂历史沉浮、人生百味\r\n★一本严肃靠谱的历史著作。秉承“诗史互证”的史学研究方法，以诗证史，以史解诗。史料是严肃权威的，考据是严谨扎实的\r\n★搜狐、今日头条、简书、微信等自媒体百万读者共同推荐；《出版人》杂志、《中外书摘》杂志、中国新闻出版报、中国图书商报、中华读书报、长江日报、湖北日报、湖北经视等地面媒体大力推荐', '/upload/20210202/a0800b04-fe9d-4af8-8b9c-43740938201c_s7651264.jpg', '2021-02-02 17:44:07');
+INSERT INTO `cb_books` VALUES (20, '唐诗现场', '章雪峰 著', 103, 106, 10, 9, '9787532955879', 1, '', '★一场发自唐朝的现场报道。每首唐诗都是一个案发现场，本书带你穿越回唐朝，亲历每个重大历史事件的关键节点\r\n★一部别样的欢乐唐史。发掘那些不为人知却又新奇有趣的历史细节，嬉笑怒骂间读懂历史沉浮、人生百味\r\n★一本严肃靠谱的历史著作。秉承“诗史互证”的史学研究方法，以诗证史，以史解诗。史料是严肃权威的，考据是严谨扎实的\r\n★搜狐、今日头条、简书、微信等自媒体百万读者共同推荐；《出版人》杂志、《中外书摘》杂志、中国新闻出版报、中国图书商报、中华读书报、长江日报、湖北日报、湖北经视等地面媒体大力推荐', '/upload/20210202/a0800b04-fe9d-4af8-8b9c-43740938201c_s7651264.jpg', '2021-02-02 17:44:07');
 
 -- ----------------------------
 -- Table structure for cb_borrow_car
@@ -74,13 +74,21 @@ CREATE TABLE `cb_borrow_car`  (
   `book_id` int(11) NULL DEFAULT NULL,
   `create_time` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Fixed;
+) ENGINE = MyISAM AUTO_INCREMENT = 23 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Fixed;
 
 -- ----------------------------
 -- Records of cb_borrow_car
 -- ----------------------------
-INSERT INTO `cb_borrow_car` VALUES (4, 1, 7, '2021-01-27 17:09:43');
-INSERT INTO `cb_borrow_car` VALUES (3, 1, 7, '2021-01-26 17:38:06');
+INSERT INTO `cb_borrow_car` VALUES (19, 4, 5, '2021-02-19 06:33:58');
+INSERT INTO `cb_borrow_car` VALUES (18, 3, 20, '2021-02-15 20:40:23');
+INSERT INTO `cb_borrow_car` VALUES (17, 3, 5, '2021-02-15 17:40:44');
+INSERT INTO `cb_borrow_car` VALUES (14, 1, 4, NULL);
+INSERT INTO `cb_borrow_car` VALUES (13, 1, 3, NULL);
+INSERT INTO `cb_borrow_car` VALUES (8, 3, 2, '2021-02-15 01:58:53');
+INSERT INTO `cb_borrow_car` VALUES (15, 3, 3, '2021-02-15 17:40:29');
+INSERT INTO `cb_borrow_car` VALUES (16, 3, 4, '2021-02-15 17:40:36');
+INSERT INTO `cb_borrow_car` VALUES (20, 4, 9, '2021-02-19 06:34:27');
+INSERT INTO `cb_borrow_car` VALUES (22, 3, 2, '2021-02-20 03:36:46');
 
 -- ----------------------------
 -- Table structure for cb_borrow_record
@@ -96,7 +104,7 @@ CREATE TABLE `cb_borrow_record`  (
   `return_time` timestamp(0) NULL DEFAULT NULL COMMENT '归还时间',
   `create_time` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 11 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '借阅记录表' ROW_FORMAT = Fixed;
+) ENGINE = MyISAM AUTO_INCREMENT = 13 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '借阅记录表' ROW_FORMAT = Fixed;
 
 -- ----------------------------
 -- Records of cb_borrow_record
@@ -111,6 +119,8 @@ INSERT INTO `cb_borrow_record` VALUES (7, 1, 4, 4, '2021-01-22 14:26:35', '2021-
 INSERT INTO `cb_borrow_record` VALUES (8, 1, 5, 4, '2021-01-22 14:26:35', '2021-02-22 14:26:35', '2021-01-22 14:56:11', '2021-01-22 14:26:35');
 INSERT INTO `cb_borrow_record` VALUES (9, 1, 6, 4, '2021-01-22 14:26:35', '2021-02-22 14:26:35', '2021-01-22 14:56:11', '2021-01-22 14:26:35');
 INSERT INTO `cb_borrow_record` VALUES (10, 1, 2, 1, '2021-01-22 16:02:10', '2021-02-22 16:02:10', NULL, '2021-01-22 16:02:10');
+INSERT INTO `cb_borrow_record` VALUES (11, 1, 1, 1, '2021-02-24 00:26:52', '2021-03-24 00:26:52', NULL, '2021-02-24 00:26:52');
+INSERT INTO `cb_borrow_record` VALUES (12, 1, 1, 1, '2021-02-24 00:29:37', '2021-03-24 00:29:37', NULL, '2021-02-24 00:29:37');
 
 -- ----------------------------
 -- Table structure for cb_browse
@@ -122,7 +132,7 @@ CREATE TABLE `cb_browse`  (
   `book_id` int(11) NULL DEFAULT NULL,
   `time` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 9 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Fixed;
+) ENGINE = MyISAM AUTO_INCREMENT = 32 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Fixed;
 
 -- ----------------------------
 -- Records of cb_browse
@@ -131,6 +141,29 @@ INSERT INTO `cb_browse` VALUES (1, 1, 1, '2021-01-21 15:49:59');
 INSERT INTO `cb_browse` VALUES (2, 1, 2, '2021-01-21 15:50:04');
 INSERT INTO `cb_browse` VALUES (8, 0, 1, '2021-01-27 12:24:08');
 INSERT INTO `cb_browse` VALUES (7, 2, 1, '2021-01-21 16:39:13');
+INSERT INTO `cb_browse` VALUES (9, 2, 10, '2021-02-11 02:12:21');
+INSERT INTO `cb_browse` VALUES (10, 2, 4, '2021-02-11 02:19:39');
+INSERT INTO `cb_browse` VALUES (11, 2, 2, '2021-02-11 02:25:34');
+INSERT INTO `cb_browse` VALUES (12, 2, 3, '2021-02-11 02:25:49');
+INSERT INTO `cb_browse` VALUES (13, 2, 20, '2021-02-11 03:13:04');
+INSERT INTO `cb_browse` VALUES (14, 2, 9, '2021-02-11 03:40:10');
+INSERT INTO `cb_browse` VALUES (15, 2, 5, '2021-02-14 17:00:43');
+INSERT INTO `cb_browse` VALUES (16, 2, 6, '2021-02-14 17:07:56');
+INSERT INTO `cb_browse` VALUES (17, 3, 2, '2021-02-14 18:43:15');
+INSERT INTO `cb_browse` VALUES (18, 3, 1, '2021-02-14 18:44:54');
+INSERT INTO `cb_browse` VALUES (19, 3, 4, '2021-02-14 18:45:06');
+INSERT INTO `cb_browse` VALUES (20, 3, 6, '2021-02-14 18:49:17');
+INSERT INTO `cb_browse` VALUES (21, 3, 7, '2021-02-14 18:49:33');
+INSERT INTO `cb_browse` VALUES (22, 3, 20, '2021-02-14 21:03:47');
+INSERT INTO `cb_browse` VALUES (23, 0, 2, '2021-02-15 01:11:40');
+INSERT INTO `cb_browse` VALUES (24, 3, 8, '2021-02-15 02:17:04');
+INSERT INTO `cb_browse` VALUES (25, 3, 3, '2021-02-15 17:40:28');
+INSERT INTO `cb_browse` VALUES (26, 3, 5, '2021-02-15 17:40:42');
+INSERT INTO `cb_browse` VALUES (27, 1, 20, '2021-02-19 02:04:55');
+INSERT INTO `cb_browse` VALUES (28, 0, 5, '2021-02-19 06:32:50');
+INSERT INTO `cb_browse` VALUES (29, 4, 9, '2021-02-19 06:34:19');
+INSERT INTO `cb_browse` VALUES (30, 4, 3, '2021-02-19 06:36:06');
+INSERT INTO `cb_browse` VALUES (31, 1, 4, '2021-02-20 03:34:13');
 
 -- ----------------------------
 -- Table structure for cb_category
@@ -142,7 +175,7 @@ CREATE TABLE `cb_category`  (
   `pid` int(11) NOT NULL DEFAULT 0 COMMENT '0为一级分类',
   `create_time` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 55 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 375 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of cb_category
@@ -516,6 +549,10 @@ INSERT INTO `cb_category` VALUES (367, '天文学', 360, '2021-02-02 15:58:45');
 INSERT INTO `cb_category` VALUES (368, '物理学', 360, '2021-02-02 15:58:45');
 INSERT INTO `cb_category` VALUES (369, '自然科学类考试', 360, '2021-02-02 15:58:45');
 INSERT INTO `cb_category` VALUES (370, '总论', 360, '2021-02-02 15:58:45');
+INSERT INTO `cb_category` VALUES (371, 'test', 0, '2021-02-08 16:52:06');
+INSERT INTO `cb_category` VALUES (372, 'hello world', 371, '2021-02-08 16:52:06');
+INSERT INTO `cb_category` VALUES (373, 'test', 0, '2021-02-08 16:59:19');
+INSERT INTO `cb_category` VALUES (374, 'hello world', 373, '2021-02-08 16:59:19');
 
 -- ----------------------------
 -- Table structure for cb_collect
@@ -527,7 +564,7 @@ CREATE TABLE `cb_collect`  (
   `book_id` int(11) NOT NULL,
   `create_time` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 8 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Fixed;
+) ENGINE = MyISAM AUTO_INCREMENT = 18 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Fixed;
 
 -- ----------------------------
 -- Records of cb_collect
@@ -538,6 +575,12 @@ INSERT INTO `cb_collect` VALUES (3, 3, 1, '2021-01-14 17:32:49');
 INSERT INTO `cb_collect` VALUES (4, 4, 1, '2021-01-14 17:32:49');
 INSERT INTO `cb_collect` VALUES (5, 1, 2, '2021-01-14 17:32:49');
 INSERT INTO `cb_collect` VALUES (6, 2, 2, '2021-01-14 17:32:49');
+INSERT INTO `cb_collect` VALUES (10, 3, 4, '2021-02-14 18:45:11');
+INSERT INTO `cb_collect` VALUES (11, 3, 6, '2021-02-14 18:49:25');
+INSERT INTO `cb_collect` VALUES (12, 3, 7, '2021-02-14 18:49:40');
+INSERT INTO `cb_collect` VALUES (13, 3, 3, '2021-02-15 01:13:07');
+INSERT INTO `cb_collect` VALUES (14, 3, 0, '2021-02-15 01:13:19');
+INSERT INTO `cb_collect` VALUES (15, 3, 999, '2021-02-15 01:13:57');
 
 -- ----------------------------
 -- Table structure for cb_comment
@@ -551,7 +594,7 @@ CREATE TABLE `cb_comment`  (
   `score` tinyint(4) NULL DEFAULT NULL,
   `create_time` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 8 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 11 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of cb_comment
@@ -563,6 +606,9 @@ INSERT INTO `cb_comment` VALUES (4, 2, 2, '哒哒哒哒哒哒', 2, '2021-01-15 1
 INSERT INTO `cb_comment` VALUES (5, 2, 3, '少时诵诗书', 5, '2021-01-15 12:05:47');
 INSERT INTO `cb_comment` VALUES (6, 1, 2, '愿得一心人', 5, '2021-01-21 11:22:09');
 INSERT INTO `cb_comment` VALUES (7, 1, 2, 'put your hands up', 5, '2021-01-27 15:00:14');
+INSERT INTO `cb_comment` VALUES (8, 1, 2, 'put your hands up', 5, '2021-02-20 03:22:59');
+INSERT INTO `cb_comment` VALUES (9, 1, 3, 'gshhshsbsbb', 5, '2021-02-20 03:27:42');
+INSERT INTO `cb_comment` VALUES (10, 1, 4, 'ghvcc', 3, '2021-02-20 03:29:59');
 
 -- ----------------------------
 -- Table structure for cb_manager
@@ -570,9 +616,9 @@ INSERT INTO `cb_comment` VALUES (7, 1, 2, 'put your hands up', 5, '2021-01-27 15
 DROP TABLE IF EXISTS `cb_manager`;
 CREATE TABLE `cb_manager`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `account` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `account` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
-  `name` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `gender` tinyint(4) NOT NULL COMMENT '1男 2女 3未知',
   `phone` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '',
   `avatar` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
@@ -580,12 +626,13 @@ CREATE TABLE `cb_manager`  (
   `has_rights` tinyint(4) NOT NULL DEFAULT 2 COMMENT '1超管 2普管',
   `create_time` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 23 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '用户申请表' ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '用户申请表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of cb_manager
 -- ----------------------------
-INSERT INTO `cb_manager` VALUES (1, 'admin', 'e10adc3949ba59abbe56e057f20f883e', 'admin', 1, '15013515010', '/upload/20210202/03564479-c01e-419c-a533-cfc1163141d8_微信图片_20210128130219.jpg', 1, 1, '2021-02-02 17:48:02');
+INSERT INTO `cb_manager` VALUES (1, 'admin', 'e10adc3949ba59abbe56e057f20f883e', 'admin_all', 1, '15013515010', '/upload/20210224/069af69b-90f8-4f90-a3a3-29a4cef321c6_微信图片_20210128130219.jpg', 1, 1, '2021-02-02 17:48:02');
+INSERT INTO `cb_manager` VALUES (2, 'admin_dev', 'e10adc3949ba59abbe56e057f20f883e', 'admin for book manager', 1, '15017515011', NULL, 2, 2, '2021-02-24 10:22:24');
 
 -- ----------------------------
 -- Table structure for cb_user
@@ -604,12 +651,16 @@ CREATE TABLE `cb_user`  (
   `manager_id` int(11) NULL DEFAULT 0 COMMENT '管理员ID',
   `avatar` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '头像',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 15 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '读者表' ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '读者表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of cb_user
 -- ----------------------------
 INSERT INTO `cb_user` VALUES (1, 'eb6599e995174584ae5e6c72f11ea570', 'admin', 'admin', 1, '15013515010', 'e10adc3949ba59abbe56e057f20f883e', 1, 1, 1, NULL);
+INSERT INTO `cb_user` VALUES (2, '9c61df4321ed4de2acfeb507a8bb3cbd', 'KingJames', 'KingJames', 0, NULL, '134ca4ab939125796937682deae46f2c', 1, 1, 0, NULL);
+INSERT INTO `cb_user` VALUES (3, '3080f1e83c42468fb6f322f46e157e9c', 'book', 'book', 0, NULL, '821f03288846297c2cf43c34766a38f7', 1, 2, 0, NULL);
+INSERT INTO `cb_user` VALUES (4, '0583a007ebf54c1d94a27e9f19b8bbef', '123456', '123456', 0, NULL, '25f9e794323b453885f5181f1b624d0b', 1, 2, 0, NULL);
+INSERT INTO `cb_user` VALUES (5, '27c884c0fbb6469d995f72c9c0a3fa24', 'admin_dev', 'admin for book manager', 1, '15017515011', 'e10adc3949ba59abbe56e057f20f883e', 1, 1, 2, NULL);
 
 -- ----------------------------
 -- Table structure for cb_user_apply

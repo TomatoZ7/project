@@ -34,7 +34,7 @@
  			</if>
  		</where>
  		<if test="limit > 0">
- 			limit #{limit} offset{#offset}
+ 			limit #{limit} offset #{offset}
  		</if>
  		;
 			

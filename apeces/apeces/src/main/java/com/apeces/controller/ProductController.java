@@ -55,6 +55,7 @@ public class ProductController {
 		res.put("introduction", pro.getIntroduction());
 		res.put("detail_img", pro.getDetail_img());
 		res.put("shop_id", pro.getCategory_name());
+		res.put("nums", pro.getNums());
 		
 		return new Result(2000, "³É¹¦", res);
 	}

@@ -22,5 +22,4 @@
 	<mvc:resources mapping="/dist/css/**" location="/dist/css/" />
 	<mvc:resources mapping="/dist/js/**" location="/dist/js/" />
     <mvc:annotation-driven/>
-
 </beans>

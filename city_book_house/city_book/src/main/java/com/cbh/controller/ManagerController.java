@@ -122,10 +122,6 @@ public class ManagerController {
     
     @RequestMapping(value="/{id}",method = RequestMethod.PUT)
     public Result updateManager(@PathVariable int id, @RequestBody Manager paramManager){
-//    	Manager Manager = managerService.getManagerById(id);
-//    	Manager.setName(paramManager.getName());
-//    	Manager.setGender(paramManager.getGender());
-//    	Manager.setPhone(paramManager.getPhone());
     	paramManager.setId(id);
     	
         int result = managerService.updateManager(paramManager);

@@ -46,7 +46,7 @@
  	</insert>
  	
  	<!-- 取消借阅 -->
- 	<delete id="deleteById">
+ 	<delete id="deleteById" parameterType="Map">
  		DELETE FROM cb_borrow_car WHERE id = #{id};
  	</delete>
  	

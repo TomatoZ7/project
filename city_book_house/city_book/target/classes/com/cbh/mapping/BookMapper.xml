@@ -19,8 +19,8 @@
  		<result column="image" property="image"/>
  		<result column="create_time" property="create_time"/>
  		
- 		<result column="collectCount" property="collectCount"/>
- 		<result column="scoreAvg" property="scoreAvg"/>
+ 		<result column="collect_count" property="collect_count"/>
+ 		<result column="score" property="score"/>
  		<result column="readCount" property="readCount"/>
  		
  		<result column="is_collect" property="is_collect"/>
@@ -58,14 +58,11 @@
         	<if test="second_category_id != null">
                 and second_category_id = #{second_category_id}
             </if>
-        	<if test="book_name != null">
-                and book_name like "%"#{book_name}"%"
+        	<if test="keyword != null">
+                and (book_name like "%"#{keyword}"%" or author like "%"#{keyword}"%" or book_code like "%"#{keyword}"%")
             </if>
         	<if test="status != null">
                 and status = #{status}
-            </if>
-        	<if test="content != null">
-                and (author like "%"#{content}"%" or book_code like "%"#{content}"%")
             </if>
         </where>
         ORDER BY 
@@ -135,6 +132,10 @@
 			book DESC;
     </select>
     
+    <update id="offShelf">
+    	UPDATE cb_books set status = #{status} WHERE id = #{id};
+    </update>
+    
     
     <!-- ————————  以下为移动端api  —————— -->
     
@@ -144,18 +145,20 @@
     		book.*,
 			fc.id as fcid, fc.category_name as first_category_name, 
         	sc.id as scid, sc.category_name as second_category_name,
-        	COUNT(c.id) as count,
-        	COUNT(br.id) as readCount
+        	COUNT(c.id) as collect_count,
+        	COUNT(br.id) as readCount,
+        	AVG(m.score) as score
         FROM 
         	cb_books AS book
         	LEFT JOIN cb_category AS fc ON fc.id = book.first_category_id
         	LEFT JOIN cb_category AS sc ON sc.id = book.second_category_id
         	LEFT JOIN cb_collect AS c ON c.book_id = book.id
         	LEFT JOIN cb_borrow_record AS br ON br.book_id = book.id
+			LEFT JOIN cb_comment AS m ON m.book_id = book.id
         WHERE 
 			book.status = 1
 		GROUP BY book.id
-		ORDER BY count DESC
+		ORDER BY collect_count DESC
         LIMIT 10;
     </select>
     
@@ -165,12 +168,16 @@
     		book.*,
 			fc.id as fcid, fc.category_name as first_category_name, 
         	sc.id as scid, sc.category_name as second_category_name,
-        	COUNT(br.id) as readCount
+        	COUNT(br.id) as readCount,
+        	COUNT(c.id) as collect_count,
+        	AVG(m.score) as score
         FROM 
         	cb_books AS book
         	LEFT JOIN cb_category AS fc ON fc.id = book.first_category_id
         	LEFT JOIN cb_category AS sc ON sc.id = book.second_category_id
         	LEFT JOIN cb_borrow_record AS br ON br.book_id = book.id
+			LEFT JOIN cb_collect AS c ON c.book_id = book.id 
+			LEFT JOIN cb_comment AS m ON m.book_id = book.id
         WHERE 
 			book.status = 1
 		GROUP BY book.id
@@ -184,12 +191,16 @@
     		book.*,
 			fc.id as fcid, fc.category_name as first_category_name, 
         	sc.id as scid, sc.category_name as second_category_name,
-        	COUNT(br.id) as readCount
+        	COUNT(br.id) as readCount,
+        	COUNT(c.id) as collect_count,
+        	AVG(m.score) as score
         FROM 
         	cb_books AS book
         	LEFT JOIN cb_category AS fc ON fc.id = book.first_category_id
         	LEFT JOIN cb_category AS sc ON sc.id = book.second_category_id
         	LEFT JOIN cb_borrow_record AS br ON br.book_id = book.id
+			LEFT JOIN cb_collect AS c ON c.book_id = book.id 
+			LEFT JOIN cb_comment AS m ON m.book_id = book.id
         WHERE 
 			book.status = 1
 		GROUP BY book.id
@@ -262,8 +273,8 @@
     <select id="getBookDetail" resultMap="apibookdetail">
     	SELECT
 			book.*,
-			COUNT(c.id) as collectCount,
-			AVG(m.score) as scoreAvg,
+			COUNT(c.id) as collect_count,
+			AVG(m.score) as score,
 			uc.user_id as is_collect,
 			bc.user_id as is_borrow,
 			fc.category_name as first_cate,

@@ -18,6 +18,7 @@ public class User {
 	private List<BorrowRecord> borrow_record;
 	private List<Book> book;
 	private Integer collectCount;	//  ’≤ÿ¡ø
+	private Integer borrow_num;
 	
 	public User(int id, String code, String name, int gender, String phone, int status, int auth, String id_num,
 			String apply_time, String id_positive_img, String id_negative_img, int apply_status, String verify_remark) {
@@ -146,5 +147,13 @@ public class User {
 
 	public void setAvatar(String avatar) {
 		this.avatar = avatar;
+	}
+
+	public Integer getBorrow_num() {
+		return borrow_num;
+	}
+
+	public void setBorrow_num(Integer borrow_num) {
+		this.borrow_num = borrow_num;
 	}
 }

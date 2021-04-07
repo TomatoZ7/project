@@ -5,8 +5,12 @@
     version="2.5">
     <display-name>apeces</display-name>
     <welcome-file-list>
-        <welcome-file>index.jsp</welcome-file>
+        <welcome-file>index.html</welcome-file>
     </welcome-file-list>
+    <error-page>
+		<error-code>404</error-code>
+		<location>/index.html</location>
+	</error-page>
 
     <!-- needed for ContextLoaderListener -->
     <context-param>
@@ -35,7 +39,7 @@
     </servlet-mapping>
 
     <!-- 防止乱码 -->
-    <filter>
+    <!-- <filter>
         <filter-name>encodingFilter</filter-name>
         <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
         <init-param>
@@ -50,7 +54,7 @@
     <filter-mapping>
         <filter-name>encodingFilter</filter-name>
         <url-pattern>/*</url-pattern>
-    </filter-mapping>
+    </filter-mapping> -->
 
     <!-- 用来过滤rest中的方法，在隐藏域中的put/delete方式,注意 由于执行顺序原因  一定要放在编码过滤器下面，否则会出现编码问题 -->
     <filter>

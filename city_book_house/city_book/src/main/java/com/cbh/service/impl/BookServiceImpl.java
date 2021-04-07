@@ -53,6 +53,11 @@ public class BookServiceImpl implements BookService {
 		return bookDao.countBookByCategory();
 	}
 	
+	@Override
+	public int offShelf(Book book) {
+		return bookDao.offShelf(book);
+	}
+	
 	
 	/******  ÒÆ¶¯¶Ë  *******/
 	@Override

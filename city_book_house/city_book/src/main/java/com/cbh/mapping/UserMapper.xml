@@ -68,13 +68,16 @@
     	UPDATE cb_user 
     	<set>
     		<if test="gender != null">
-    			gender = #{gender}
+    			gender = #{gender},
     		</if>
     		<if test="phone != null">
-    			phone = #{phone}
+    			phone = #{phone},
     		</if>
     		<if test="manager_id != null">
-    			manager_id = #{manager_id}
+    			manager_id = #{manager_id},
+    		</if>
+    		<if test="auth != null">
+    			auth = #{auth}
     		</if>
     	</set>
     	WHERE id = #{id};

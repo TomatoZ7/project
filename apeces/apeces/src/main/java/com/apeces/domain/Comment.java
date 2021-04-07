@@ -14,6 +14,28 @@ public class Comment {
 	
 	private ProSimple product;
 	
+	private String user_nickname;
+	private String user_avatar;
+	
+	private String product_name;
+	private String product_img;
+	
+	public String getProduct_name() {
+		return product_name;
+	}
+
+	public void setProduct_name(String product_name) {
+		this.product_name = product_name;
+	}
+
+	public String getProduct_img() {
+		return product_img;
+	}
+
+	public void setProduct_img(String product_img) {
+		this.product_img = product_img;
+	}
+
 	public Comment() {
 		super();
 	}
@@ -101,5 +123,21 @@ public class Comment {
 
 	public void setProduct(ProSimple product) {
 		this.product = product;
+	}
+
+	public String getUser_avatar() {
+		return user_avatar;
+	}
+
+	public void setUser_avatar(String user_avatar) {
+		this.user_avatar = user_avatar;
+	}
+
+	public String getUser_nickname() {
+		return user_nickname;
+	}
+
+	public void setUser_nickname(String user_nickname) {
+		this.user_nickname = user_nickname;
 	}
 }
