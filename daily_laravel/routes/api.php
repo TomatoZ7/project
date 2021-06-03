@@ -14,12 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(['namespace' => 'App\Http\Controllers\Upload'], function () {
+
+    Route::post('upload', 'UploadController@upload');
+
 });
 
-Route::group(['namespace' => 'App\Http\Controllers'], function () {
+Route::group(['namespace' => 'App\Http\Controllers\Admin'], function () {
 
-    Route::post('upload', 'Upload\UploadController@upload');
+    Route::put('user/{id}/avatar', 'UserController@updateUserAvatar');
 
 });

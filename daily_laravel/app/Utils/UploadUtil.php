@@ -2,6 +2,7 @@
 
 namespace App\Utils;
 
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 
 class UploadUtil
@@ -47,5 +48,37 @@ class UploadUtil
         }
 
         return $relative_path;
+    }
+
+    /**
+     * 将临时文件copy到正式文件目录
+     */
+    public function moveTmpFileToOfficialFile($file_path, $module_name = 'official')
+    {
+        if (empty($file_path)) {
+            return '';
+        }
+
+        if (file_exists(storage_path('app/storage/') . $file_path)) {
+            return '';
+        }
+
+        if (strpos($file_path, 'upload/tmp') !== false) {
+            $date = date('Ymd');
+            $filename = substr($file_path, strrpos($file_path, '/') + 1);
+
+            if (!is_dir(storage_path('app/public/') . "{$module_name}")) {
+                mkdir(storage_path('app/public/') . "{$module_name}", 0777, true);
+            }
+
+            $file_tmp_path = storage_path('app/public/') . $file_path;
+            $target_path = storage_path('app/public/') . "upload/{$module_name}/{$date}/{$filename}";
+
+            File::copy($file_tmp_path, $target_path);
+
+            return "{$module_name}/{$date}/{$filename}";
+        }
+
+        return $file_path;
     }
 }
