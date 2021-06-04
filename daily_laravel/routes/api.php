@@ -20,7 +20,7 @@ Route::group(['namespace' => 'App\Http\Controllers\Upload'], function () {
 
 });
 
-Route::group(['namespace' => 'App\Http\Controllers\Download'], function () {
+Route::group(['namespace' => 'App\Http\Controllers\Download',  "middleware" => ['throttle:download']], function () {
 
     Route::get('download', 'DownloadController@download');
 
