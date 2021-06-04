@@ -20,6 +20,12 @@ Route::group(['namespace' => 'App\Http\Controllers\Upload'], function () {
 
 });
 
+Route::group(['namespace' => 'App\Http\Controllers\Download'], function () {
+
+    Route::get('download', 'DownloadController@download');
+
+});
+
 Route::group(['namespace' => 'App\Http\Controllers\Admin'], function () {
 
     Route::put('user/{id}/avatar', 'UserController@updateUserAvatar');

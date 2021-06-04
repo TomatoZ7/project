@@ -5,6 +5,12 @@ namespace App\Utils;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 
+/**
+ * Class UploadUtil
+ * @package App\Utils
+ *
+ * 软链接:ln -s xxx/daily_laravel/storage/app/public/upload xxx/daily_laravel/public/upload
+ */
 class UploadUtil
 {
     /**
