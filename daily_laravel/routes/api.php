@@ -31,3 +31,9 @@ Route::group(['namespace' => 'App\Http\Controllers\Admin'], function () {
     Route::put('user/{id}/avatar', 'UserController@updateUserAvatar');
 
 });
+
+Route::group(['namespace' => 'App\Http\Controllers\Test'], function () {
+
+    Route::get('test', 'TestController@test');
+
+});
