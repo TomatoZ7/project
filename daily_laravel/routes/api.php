@@ -44,4 +44,7 @@ Route::group(['namespace' => 'App\Http\Controllers\Test'], function () {
     // ES index
     Route::delete('test/es/index/{index_name}', 'ESApiTestController@deleteIndex');
     Route::post('test/es/index', 'ESApiTestController@createIndex');
+    // ES demo
+    Route::post('test/es/industry', 'ESApiTestController@genIndustryIndex');
+    Route::get('test/es/industry/{keyword}', 'ESApiTestController@getIndustry');
 });

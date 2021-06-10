@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Test;
 
+use App\Events\ESIndustryEvent;
 use App\Http\Controllers\Controller;
+use Elasticsearch\ClientBuilder;
 
 class TestController extends Controller
 {
@@ -11,8 +13,6 @@ class TestController extends Controller
      */
     public function test()
     {
-        // dd(env('ES_HOSTS'));
-
-        dd(app('es')->info());
+        event(new ESIndustryEvent());
     }
 }

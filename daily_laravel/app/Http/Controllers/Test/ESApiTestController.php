@@ -3,6 +3,8 @@
 
 namespace App\Http\Controllers\Test;
 
+use App\Events\ESIndustryEvent;
+use Elasticsearch\ClientBuilder;
 
 class ESApiTestController
 {
@@ -104,6 +106,44 @@ class ESApiTestController
         ];
 
         $response = app('es')->indices()->create($params);
+        dd($response);
+    }
+
+    /**
+     * 将 Industry 表中数据迁移至 ES
+     */
+    public function genIndustryIndex()
+    {
+        event(new ESIndustryEvent());
+    }
+
+    /**
+     * 搜索 industry
+     */
+    public function getIndustry($keyword)
+    {
+        $params = [
+            'index' => 'industry',
+            'body' => [
+//                'from' => 0,
+//                'size' => 20,
+                'query' => [
+                    'match' => [
+                        'name' => $keyword
+                    ],
+                ],
+                'highlight' => [
+                    'fields' => [
+                        'name' => [
+                            'pre_tags' => "<span style='color:red;'>",
+                            'post_tags' => "</span>"
+                        ]
+                    ]
+                ]
+            ]
+        ];
+
+        $response = app('es')->search($params);
         dd($response);
     }
 }
