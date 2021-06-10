@@ -18,6 +18,8 @@ Route::group(['namespace' => 'App\Http\Controllers\Upload'], function () {
 
     Route::post('upload', 'UploadController@upload');
 
+    Route::post('upload/base64', 'UploadController@uploadBase64');
+
 });
 
 Route::group(['namespace' => 'App\Http\Controllers\Download',  "middleware" => ['throttle:download']], function () {
