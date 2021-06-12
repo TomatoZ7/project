@@ -34,7 +34,7 @@ Route::group(['namespace' => 'App\Http\Controllers\Admin'], function () {
 
 });
 
-Route::group(['namespace' => 'App\Http\Controllers\Test'], function () {
+Route::group(['namespace' => 'App\Http\Controllers\Test', 'middleware' => ['log.request']], function () {
 
     Route::get('test', 'TestController@test');
 

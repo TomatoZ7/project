@@ -13,6 +13,6 @@ class TestController extends Controller
      */
     public function test()
     {
-        event(new ESIndustryEvent());
+        echo "ok123";
     }
 }
