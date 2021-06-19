@@ -18,9 +18,11 @@ Route::group(['namespace' => 'App\Http\Controllers\Upload'], function () {
 
     Route::post('upload', 'UploadController@upload');
 
+    Route::post('upload/base64', 'UploadController@uploadBase64');
+
 });
 
-Route::group(['namespace' => 'App\Http\Controllers\Download'], function () {
+Route::group(['namespace' => 'App\Http\Controllers\Download',  "middleware" => ['throttle:download']], function () {
 
     Route::get('download', 'DownloadController@download');
 
@@ -30,4 +32,21 @@ Route::group(['namespace' => 'App\Http\Controllers\Admin'], function () {
 
     Route::put('user/{id}/avatar', 'UserController@updateUserAvatar');
 
+});
+
+Route::group(['namespace' => 'App\Http\Controllers\Test', 'middleware' => ['log.request']], function () {
+
+    Route::get('test', 'TestController@test');
+
+    // ES
+    Route::post('test/es', 'ESApiTestController@createIndexDoc');
+    Route::get('test/es/{id}', 'ESApiTestController@getIndexDocumentById');
+    Route::get('test/es', 'ESApiTestController@getIndexDocument');
+    Route::delete('test/es/{id}', 'ESApiTestController@delete');
+    // ES index
+    Route::delete('test/es/index/{index_name}', 'ESApiTestController@deleteIndex');
+    Route::post('test/es/index', 'ESApiTestController@createIndex');
+    // ES demo
+    Route::post('test/es/industry', 'ESApiTestController@genIndustryIndex');
+    Route::get('test/es/industry/{keyword}', 'ESApiTestController@getIndustry');
 });

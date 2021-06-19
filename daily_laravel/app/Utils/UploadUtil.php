@@ -87,4 +87,22 @@ class UploadUtil
 
         return $file_path;
     }
+
+    /**
+     * @param $img
+     * @return false|string
+     */
+    public function getBase64Image($img)
+    {
+        try {
+
+            $img_content = file_get_contents($img);
+            $img_base64 = chunk_split(base64_encode($img_content));
+
+            return $img_base64;
+
+        }catch (\Exception $e) {
+            return false;
+        }
+    }
 }
