@@ -38,4 +38,26 @@ class RedisTestController
             echo $redis->get('key2');
         }
     }
+    
+    /**
+     * @params $skuid
+     * 
+     * 模拟秒杀
+     */
+    public function spike($skuid)
+    {
+        $redis = Redis::connection()->client();
+        
+        $sku_key = 'spike' . $skuid;
+        
+        // 1、商品是否处于秒杀阶段
+        if (!$redis->exists($sku_key)) {
+            return response()->json('the spike hasn\'t started yet');
+        }
+        
+        // 2、商品库存
+        if ($redis->get($sku_key)) {
+            return response()->json('the spike is over');
+        }
+    }
 }

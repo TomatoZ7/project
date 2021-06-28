@@ -13,6 +13,6 @@ class TestController extends Controller
      */
     public function test()
     {
-
+        echo "<h1>Hello Laravel</h1>";
     }
 }
