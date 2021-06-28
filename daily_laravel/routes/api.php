@@ -49,4 +49,8 @@ Route::group(['namespace' => 'App\Http\Controllers\Test', 'middleware' => ['log.
     // ES demo
     Route::post('test/es/industry', 'ESApiTestController@genIndustryIndex');
     Route::get('test/es/industry/{keyword}', 'ESApiTestController@getIndustry');
+
+    // Redis
+    Route::get('test/redis', 'RedisTestController@test');
+    Route::get('test/redis/transaction', 'RedisTestController@testTransaction');
 });
