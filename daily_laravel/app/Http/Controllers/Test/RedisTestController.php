@@ -60,7 +60,7 @@ class RedisTestController
         if (!$redis->exists($sku_key)) {
             return response()->json('秒杀还未开始！');
         }
-
+        
         // 3、判断用户是否重复秒杀
         if ($redis->sIsMember($user_key, $user_id)) {
             Log::info("{$user_id} 重复参与秒杀。");
@@ -78,7 +78,8 @@ class RedisTestController
 
             $redis->decr($sku_key);
             $redis->sAdd($user_key, $user_id);
-
+            
+            Log::info("{$user_id} 抢到商品。");
             return response()->json('恭喜你成功抢到商品！');
 
         }catch (\Exception $e) {

@@ -34,7 +34,7 @@ Route::group(['namespace' => 'App\Http\Controllers\Admin'], function () {
 
 });
 
-Route::group(['namespace' => 'App\Http\Controllers\Test', 'middleware' => ['log.request']], function () {
+Route::group(['namespace' => 'App\Http\Controllers\Test', 'middleware' => []], function () {
 
     Route::get('test', 'TestController@test');
 
@@ -53,4 +53,5 @@ Route::group(['namespace' => 'App\Http\Controllers\Test', 'middleware' => ['log.
     // Redis
     Route::get('test/redis', 'RedisTestController@test');
     Route::get('test/redis/transaction', 'RedisTestController@testTransaction');
+    Route::get('test/redis/spike/{skuid}', 'RedisTestController@spike');
 });
