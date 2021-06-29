@@ -54,3 +54,8 @@ Route::group(['namespace' => 'App\Http\Controllers\Test', 'middleware' => ['log.
     Route::get('test/redis', 'RedisTestController@test');
     Route::get('test/redis/transaction', 'RedisTestController@testTransaction');
 });
+
+Route::group(['namespace' => 'App\Http\Controllers\Demo'], function () {
+    Route::get('/posts/popular', 'PostController@popular');
+    Route::get('/posts/{post}', 'PostController@show');
+});
