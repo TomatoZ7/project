@@ -30,10 +30,14 @@ class PostController extends Controller
             $posts = Post::whereIn('id', $postIds)
                 ->select(['id', 'title', 'views'])
                 ->orderByRaw('field(`id`, ' . $idsStr . ')')
+                // ->whereIn('id', $postIds)
+                // ->orderBy('views')
                 ->get();
         } else {
             $posts = null;
         }
+        
+        dd($posts->toArray());
 
         return response()->json($posts);
     }

@@ -46,11 +46,18 @@ class MockViewPosts extends Command
         Redis::del('popular_posts');
         // 3、生成 100 篇测试文章
         Post::factory()->count(100)->create();
-        // 4、模拟对所有文章进行 10000 次随机访问
+        // 4、模拟对所有文章进行 10000 次随机访问（服务器扛不了这么高的并发，这里改手写）
+        // for ($i = 0; $i < 10; $i++) {
+        //     $postId = mt_rand(1, 100);
+        //     $response = Http::get('http://106.15.248.28:20080/api/posts/' . $postId);
+        //     $this->info($response->body());
+        // }
         for ($i = 0; $i < 10000; $i++) {
             $postId = mt_rand(1, 100);
-            $response = Http::get('http://zhz.laravel.com/posts/' . $postId);
-            $this->info($response->body());
+            $res = Post::query()->where('id', $postId)->increment('views');
+            if ($res) {
+                Redis::zincrby('popular_posts', 1, $postId);
+            }
         }
     }
 }
