@@ -59,4 +59,5 @@ Route::group(['namespace' => 'App\Http\Controllers\Test', 'middleware' => []], f
 Route::group(['namespace' => 'App\Http\Controllers\Demo'], function () {
     Route::get('/posts/popular', 'PostController@popular');
     Route::get('/posts/{post}', 'PostController@show');
+    Route::get('/posts/queue/{id}', 'PostController@showOfQueue');
 });
