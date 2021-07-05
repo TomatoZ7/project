@@ -42,7 +42,17 @@ class MockTtlDirectSend extends Command
     {
         $connection = new AMQPStreamConnection('localhost', 5672, 'guest', 'guest');
         $channel = $connection->channel();
-        
-        $channel->queue_declare('ttl_queue', false, false, false, false);
+
+        $channel->queue_declare('ttl_queue', false, false, false, false, false, ['x-message-ttl' => 10]);
+
+        $data = "Hello ttl";
+        $msg = new AMQPMessage($data);
+
+        $channel->basic_publish($msg, '', 'ttl_queue');
+
+        echo " [x] Send ttl message";
+
+        $channel->close();
+        $connection->close();
     }
 }
