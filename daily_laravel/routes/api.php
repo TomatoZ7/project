@@ -54,6 +54,10 @@ Route::group(['namespace' => 'App\Http\Controllers\Test', 'middleware' => []], f
     Route::get('test/redis', 'RedisTestController@test');
     Route::get('test/redis/transaction', 'RedisTestController@testTransaction');
     Route::get('test/redis/spike/{skuid}', 'RedisTestController@spike');
+    
+    // RabbitMQ
+    Route::get('test/mq_send', 'RabbitMQController@testSend');
+    Route::get('test/mq_recieve', 'RabbitMQController@testRecieve');
 });
 
 Route::group(['namespace' => 'App\Http\Controllers\Demo'], function () {
