@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;
+use PhpAmqpLib\Wire\AMQPTable;
 
 
 class MockTtlDirectSend extends Command
@@ -43,14 +44,16 @@ class MockTtlDirectSend extends Command
         $connection = new AMQPStreamConnection('localhost', 5672, 'guest', 'guest');
         $channel = $connection->channel();
 
-        $channel->queue_declare('ttl_queue', false, false, false, false, false, ['x-message-ttl' => 10]);
+        $args = new AMQPTable();
+        $args->set('x-message-ttl', 30000);
+        $channel->queue_declare('ttl_queue', false, true, false, false, false, $args);
 
         $data = "Hello ttl";
         $msg = new AMQPMessage($data);
 
         $channel->basic_publish($msg, '', 'ttl_queue');
 
-        echo " [x] Send ttl message";
+        echo " [x] Send ttl message \n";
 
         $channel->close();
         $connection->close();
