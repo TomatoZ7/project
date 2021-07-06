@@ -5,17 +5,15 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;
-use PhpAmqpLib\Wire\AMQPTable;
 
-
-class MockTtlDirectSend extends Command
+class MockDeadQueue extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'mock:ttl-direct';
+    protected $signature = 'mock:dead-queue';
 
     /**
      * The console command description.
@@ -43,21 +41,24 @@ class MockTtlDirectSend extends Command
     {
         $connection = new AMQPStreamConnection('localhost', 5672, 'guest', 'guest');
         $channel = $connection->channel();
-
-        $args = new AMQPTable();
-        $args->set('x-message-ttl', 30000);
-        // 死信队列
-        $args->set('x-dead-letter-exchange', 'dead_direct_exchange');
-        $args->set('x-dead-letter-routing-key', 'dead');
-        $channel->queue_declare('ttl_queue', false, true, false, false, false, $args);
-
-        $data = "Hello ttl";
-        $msg = new AMQPMessage($data);
-
-        $channel->basic_publish($msg, '', 'ttl_queue');
-
-        echo " [x] Send ttl message \n";
-
+        
+        $channel->exchange_declare('dead_direct_exchange', 'direct', false, false, false);
+        $channel->queue_declare("dead_direct_queue", false, true, false, false);
+        
+        $channel->queue_bind('dead_direct_queue', 'dead_direct_exchange', 'dead');
+        
+        echo ' [*] Waiting for dead message. To exit press CTRL+C', "\n";
+        
+        $callback = function($msg){
+            echo ' [x] ',$msg->delivery_info['routing_key'], ':', $msg->body, "\n";
+        };
+        
+        $channel->basic_consume('dead_direct_queue', '', false, true, false, false, $callback);
+        
+        while(count($channel->callbacks)) {
+            $channel->wait();
+        }
+        
         $channel->close();
         $connection->close();
     }
