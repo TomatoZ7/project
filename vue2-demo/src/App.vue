@@ -3,6 +3,8 @@
     <h2>{{$store.state.counter}}</h2>
     <button @click="addition">+</button>
     <button @click="subtraction">-</button>
+    <button @click="addNum(5)">+5</button>
+    <button @click="addNum(10)">+10</button>
 
     <hr />
 
@@ -37,6 +39,9 @@ export default {
     },
     subtraction() {
       this.$store.commit('subtraction')
+    },
+    addNum(num) {
+      this.$store.commit('addNum', num)
     }
   }
 }

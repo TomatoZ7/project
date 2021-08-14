@@ -15,6 +15,9 @@ const store = new Vuex.Store({
         },
         decrement(state) {
             state.counter--
+        },
+        addNum(state, num) {
+            state.counter += num
         }
     },
     actions: {
