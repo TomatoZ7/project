@@ -6,6 +6,9 @@
     <button @click="addNum(5)">+5</button>
     <button @click="addNum(10)">+10</button>
 
+    <h2>{{$store.state.author}}</h2>
+    <button @click="updateInfo">修改信息</button>
+
     <hr />
 
     <h2>Getters 相关信息</h2>
@@ -22,6 +25,7 @@
 
 <script>
 import Hello from './components/Hello/Hello'
+import {ADDNUM} from './store/mutations-types'
 
 export default {
   name: 'App',
@@ -41,7 +45,11 @@ export default {
       this.$store.commit('subtraction')
     },
     addNum(num) {
-      this.$store.commit('addNum', num)
+      this.$store.commit(ADDNUM, num)
+    },
+    updateInfo() {
+      // this.$store.commit('updateAuthor')
+      this.$store.dispatch('updateAuthorAction')
     }
   }
 }
