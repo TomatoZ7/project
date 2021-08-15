@@ -6,6 +6,30 @@ import { ADDNUM } from './mutations-types.js'
 Vue.use(Vuex)
 
 // 2. 创建对象
+const moduleA = {
+    state: {
+        'name': 'tz777-moduleA'
+    },
+    mutations: {
+        updateName(state, payload) {
+            state.name = payload
+        }
+    },
+    actions: {
+        // 此时的 context 仅表示 moduleA，commit 时只会 commit 到自己的 mutations 里
+        updateNameAction(context) {
+            setTimeout(() => {
+                context.commit('updateName', 'Tomato')
+            }, 1500)
+        }
+    },
+    getters: {
+        getRootAuthor(state, payload, rootState) {
+            return rootState.author
+        }
+    }
+}
+
 const store = new Vuex.Store({
     state: {
         counter: 100,
@@ -51,7 +75,7 @@ const store = new Vuex.Store({
         }
     },
     modules: {
-
+        a: moduleA
     }
 })
 

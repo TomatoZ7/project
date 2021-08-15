@@ -6,8 +6,17 @@
     <button @click="addNum(5)">+5</button>
     <button @click="addNum(10)">+10</button>
 
+    <hr />
+
     <h2>{{$store.state.author}}</h2>
     <button @click="updateInfo">修改信息</button>
+
+    <hr />
+
+    <h2>{{$store.state.a.name}}</h2>
+    <h2>{{$store.getters.getRootAuthor}}</h2>
+    <button @click="updateModuleName">修改名字</button>
+    <button @click="asyncUpdateModuleName">异步修改名字</button>
 
     <hr />
 
@@ -50,6 +59,12 @@ export default {
     updateInfo() {
       // this.$store.commit('updateAuthor')
       this.$store.dispatch('updateAuthorAction')
+    },
+    updateModuleName() {
+      this.$store.commit('updateName', 'Tomato')
+    },
+    asyncUpdateModuleName() {
+      this.$store.dispatch('updateNameAction')
     }
   }
 }
