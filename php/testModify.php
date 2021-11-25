@@ -20,7 +20,7 @@ try {
 
     /**
      * 循环读取每个单元格的数据
-     * row 是从 0 开始， column 是从 1 开始
+     * row 是从 1 开始， column 是从 0 开始
      */
     for ($row=1;$row<=$row_total;$row++) {
         $first_column = $sheet->getCellByColumnAndRow(0, $row)->getValue();
