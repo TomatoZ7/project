@@ -10,3 +10,9 @@ class TutorialItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
     pass
+
+
+class ITCastItem(scrapy.Item):
+    name = scrapy.Field()
+    title = scrapy.Field()
+    info = scrapy.Field()
