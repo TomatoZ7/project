@@ -1,5 +1,7 @@
 import os
 
 
-test_str = 'test:'
-print(test_str + os.path.basename(__file__))
+a = [1, 2, 3]
+b = []
+print(zip(a, b))
+print(list(zip(a, b)))
