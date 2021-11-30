@@ -18,12 +18,13 @@ class KugouTop500(scrapy.Item):
     singer = scrapy.Field()
     song = scrapy.Field()
     duration = scrapy.Field()
+    link_url = scrapy.Field()
 
 
 # 腾讯社招岗位
 class TencentPositionItem(scrapy.Item):
     name = scrapy.Field()
-    code = scrapy.Field()
+    group = scrapy.Field()
     address = scrapy.Field()
     type = scrapy.Field()
     pub_date = scrapy.Field()
