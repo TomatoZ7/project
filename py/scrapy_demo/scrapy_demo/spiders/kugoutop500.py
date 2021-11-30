@@ -24,7 +24,7 @@ class Kugoutop500Spider(scrapy.Spider):
 
             item['rank'] = rank
             item['song'] = song_elem.css('a::text').get().strip()
-            item['singer'] = song_elem.css('a>span::text').get().strip().split('-')[1]
+            item['singer'] = song_elem.css('a>span::text').get().split('-')[1].strip()
             item['duration'] = song_elem.css('span.pc_temp_time::text').get().strip()
             item['link_url'] = song_elem.css('a::attr("href")').extract_first()
 
