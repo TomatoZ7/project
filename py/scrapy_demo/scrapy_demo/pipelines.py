@@ -6,13 +6,14 @@
 
 # useful for handling different item types with a single interface
 import json
-
-from itemadapter import ItemAdapter
+import os
 
 
 class ScrapyDemoPipeline:
     def __init__(self):
-        self.f = open("kugou_top_500.json", "w")
+        path = os.path.split(os.path.realpath(__file__))[0]
+        self.f = open(path + "/data/kugou_top_500.json", "w")
+        self.f.write('[ \n')
 
     def open_spider(self, spider):
         pass
@@ -24,4 +25,5 @@ class ScrapyDemoPipeline:
         return item
 
     def close_spider(self, spider):
+        self.f.write(']')
         self.f.close()
