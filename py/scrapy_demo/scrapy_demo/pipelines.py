@@ -8,6 +8,8 @@
 import json
 import os
 
+import scrapy
+
 
 class ScrapyDemoPipeline:
     def __init__(self):
@@ -27,3 +29,12 @@ class ScrapyDemoPipeline:
     def close_spider(self, spider):
         self.f.write(']')
         self.f.close()
+
+
+class DouyuVerticalRoomPipeline:
+    def get_media_requests(self, item, info):
+        image_link = item['image_link']
+        yield scrapy.Request(image_link)
+
+    def process_item(self, item, spider):
+        return item

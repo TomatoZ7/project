@@ -29,3 +29,9 @@ class TencentPositionItem(scrapy.Item):
     type = scrapy.Field()
     pub_date = scrapy.Field()
     detail_link = scrapy.Field()
+
+
+# 斗鱼主播
+class DouyuAnchorItem(scrapy.Item):
+    nick_name = scrapy.Field()
+    image_link = scrapy.Field()
