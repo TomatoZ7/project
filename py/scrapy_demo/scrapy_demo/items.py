@@ -35,3 +35,8 @@ class TencentPositionItem(scrapy.Item):
 class DouyuAnchorItem(scrapy.Item):
     nick_name = scrapy.Field()
     image_link = scrapy.Field()
+
+
+# 斗破章节
+class DoupoChapter(scrapy.Item):
+    content = scrapy.Field()

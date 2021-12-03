@@ -10,10 +10,11 @@ import os
 import scrapy
 from scrapy.pipelines.images import ImagesPipeline
 
+path = os.path.split(os.path.realpath(__file__))[0]
+
 
 class ScrapyDemoPipeline:
     def __init__(self):
-        path = os.path.split(os.path.realpath(__file__))[0]
         self.f = open(path + "/data/kugou_top_500.json", "w")
         self.f.write('[ \n')
 
@@ -38,3 +39,14 @@ class DouyuVerticalRoomPipeline(ImagesPipeline):
     def process_item(self, item, spider):
         print(item)
         return item
+
+
+class DoupoPipeline:
+    def __init__(self):
+        self.f = open(path + "/data/doupo.txt", "w+")
+
+    def process_item(self, item, spider):
+        self.f.write(item['content'] + '\n')
+
+    def close_spider(self, spider):
+        self.f.close()
