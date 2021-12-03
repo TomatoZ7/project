@@ -7,8 +7,8 @@
 # useful for handling different item types with a single interface
 import json
 import os
-
 import scrapy
+from scrapy.pipelines.images import ImagesPipeline
 
 
 class ScrapyDemoPipeline:
@@ -31,10 +31,10 @@ class ScrapyDemoPipeline:
         self.f.close()
 
 
-class DouyuVerticalRoomPipeline:
-    def get_media_requests(self, item, info):
-        image_link = item['image_link']
-        yield scrapy.Request(image_link)
-
+class DouyuVerticalRoomPipeline(ImagesPipeline):
+    # def get_media_requests(self, item, info):
+    #     image_link = item['image_link']
+    #     yield scrapy.Request(image_link)
     def process_item(self, item, spider):
+        print(item)
         return item

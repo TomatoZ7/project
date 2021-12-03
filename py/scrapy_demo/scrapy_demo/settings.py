@@ -1,3 +1,6 @@
+import os
+import random
+
 # Scrapy settings for scrapy_demo project
 #
 # For simplicity, this file contains only settings considered important or
@@ -6,12 +9,15 @@
 #     https://docs.scrapy.org/en/latest/topics/settings.html
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
-import random
+
+path = os.path.split(os.path.realpath(__file__))[0]
 
 BOT_NAME = 'scrapy_demo'
 
 SPIDER_MODULES = ['scrapy_demo.spiders']
 NEWSPIDER_MODULE = 'scrapy_demo.spiders'
+
+IMAGES_STORE = path + '/images/'
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 # USER_AGENT = 'scrapy_demo (+http://www.yourdomain.com)'
@@ -64,6 +70,7 @@ ROBOTSTXT_OBEY = True
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
    'scrapy_demo.pipelines.ScrapyDemoPipeline': 300,
+   'scrapy_demo.pipelines.DouyuVerticalRoomPipeline': 400,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
