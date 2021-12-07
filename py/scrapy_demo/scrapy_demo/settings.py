@@ -20,7 +20,8 @@ NEWSPIDER_MODULE = 'scrapy_demo.spiders'
 IMAGES_STORE = path + '/images/'
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-# USER_AGENT = 'scrapy_demo (+http://www.yourdomain.com)'
+# USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) ' \
+#              'Chrome/96.0.4664.55 Safari/537.36 '
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
@@ -56,9 +57,10 @@ ROBOTSTXT_OBEY = True
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
-# DOWNLOADER_MIDDLEWARES = {
-#    'scrapy_demo.middlewares.ScrapyDemoDownloaderMiddleware': 543,
-# }
+DOWNLOADER_MIDDLEWARES = {
+   # 'scrapy_demo.middlewares.ScrapyDemoDownloaderMiddleware': 543,
+   'scrapy_demo.middlewares.RandomUserAgentMiddleware': 543
+}
 
 # Enable or disable extensions
 # See https://docs.scrapy.org/en/latest/topics/extensions.html

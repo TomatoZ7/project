@@ -3,6 +3,7 @@
 # See documentation in:
 # https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
+import random
 from scrapy import signals
 
 # useful for handling different item types with a single interface
@@ -101,3 +102,15 @@ class ScrapyDemoDownloaderMiddleware:
 
     def spider_opened(self, spider):
         spider.logger.info('Spider opened: %s' % spider.name)
+
+
+class RandomUserAgentMiddleware():
+    def __init__(self):
+        self.user_agent = [
+            'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) '
+            'Chrome/96.0.4664.55 Safari/537.36',
+            'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.2 (KHTML, like Gecko) Chrome/22.0.1216.0 Safari/537.2'
+        ]
+
+    def process_request(self, request, spider):
+        request.headers['User-Agent'] = random.choice(self.user_agent)
