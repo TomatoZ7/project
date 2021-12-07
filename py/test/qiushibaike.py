@@ -52,7 +52,7 @@ def get_gender(class_name):
 
 
 if __name__ == '__main__':
-    urls = ['https://www.qiushibaike.com/text/page/{}/'.format(page) for page in range(1, 3)]
+    urls = ['https://www.qiushibaike.com/text/page/{}/'.format(page) for page in range(1, 5)]
 
     for url in urls:
         get_info(url)
