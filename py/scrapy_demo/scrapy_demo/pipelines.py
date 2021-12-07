@@ -50,3 +50,18 @@ class DoupoPipeline:
 
     def close_spider(self, spider):
         self.f.close()
+
+
+class QiushiPipeline:
+    def __init__(self):
+        self.f = open(path + "/data/qiushi.json", "w+")
+        self.f.write('[ \n')
+
+    def process_item(self, item, spider):
+        content = json.dumps(dict(item), ensure_ascii=False) + ',\n'
+        self.f.write(content)
+        return item
+
+    def close_spider(self, spider):
+        self.f.write(']')
+        self.f.close()

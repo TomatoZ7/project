@@ -40,3 +40,14 @@ class DouyuAnchorItem(scrapy.Item):
 # 斗破章节
 class DoupoChapter(scrapy.Item):
     content = scrapy.Field()
+
+
+# 糗事百科段子
+class QiushiItem(scrapy.Item):
+    name = scrapy.Field()
+    level = scrapy.Field()
+    gender = scrapy.Field()
+    content = scrapy.Field()
+    laugh_num = scrapy.Field()
+    comment_num = scrapy.Field()
+
