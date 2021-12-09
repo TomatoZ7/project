@@ -62,3 +62,13 @@ class DoubanBookItem(scrapy.Item):
     price = scrapy.Field()
     score = scrapy.Field()
     desc = scrapy.Field()
+
+
+# 起点小说
+class QidianNovelItem(scrapy.Item):
+    name = scrapy.Field()
+    author = scrapy.Field()
+    type = scrapy.Field()
+    sub_type = scrapy.Field()
+    finish_type = scrapy.Field()
+    desc = scrapy.Field()
