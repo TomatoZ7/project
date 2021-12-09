@@ -75,6 +75,7 @@ ITEM_PIPELINES = {
    'scrapy_demo.pipelines.DouyuVerticalRoomPipeline': 400,
    'scrapy_demo.pipelines.DoupoPipeline': 400,
    'scrapy_demo.pipelines.QiushiPipeline': 400,
+   'scrapy_demo.pipelines.DoubanBookTop250': 400
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)

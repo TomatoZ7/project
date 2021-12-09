@@ -51,3 +51,14 @@ class QiushiItem(scrapy.Item):
     laugh_num = scrapy.Field()
     comment_num = scrapy.Field()
 
+
+# 豆瓣书籍
+class DoubanBookItem(scrapy.Item):
+    name = scrapy.Field()
+    link = scrapy.Field()
+    author = scrapy.Field()
+    publisher = scrapy.Field()
+    publish_date = scrapy.Field()
+    price = scrapy.Field()
+    score = scrapy.Field()
+    desc = scrapy.Field()
