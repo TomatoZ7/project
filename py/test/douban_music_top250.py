@@ -2,8 +2,8 @@
 使用 Requests、Lxml、re 库，爬取豆瓣音乐 TOP250 的数据，并将数据存储到 MongoDB
 需要爬取的信息有：歌曲名、表演者、流派、发行时间、出版者和评分
 """
-import time
 
+import time
 import requests
 import re
 import pymongo
