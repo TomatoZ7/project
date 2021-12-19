@@ -33,7 +33,7 @@ def get_info(url):
             title = info.xpath('div/a[1]/text()')[0]
             content = info.xpath('div/p/text()')[0]
             # comment_num = info.xpath('div/div/a[2]/text()')[0]
-            like_num = info.xpath('/div/div/span[2]')
+            # like_num = info.xpath('/div/div/span[2]/text()')
             # rewards = info.xpath('div/div/span[3]/text()')
             # if len(rewards):
             #     reward_num = rewards[0]
