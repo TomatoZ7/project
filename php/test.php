@@ -1,3 +1,5 @@
 <?php
 
-echo 365 + 366 + 365;
+$data = null;
+
+var_dump(json_decode($data) ?? []);
