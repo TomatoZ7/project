@@ -2,16 +2,14 @@
 列表页爬取商品详情 URL,详情页爬取商品信息
 """
 
-import pymongo
 import requests
 import time
 from lxml import etree
+from MongoUtil import db_test
 
 # MongoDB
-client = pymongo.MongoClient(host='120.77.82.77', port=27017, username="tz7", password="tz7")  # 记得换
-db = client['test']
-commodity_url = db['commodity_url']
-commodity_info = db['commodity_info']
+db_commodity_url = db_test['commodity_url']
+db_commodity_info = db_test['commodity_info']
 
 # 请求头
 headers = {
@@ -22,13 +20,13 @@ headers = {
 
 
 # 获取商品 URL
-def get_links(channel, pages):
-    list_url = '{}pn{}'.format(channel, str(pages))
+def get_links(category_url, pages):
+    list_url = '{}pn{}'.format(category_url, str(pages))
 
     try:
 
         response = requests.get(list_url, headers=headers)
-        print(list_url + str(response.status_code))
+        print(list_url, str(response.status_code))
         time.sleep(2)
 
         selector = etree.HTML(response.text)
@@ -36,9 +34,9 @@ def get_links(channel, pages):
             infos = selector.xpath('//tr')
 
             for info in infos:
-                if info.xpath('td[2]/div/a/@href'):
+                if info.xpath('td[@class="t"]/div/a/@href'):
                     url = info.xpath('td[2]/div/a/@href')[0]
-                    commodity_url.insert_one({'url': url})
+                    db_commodity_url.insert_one({'url': url})
 
     except requests.exceptions.ConnectionError:
         pass
