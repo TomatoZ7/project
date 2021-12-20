@@ -4,7 +4,13 @@
 
 ## channel_extract.py
 
-用户爬取分类 URL
+爬取分类 URL
+
+## page_spider.py
+
+列表页爬取商品详情 URL,详情页爬取商品信息
+
+## main.py
 
 
 

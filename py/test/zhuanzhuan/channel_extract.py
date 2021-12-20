@@ -1,5 +1,5 @@
 """
-爬取商品分类 URL，把爬取的 URL 信息打印到屏幕上，过滤二手手机号的 URL，通过三引号存为字符串
+爬取商品分类 URL，把爬取的 URL 信息打印到屏幕上，过滤二手手机号的 URL
 """
 
 import requests
@@ -7,6 +7,8 @@ from lxml import etree
 
 host_url = 'http://cs.58.com'
 request_url = host_url + '/sale.shtml'
+
+channel_list = []
 
 
 def get_channel_urls(url):
@@ -17,8 +19,8 @@ def get_channel_urls(url):
     for info in infos:
         cate_urls = info.xpath('span/a/@href')
         for cate_url in cate_urls:
-            print(host_url + cate_url)
+            channel_list.append(host_url + cate_url)
 
 
-if __name__ == '__main__':
-    get_channel_urls(request_url)
+get_channel_urls(request_url)
+print(channel_list)
