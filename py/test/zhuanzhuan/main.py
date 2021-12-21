@@ -1,7 +1,7 @@
 import sys
 from multiprocessing import Pool
 from category_spider import get_category_info, db_category, request_url
-from page_spider import get_links, get_info, db_commodity_url, db_commodity_info
+from commodity_spider import get_links, get_info, db_commodity_url, db_commodity_info
 from MongoUtil import db_test
 
 
