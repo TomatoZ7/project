@@ -25,7 +25,7 @@ if __name__ == '__main__':
         category_urls.append(category.get('url'))
 
     # 多进程爬取每个分类下商品的URL
-    # pool.map(category_spider, category_urls)
+    pool.map(category_spider, category_urls)
 
     # 爬取商品信息
     all_commodity_urls = [item['url'] for item in db_commodity_url.find()]  # 所有商品URL
