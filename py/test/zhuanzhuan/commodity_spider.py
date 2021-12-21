@@ -21,6 +21,10 @@ headers = {
 
 # 获取商品 URL
 def get_links(category_url, pages):
+
+    if not category_url or pages:
+        return
+
     list_url = '{}pn{}'.format(category_url, str(pages))
 
     try:
@@ -36,7 +40,11 @@ def get_links(category_url, pages):
             for info in infos:
                 if info.xpath('td[@class="t"]/div/a/@href'):
                     url = info.xpath('td[2]/div/a/@href')[0]
-                    db_commodity_url.insert_one({'url': url})
+
+                    # 去重
+                    commodity_url = db_commodity_url.find_one({'url': url})
+                    if not commodity_url:
+                        db_commodity_url.insert_one({'url': url})
 
     except requests.exceptions.ConnectionError:
         pass
@@ -50,11 +58,11 @@ def get_info(url):
     try:
 
         # 标题
-        title = selector.xpath('//h1[@class="detail-title__name"]')[0]
+        title = selector.xpath('//h1[@class="detail-title__name"]/text()')[0].strip()
 
         # 价格
         if selector.xpath('//span[@class="infocard__container__item__main__text--price"]'):
-            price = selector.xpath('//span[@class="infocard__container__item__main__text--price"]')[0]
+            price = selector.xpath('//span[@class="infocard__container__item__main__text--price"]/text()')[0].strip()
         else:
             price = ''
 
@@ -75,8 +83,10 @@ def get_info(url):
             'url': url
         }
 
-        commodity_info.insert_one(info)
+        db_commodity_info.insert_one(info)
 
     except IndexError:
         print('get_links pass IndexError')
         pass
+
+# get_info('https://legoclick.58.com/jump?target=szqMUa3draOWUvYfXh-3pyOMmv6-s1E3PWcknWc1nWcOn1N1XaO1pZwVUT7bsyP6mHnOujc3syRBrADVPjTdPadBnH--sH7BmWcvnh7WPhFBuTD3PjNLn1b3PH03PHndPkDKPj9vnWTznWnznWb1PHnKnWNknTDzPHTkTH01P9DYnHEKnHmYnjTdnHbYrjc1rEDQTyQG0Lw_uyuYTHDKnEDKsHDKTHDYP1cLrj9QnWm1PWmLnj0LnHcKnTDKnEDYuHDkPvn1naY3mHw6sHEdPAEVmWRBriYkujK-nj0OuAELPj0KnHELnW03rjDzPWE3rjn1rjE1n9DQPj0zP193nHcvPjEvn1bOPj93TEDzPjTKPjDYTHD8nTDKsEDKTE7jUvPryjFcEbO5IAO5NRRyEYwgmN7M5HYKnHcQsWn1sW0dsWDkTHTKnTDKPakzPjTKXLYKnEDQnjTknjDOTHP6m10dmvN1sHRWPhDVPj66nzd6PymLsHw6njmvrH66nAmzmkDKnTDKTHTKnHT1rikQnjE1sjckPWDYTHTKUMR_UTD1njw6P10vm1TOmW6bPvRB&adact=3&link_abtest=PCFlowSupport_B&psid=129989991214964888956766293&entinfo=48620223229353_q&slot=1000019')

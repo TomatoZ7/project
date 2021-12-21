@@ -16,7 +16,7 @@ if __name__ == '__main__':
     pool = Pool(processes=4)
 
     # 爬取分类名称&URL
-    if db_category.count_documents({}):
+    if not db_category.count_documents({}):
         get_category_info(request_url)
 
     # 查询数据库拿到所有分类URL
@@ -25,11 +25,11 @@ if __name__ == '__main__':
         category_urls.append(category.get('url'))
 
     # 多进程爬取每个分类下商品的URL
-    pool.map(category_spider, category_urls)
+    # pool.map(category_spider, category_urls)
 
     # 爬取商品信息
-    # all_commodity_urls = [item['url'] for item in db_commodity_url.find()]  # 所有商品URL
-    # exist_commodity_urls = [item['url'] for item in db_commodity_info.find()]  # 已经爬取的商品URL
-    # rest_commodity_urls = set(all_commodity_urls) - set(exist_commodity_urls)  # 未爬取的商品URL
-    #
-    # pool.map(get_info, rest_commodity_urls)
+    all_commodity_urls = [item['url'] for item in db_commodity_url.find()]  # 所有商品URL
+    exist_commodity_urls = [item['url'] for item in db_commodity_info.find()]  # 已经爬取的商品URL
+    rest_commodity_urls = set(all_commodity_urls) - set(exist_commodity_urls)  # 未爬取的商品URL
+
+    pool.map(get_info, rest_commodity_urls)
