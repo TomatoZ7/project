@@ -72,3 +72,11 @@ class QidianNovelItem(scrapy.Item):
     sub_type = scrapy.Field()
     finish_type = scrapy.Field()
     desc = scrapy.Field()
+
+
+# 简书热门专题
+class JianshuTopic(scrapy.Item):
+    name = scrapy.Field()
+    desc = scrapy.Field()
+    article_num = scrapy.Field()
+    fan_num = scrapy.Field()
