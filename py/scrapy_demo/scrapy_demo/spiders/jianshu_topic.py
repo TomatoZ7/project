@@ -23,14 +23,17 @@ class JianshuTopicSpider(scrapy.Spider):
         infos = selector.xpath('//div[@class="col-xs-8"]')
 
         for info in infos:
-            name = info.xpath('div/a[1]/h4/text()').extract()[0]
-            desc = info.xpath('div/a[1]/p/text()').extract()[0]
-            article_num = info.xpath('div/div/a/text()').extract()[0]
-            fan_num = info.xpath('div/div/text()').extract()[0]
+            try:
+                name = info.xpath('div/a[1]/h4/text()').extract()[0]
+                desc = info.xpath('div/a[1]/p/text()').extract()[0]
+                article_num = info.xpath('div/div/a/text()').extract()[0]
+                fan_num = info.xpath('div/div/text()').extract()[0]
 
-            item['name'] = name
-            item['desc'] = desc
-            item['article_num'] = article_num
-            item['fan_num'] = fan_num
+                item['name'] = name
+                item['desc'] = desc
+                item['article_num'] = article_num
+                item['fan_num'] = fan_num
 
-            yield item
+                yield item
+            except IndexError:
+                pass
