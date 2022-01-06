@@ -1,5 +1,5 @@
 <?php
 
-$data = null;
+$flag = 1;
 
-var_dump(json_decode($data) ?? []);
+var_dump(['count' => $flag + 1]);
