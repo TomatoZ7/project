@@ -2,4 +2,4 @@
 
 $flag = 1;
 
-var_dump(['count' => $flag + 1]);
+echo bcdiv('105', '6.55957', 3);  // 16.007
