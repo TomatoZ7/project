@@ -1,7 +1,9 @@
 import requests
 from selenium import webdriver
 
-driver = webdriver.Chrome(executable_path=r'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome')
+options = webdriver.ChromeOptions()
+options.binary_location = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
+driver = webdriver.Chrome(executable_path=r'/Users/tz7/Tools/chromedriver_97', chrome_options=options)
 
 driver.maximize_window()
-driver.get('https://www.bilibili.com/')
+driver.get('https://www.baidu.com/')
