@@ -8,7 +8,7 @@ import os
 from bs4 import BeautifulSoup
 
 headers = {
-    'accept': 'text/html, appli cat ioil/xhtml+xml,appli cat ion/xml; q=0.9, image/webp,*/*; q=0.8',
+    'accept': 'text/html, appli cat ioil/xhtml+xml,appli cat ion/xml; q=0.9, image_process/webp,*/*; q=0.8',
     'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) '
                   'Chrome/96.0.4664.55 Safari/537.36 '
 }

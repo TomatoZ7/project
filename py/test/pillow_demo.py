@@ -17,18 +17,18 @@ test_image = os.path.join(data_path, 'Irelia.jpg')
 image = Image.open(test_image)
 
 # 存储图像并转换格式（jpg->png）
-# image.save(os.path.join(data_path, 'new_image.png'))
+# image_process.save(os.path.join(data_path, 'new_image.png'))
 # 显示指定图片格式
-# image.save(os.path.join(data_path, 'new_image.png'), 'PNG')
+# image_process.save(os.path.join(data_path, 'new_image.png'), 'PNG')
 
 # 调整图像大小
-# new_image = image.resize((400, 400))
-# print('原图像大小:', image.size)
+# new_image = image_process.resize((400, 400))
+# print('原图像大小:', image_process.size)
 # print('新图像大小:', new_image.size)
 
 # 按比例缩放
-# image.thumbnail((200, 200))
-# print(image.size)
+# image_process.thumbnail((200, 200))
+# print(image_process.size)
 
 # 图像裁剪
 # 定义要裁剪的边界框坐标
@@ -38,7 +38,7 @@ image = Image.open(test_image)
 # y2 = 320
 # bbox = (x1, y1, x2, y2)
 # 进行裁剪
-# cropped_image = image.crop(bbox)
+# cropped_image = image_process.crop(bbox)
 
 # 将图像粘贴在另一个图像上
 # # 载入另一张图像
@@ -46,7 +46,7 @@ image = Image.open(test_image)
 # # 改成合适的大小
 # watermark.thumbnail((200, 200))
 # # 复制图像
-# image_copy = image.copy()
+# image_copy = image_process.copy()
 # # 指定要粘贴的左上角坐标
 # position = ((image_copy.width - watermark.width), (image_copy.height - watermark.height))
 # # 进行粘贴
@@ -54,15 +54,15 @@ image = Image.open(test_image)
 
 # 图像旋转
 # 逆时针旋转 90°
-# image_rot_90 = image.rotate(16, expand=True)
+# image_rot_90 = image_process.rotate(16, expand=True)
 # 逆时针旋转 180°
-# image_rot_180 = image.rotate(180)
+# image_rot_180 = image_process.rotate(180)
 
 # 图像翻转
 # 左右互换
-# image_flip = image.transpose(Image.FLIP_LEFT_RIGHT)
+# image_flip = image_process.transpose(Image.FLIP_LEFT_RIGHT)
 # 上下互换
-# image_flip = image.transpose(Image.FLIP_TOP_BOTTOM)
+# image_flip = image_process.transpose(Image.FLIP_TOP_BOTTOM)
 
 # 在图像上绘图
 # # 产生一个有 4 个颜色 channels 的空白图像
