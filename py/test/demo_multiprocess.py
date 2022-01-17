@@ -1,3 +1,7 @@
+"""
+多进程 demo
+"""
+
 import multiprocessing
 import time
 import os

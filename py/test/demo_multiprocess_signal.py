@@ -1,3 +1,7 @@
+"""
+进程间通信
+"""
+
 import time
 import json
 import multiprocessing
