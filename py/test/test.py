@@ -9,20 +9,10 @@ from selenium import webdriver
 # driver.get('https://www.baidu.com/')
 import re
 
-string = "abcdfphp345pythony_py"
+string = "hellomypythonhispythonourpythonend"
 
-pattern1 = "p.*y"  # 贪婪模式
-res1 = re.search(pattern1, string)
-print(res1)  # <re.Match object; span=(5, 21), match='php345Pythony_py'>
-
-pattern2 = "p.*?y"
-res2 = re.search(pattern2, string, re.I)
-print(res2)  # <re.Match object; span=(5, 13), match='php345Py'>
-
-# pattern3 = "cd{3}"
-# res3 = re.search(pattern3, string)
-# print(res3)  # <re.Match object; span=(2, 6), match='cddd'>
-#
-# pattern4 = "cd{2,}"
-# res4 = re.search(pattern4, string)
-# print(res4)  # <re.Match object; span=(2, 6), match='cddd'>
+pattern = re.compile("python.")
+res1 = re.sub(pattern, "php", string)
+res2 = re.sub(pattern, "php", string, 2)
+print(res1)  # hellomyphpisphpurphpnd
+print(res2)  # hellomyphpisphpurpythonend
