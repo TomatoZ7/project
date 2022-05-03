@@ -8,7 +8,10 @@ import (
 func main() {
 	//method()
 	//methodPractice1()
-	methodOnAlias()
+	//methodOnAlias()
+	//pointerValue()
+	//methodSet1()
+	magic()
 }
 
 type TwoInts struct {
@@ -65,4 +68,93 @@ func methodOnAlias() {
 	fmt.Println("Full time now:", m.String())
 	// 调用myTime.first3Chars
 	fmt.Println("First 3 chars:", m.first3Chars())
+}
+
+//
+type B struct {
+	thing int
+}
+
+func (b *B) change() { b.thing = 1 }
+
+func (b B) write() string { return fmt.Sprint(b) }
+
+func pointerValue() {
+	var b1 B		// b1 是值
+	b1.change()
+	fmt.Println(b1.write())
+
+	b2 := new(B)	// b2 是指针
+	b2.change()
+	fmt.Println(b2.write())
+}
+
+//
+type List []int
+
+func (l List) Len() int { return len(l) }
+
+func (l *List) Append(val int) { *l = append(*l, val) }
+
+func methodSet1() {
+	// 值
+	var lst List
+	lst.Append(1)
+	fmt.Printf("%v (len: %d)", lst, lst.Len()) // [1] (len: 1)
+
+	// 指针
+	plst := new(List)
+	plst.Append(2)
+	fmt.Printf("%v (len: %d)", plst, plst.Len()) // &[2] (len: 1)
+}
+
+// multi extend
+type Camera struct{}
+
+func (c *Camera) TakeAPicture() string {
+	return "Click"
+}
+
+type Phone struct{}
+
+func (p *Phone) Call() string {
+	return "Ring Ring"
+}
+
+type CameraPhone struct {
+	Camera
+	Phone
+}
+
+func multiExtend() {
+	cp := new(CameraPhone)
+	fmt.Println("Our new CameraPhone exhibits multiple behaviors...")
+	fmt.Println("It exhibits behavior of a Camera: ", cp.TakeAPicture())
+	fmt.Println("It works like a Phone too: ", cp.Call())
+}
+
+// magic
+type Base struct{}
+
+func (Base) Magic() {
+	fmt.Println("base magic")
+}
+
+func (self Base) MoreMagic() {
+	self.Magic()
+	self.Magic()
+}
+
+type Voodoo struct{
+	Base
+}
+
+func (Voodoo) Magic() {
+	fmt.Println("voodoo magic")
+}
+
+func magic() {
+	v := new(Voodoo)
+	v.Magic()
+	v.MoreMagic()
 }
