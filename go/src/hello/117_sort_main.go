@@ -14,7 +14,7 @@ func ints() {
 	fmt.Printf("The sorted array is: %v\n", a)
 }
 
-func strings() {
+func strings1() {
 	data := []string{"monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"}
 	a := sort.StringArray(data)
 	sort.Sort(a)
@@ -68,6 +68,6 @@ func days() {
 
 func main() {
 	ints()
-	strings()
+	strings1()
 	days()
 }
