@@ -1,12 +1,14 @@
 package main
 
-const (
-	AvailableMemory = 10 << 20
+//const (
+//	AvailableMemory = 10 << 20
+//
+//	AverageMemoryPerRequest = 10 << 10
+//
+//	MAXREQS = AvailableMemory / AverageMemoryPerRequest
+//)
 
-	AverageMemoryPerRequest = 10 << 10
-
-	MAXREQS = AvailableMemory / AverageMemoryPerRequest
-)
+const MAXREQS = 1024
 
 var sem = make(chan int, MAXREQS)
 

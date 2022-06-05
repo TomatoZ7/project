@@ -63,6 +63,9 @@ func valuableFunc() {
 	showValue(o)
 	o = car{"BMW", "M3", 66500}
 	showValue(o)
+
+	v, ok := o.(valuable)
+	fmt.Println(v, ok)
 }
 
 
