@@ -5,9 +5,22 @@ import (
 	"math"
 )
 
-func main() {
-	var x, y = 3, 4
-	var f = math.Sqrt(float64(x*x + y*y))
-	z := uint(f)
-	fmt.Println(x, y, z)
+type Vertex struct{
+	X, Y float64
 }
+
+func main() {
+	v := Vertex{3, 4}
+	v.Scale(10)
+	fmt.Println(v.Abs())
+}
+
+func (v Vertex) Abs() float64 {
+	return math.Sqrt(v.X*v.X + v.Y*v.Y)
+}
+
+func (v Vertex) Scale(f float64) {
+	v.X *= f
+	v.Y *= f
+}
+
