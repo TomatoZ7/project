@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"hello/pack1"
+	"hello/guide/pack1"
 )
 
 func main() {

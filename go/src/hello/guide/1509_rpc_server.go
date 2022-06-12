@@ -1,7 +1,7 @@
 package main
 
 import (
-	"./rpc_objects"
+	rpc_objects2 "hello/guide/rpc_objects"
 	"log"
 	"net"
 	"net/http"
@@ -10,7 +10,7 @@ import (
 )
 
 func main() {
-	calc := new(rpc_objects.Args)
+	calc := new(rpc_objects2.Args)
 	_ = rpc.Register(calc)
 	rpc.HandleHTTP()
 	listener, e := net.Listen("tcp", "localhost:1234")

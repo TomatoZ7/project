@@ -1,14 +1,16 @@
 package main
 
-import "./sort"
+import (
+	sort2 "hello/guide/sort"
+)
 import "fmt"
 
 func ints() {
 	data := []int{74, 59, 238, -784, 9845, 959,905, 0, 0, 42, 7586, -5467984, 7586}
 	// conversion to type IntArray
-	a := sort.IntArray(data)
-	sort.Sort(a)
-	if !sort.IsSorted(a) {
+	a := sort2.IntArray(data)
+	sort2.Sort(a)
+	if !sort2.IsSorted(a) {
 		panic("sort fails")
 	}
 	fmt.Printf("The sorted array is: %v\n", a)
@@ -16,9 +18,9 @@ func ints() {
 
 func strings1() {
 	data := []string{"monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"}
-	a := sort.StringArray(data)
-	sort.Sort(a)
-	if !sort.IsSorted(a) {
+	a := sort2.StringArray(data)
+	sort2.Sort(a)
+	if !sort2.IsSorted(a) {
 		panic("sort fails")
 	}
 	fmt.Printf("The sorted array is: %v\n", a)
@@ -56,8 +58,8 @@ func days() {
 	Saturday := day{6, "SAT", "Saturday"}
 	data := []*day{&Tuesday, &Thursday, &Wednesday, &Sunday, &Monday, &Friday, &Saturday}
 	a := dayArray{data}
-	sort.Sort(&a)
-	if !sort.IsSorted(&a) {
+	sort2.Sort(&a)
+	if !sort2.IsSorted(&a) {
 		panic("sort fails")
 	}
 	for _, d := range data {

@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"hello/ext_parse"
+	"hello/guide/ext_parse"
 )
 
 func main() {

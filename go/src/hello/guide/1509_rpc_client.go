@@ -1,8 +1,8 @@
 package main
 
 import (
-	"./rpc_objects"
 	"fmt"
+	rpc_objects2 "hello/guide/rpc_objects"
 	"log"
 	"net/rpc"
 )
@@ -15,7 +15,7 @@ func main() {
 		log.Fatal("Error dialing", err)
 	}
 	// Synchronous call
-	args := &rpc_objects.Args{N: 7, M: 8}
+	args := &rpc_objects2.Args{N: 7, M: 8}
 	var reply int
 
 	// 同步
