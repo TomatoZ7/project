@@ -1,6 +1,9 @@
 package ch3
 
-import "bytes"
+import (
+	"bytes"
+	//"fmt"
+)
 
 func Comma(s string) string {
 	n := len(s)
@@ -22,11 +25,10 @@ func CommaByBuffer(s string) string {
 	var buf bytes.Buffer
 	b := []byte(s)
 	length := len(b)
-	for i := length-1; i >= 0; {
-		buf.Write(b[i-3:])
-		i -= 3
-		if i < 0 {
-
+	for i := 0; i < length; i++ {
+		buf.WriteByte(b[i])
+		if (length - i - 1) % 3 == 0 && i + 1 != length {
+			buf.WriteByte(',')
 		}
 	}
 	return buf.String()
