@@ -1,12 +1,10 @@
 package main
 
 import "fmt"
-import "./ch3"
+import "./ch4"
 
 func main()  {
-	fmt.Println("abc"[1:2])
-	//fmt.Println(ch3.Basename1("/a/b/c.jpg"))
-	//fmt.Println(ch3.Basename2("/a/b/c.jpg"))
-	fmt.Println(ch3.Form("peter", "repetr"))
-
+	s := []int{1,2,3,4,5,6,7,8,9,10}
+	ch4.Reserve(s)
+	fmt.Println(s)
 }
