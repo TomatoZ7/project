@@ -1,10 +1,11 @@
 package main
 
-import "fmt"
-import "./ch4"
+import (
+	"./ch4"
+	"fmt"
+)
 
 func main()  {
-	s := []int{1,2,3,4,5,6,7,8,9,10}
-	ch4.Reserve(s)
-	fmt.Println(s)
+	data := []int{1, 2, 3, 4, 5}
+	fmt.Println(ch4.Rotate(data, 4))
 }
