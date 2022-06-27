@@ -7,5 +7,5 @@ import (
 
 func main()  {
 	data := []int{1, 2, 3, 4, 5}
-	fmt.Println(ch4.Rotate(data, 4))
+	fmt.Println(ch4.RotateByCycle(data, 2))
 }

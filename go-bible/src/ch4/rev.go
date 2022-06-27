@@ -13,11 +13,15 @@ func ReverseByArr(arr *[5]int) {
 }
 
 // 通过1次循环旋转
-func RotateByCycle(s []int, times int) {
-
+func RotateByCycle(s []int, times int) []int {
+	tmp := len(s)-times
+	for i := 0; i < tmp; i++ {
+		s = append(s, s[i])
+	}
+	return s[tmp:]
 }
 
-func Rotate(s []int, times int) []int {
+func RotateByCycleRotate(s []int, times int) []int {
 	res := s[len(s)-times:]
 	res = append(res, s[:len(s)-times]...)
 	return res
