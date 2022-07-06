@@ -1,9 +1,9 @@
 package main
 
 import (
-	"./ch4"
+	"./ch5"
 )
 
 func main()  {
-	ch4.CharCount()
+	ch5.RunToposort()
 }
