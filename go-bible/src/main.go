@@ -2,8 +2,10 @@ package main
 
 import (
 	"./ch5"
+	"fmt"
 )
 
 func main()  {
-	ch5.RunToposort()
+	fmt.Println(ch5.Max(-11,-2,-3,-4))
+	fmt.Println(ch5.Max([]int{-11, -2, -3, -4}...))
 }
