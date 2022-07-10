@@ -1,11 +1,14 @@
 package main
 
 import (
-	"./ch5"
+	"./ch6"
 	"fmt"
 )
 
 func main()  {
-	fmt.Println(ch5.Max(-11,-2,-3,-4))
-	fmt.Println(ch5.Max([]int{-11, -2, -3, -4}...))
+	p := ch6.Point{X: 1, Y: 2}
+	q := ch6.Point{X: 4, Y: 5}
+	fmt.Println(ch6.Distance(p, q))
+	fmt.Println(p.Distance(q))
+	fmt.Println(q.Distance(p))
 }
