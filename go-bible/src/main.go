@@ -5,5 +5,5 @@ import (
 )
 
 func main()  {
-	ch7.SRRun()
+	ch7.LRRun()
 }
