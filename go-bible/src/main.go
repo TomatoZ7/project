@@ -5,5 +5,5 @@ import (
 )
 
 func main()  {
-	ch7.LRRun()
+	ch7.TempConvRun()
 }
