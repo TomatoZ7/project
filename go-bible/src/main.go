@@ -5,5 +5,5 @@ import (
 )
 
 func main()  {
-	ch7.TempConvRun()
+	ch7.SSRun()
 }

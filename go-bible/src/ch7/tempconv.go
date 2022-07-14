@@ -20,35 +20,37 @@ func (c Celsius) String() string {
 	return fmt.Sprintf("%g°C", c)
 }
 
-// *celsiusFlag 满足 flag.Value 接口
-type celsiusFlag struct {
-	Celsius
+type celsiusValue Celsius
+
+func (c *celsiusValue) String() string {
+	return fmt.Sprintf("%.2f°C", *c)
 }
 
-func (f *celsiusFlag) Set(s string) error {
+func (c *celsiusValue) Set(s string) error {
 	var unit string
 	var value float64
 	_, _ = fmt.Sscanf(s, "%f%s", &value, &unit)
 	switch unit {
 	case "C", "°C":
-		f.Celsius = Celsius(value)
+		*c = celsiusValue(value)
 		return nil
 	case "F", "°F":
-		f.Celsius = FToC(Fahrenheit(value))
+		*c = celsiusValue(FToC(Fahrenheit(value)))
 		return nil
 	}
 	return fmt.Errorf("invalid temperature %q", s)
 }
 
 func CelsiusFlag(name string, value Celsius, usage string) *Celsius {
-	f := celsiusFlag{value}
-	flag.CommandLine.Var(&f, name, usage)
-	return &f.Celsius
+	p := new(Celsius)
+	*p = value
+	flag.CommandLine.Var((*celsiusValue)(p), name, usage)
+	return p
 }
 
 func TempConvRun() {
-	var temp = CelsiusFlag("temp", 20.0, "温度")
+	temp := CelsiusFlag("temp", 36.7, "温度")
 
 	flag.Parse()
-	fmt.Println(*temp)
+	fmt.Printf("%T, %[1]v\n", temp)
 }
