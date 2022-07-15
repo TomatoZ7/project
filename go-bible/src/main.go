@@ -5,5 +5,5 @@ import (
 )
 
 func main() {
-	ch7.CURun()
+	ch7.IsPalindromeRun()
 }
