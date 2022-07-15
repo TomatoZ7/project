@@ -5,5 +5,5 @@ import (
 )
 
 func main() {
-	ch7.IsPalindromeRun()
+	ch7.Http1Run()
 }
