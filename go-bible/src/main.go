@@ -4,6 +4,6 @@ import (
 	"./ch7"
 )
 
-func main()  {
-	ch7.SSRun()
+func main() {
+	ch7.CURun()
 }
