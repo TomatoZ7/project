@@ -5,5 +5,5 @@ import (
 )
 
 func main() {
-	ch8.R1Run()
+	ch8.PIP3Run()
 }
