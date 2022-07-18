@@ -5,5 +5,5 @@ import (
 )
 
 func main() {
-	ch8.CWCRun()
+	ch8.NC4Run()
 }
