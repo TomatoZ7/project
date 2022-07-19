@@ -7,7 +7,7 @@ import (
 )
 
 func NC2Run() {
-	conn, err := net.Dial("tcp", "localhost:8005")
+	conn, err := net.Dial("tcp", "localhost:8040")
 	if err != nil {
 		log.Fatal(err)
 	}

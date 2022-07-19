@@ -1,9 +1,7 @@
 package main
 
-import (
-	"./ch8"
-)
+import "./ch8"
 
 func main() {
-	ch8.NC4Run()
+	ch8.NC2Run()
 }
