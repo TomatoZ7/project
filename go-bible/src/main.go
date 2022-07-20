@@ -5,5 +5,5 @@ import (
 )
 
 func main() {
-	ch8.Du3Run()
+	ch8.ChatRun()
 }

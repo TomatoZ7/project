@@ -8,7 +8,7 @@ import (
 )
 
 func NC3Run() {
-	conn, err := net.Dial("tcp", "localhost:8040")
+	conn, err := net.Dial("tcp", "localhost:8777")
 	if err != nil {
 		log.Fatal(err)
 	}
