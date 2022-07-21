@@ -1,9 +1,9 @@
 package main
 
 import (
-	"./ch8"
+	"./ch9"
 )
 
 func main() {
-	ch8.ChatRun()
+	ch9.Bank1Run()
 }
