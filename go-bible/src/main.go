@@ -5,5 +5,5 @@ import (
 )
 
 func main() {
-	ch9.Bank1Run()
+	ch9.P1Run()
 }
