@@ -1,9 +1,14 @@
 package main
 
 import (
-	"./ch9"
+	_ "./ch11/word2"
+	"fmt"
+	"time"
+	"unicode"
 )
 
 func main() {
-	ch9.Memo1Run()
+	fmt.Println(time.Now().UTC())
+	fmt.Println(unicode.ToLower('é'))
+	fmt.Println(unicode.ToLower('E'))
 }
