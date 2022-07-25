@@ -1,7 +1,19 @@
 package main
 
-import "./ch8"
+import (
+	"fmt"
+	"time"
+)
 
 func main() {
-	ch8.NC3Run()
+	ready := make(chan int)
+
+	go func() {
+		time.Sleep(5 * time.Second)
+
+		close(ready)
+	}()
+
+	res := <-ready
+	fmt.Println(res)
 }

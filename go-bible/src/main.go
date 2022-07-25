@@ -1,9 +1,9 @@
 package main
 
 import (
-	"./ch10"
+	"./ch9"
 )
 
 func main() {
-	ch10.JPEGRun()
+	ch9.Memo1Run()
 }

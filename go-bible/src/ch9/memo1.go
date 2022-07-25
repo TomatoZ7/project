@@ -1,11 +1,10 @@
 package ch9
 
-type Func func(key string) (interface{}, error)
-
-type result struct {
-	value interface{}
-	err error
-}
+import (
+	"fmt"
+	"log"
+	"time"
+)
 
 type Memo struct {
 	f Func
@@ -23,4 +22,16 @@ func (memo *Memo) Get(key string) (interface{}, error) {
 		memo.cache[key] = res
 	}
 	return res.value, res.err
+}
+
+func Memo1Run() {
+	m := New(httpGetBody)
+	for _, url := range urls {
+		start := time.Now()
+		value, err := m.Get(url)
+		if err != nil {
+			log.Print(err)
+		}
+		fmt.Printf("%s %s %d bytes\n", url, time.Since(start), len(value.([]byte)))
+	}
 }
