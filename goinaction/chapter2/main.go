@@ -4,6 +4,7 @@ import (
 	"log"
 	"os"
 
+	_ "./matchers"
 	"./search"
 )
 
