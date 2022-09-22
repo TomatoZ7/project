@@ -1,0 +1,18 @@
+syntax = "proto3";
+option go_package = "./goodsService";
+
+// 定义 RPC 服务
+service GoodService {
+    rpc AddGoods(AddGoodsReq) returns (AddGoodsRes);
+}
+
+message AddGoodsReq {
+    string title = 1;
+    double price = 2;
+    string content = 3;
+}
+
+message AddGoodsRes {
+    string message = 1;
+    bool success = 2;
+}
