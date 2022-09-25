@@ -1,27 +1,38 @@
 package main
 
 import (
+	"ProtocDemo/example"
 	"fmt"
-	"go-protobuf/proto/userService"
-	"google.golang.org/protobuf/proto"
+	"os"
+
+	"github.com/golang/protobuf/proto"
 )
 
 func main() {
-	fmt.Println("asd")
+	fmt.Println("Hello World. \n")
 
-	u := &userService.Userinfo{
-		Username: "rick",
-		Age: 20,
-		Hobby: []string{"eat", "sleep"},
+	msg_test := &example.Person{
+		Name: proto.String("Davie"),
+		Age:  proto.Int(18),
+		From: proto.String("China"),
 	}
-	fmt.Println(u)
 
-	// 序列化
-	data, _ := proto.Marshal(u)
-	fmt.Println(data)
+	//序列化
+	msgDataEncoding, err := proto.Marshal(msg_test)
+	if err != nil {
+		panic(err.Error())
+		return
+	}
 
-	// 反序列化
-	var user userService.Userinfo
-	proto.Unmarshal(data, &user)
-	fmt.Printf("%#v", user)
+	msgEntity := example.Person{}
+	err = proto.Unmarshal(msgDataEncoding, &msgEntity)
+	if err != nil {
+		fmt.Println(err.Error())
+		os.Exit(1)
+		return
+	}
+
+	fmt.Printf("姓名：%s\n\n", msgEntity.GetName())
+	fmt.Printf("年龄：%d\n\n", msgEntity.GetAge())
+	fmt.Printf("国籍：%s\n\n", msgEntity.GetFrom())
 }
