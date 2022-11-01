@@ -2,59 +2,53 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.mlab as mlab
 
-# X = [0, 1, 2, 3, 4, 5]
-# Y = [222, 42, 52, 212, 123, 111]
-#
+
+# x = np.array([1, 2, 3])
+# y = np.array([2, 3, 4])
+# # 生成画布对象
 # fig = plt.figure()
-# plt.bar(X, Y, 0.4, color="green")
-# plt.xlabel("X-axis")
-# plt.ylabel("Y-axis")
-# plt.title("bar chart")
+# # 添加绘图区域
+# ax = fig.add_axes([0.1, 0.1, 0.8, 0.8])
+# ax.plot(x, y)
+#
+# # 设置x轴标签
+# ax.set_xticks([0, 0.5, 1.5])
+# # 设置x轴刻度标签
+# ax.set_xticklabels(['', 'Left', 'Right'])
+# # 设置y轴刻度
+# ax.set_yticks([0, 1, 2, 3, 4])
+# # 设置 y 轴刻度标签
+# ax.set_yticklabels([0, -1, -2, -3, -4])
+#
+# ax.annotate()
 #
 # plt.show()
 
-# # 准备数据
-# data = [[30, 25, 50, 20],
-#         [40, 23, 51, 17],
-#         [35, 22, 45, 19]]
-# X = np.arange(4)
-# fig = plt.figure()
-# # 添加子图区域
-# ax = fig.add_axes([0, 0, 1, 1])
-#
-# ax.plot(X, np.exp(X))
-# ax.plot(X, X**2)
-#
-# # 绘制柱状图
-# ax.bar(X + 0.00, data[0], color='b', width=0.25)
-# ax.bar(X + 0.25, data[1], color='g', width=0.50)
-# ax.bar(X + 0.50, data[2], color='r', width=0.75)
-#
-# plt.show()
+# x = np.linspace(-3, 3, 50)
+# y1 = 2*x+1
+# y2 = x**2
 
-import math
-
-x = np.array([1, 2, 3])
-y = np.array([1.2, 2.4, 3.6])
-# 生成画布对象
+# 创建图像
 fig = plt.figure()
-# 添加绘图区域
-ax = fig.add_axes([0.1, 0.1, 0.8, 0.8])
-ax.plot(x, y)
 
-# 设置x轴标签
-ax.set_xticks([1, 2, 3])
-# 设置x轴刻度标签
-ax.set_xticklabels(['Left', 'Mid', 'Right'])
-# 设置y轴刻度
-ax.set_yticks([0, 1, 2, 3, 4])
-# 设置 y 轴刻度标签
-ax.set_yticklabels([0, -1, -2, -3, -4])
+# x = np.array([-350, -300, -250, -200, -150, -100, -50, 0, 50, 100, 150, 200, 250, 300])
+# y1 = np.array([6, 10, 4, 4, 15, 9, -5, 13, -2, 12, 3, 2, 15, -5])
+# y2 = np.array([9, -8, -3, 8, -8, 12, 0, -2, 11, -1, -6, 1, -3, 5])
 
+x = np.linspace(-350, 300, 300)
+y1 = np.random.randint(-350, 300, 300)
+y2 = np.random.randint(-350, 300, 300)
+
+plt.plot(x, y1)
+plt.plot(x, y2)
+plt.grid(True, linestyle="--")
+#
+# # 显示图片
 plt.show()
 
 # if __name__ == '__main__':
-#     X1 = np.arange(4)
-#     X2 = [1,2,3,50]
-#     X3 = np.array(X2)
-#     print(type(X1), type(X3))
+#     x = np.random.randint(-8, 16, [1, 14])
+#
+#     print(x)
+
+
