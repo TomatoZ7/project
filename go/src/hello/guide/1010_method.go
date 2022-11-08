@@ -52,7 +52,7 @@ func methodPractice1() {
 }
 
 func (e *employee) giveRaise(raise float32) float32 {
-	return e.salary * (1 + raise / 100)
+	return e.salary * (1 + raise/100)
 }
 
 // method on alias
@@ -82,11 +82,11 @@ func (b *B) change() { b.thing = 1 }
 func (b B) write() string { return fmt.Sprint(b) }
 
 func pointerValue() {
-	var b1 B		// b1 是值
+	var b1 B // b1 是值
 	b1.change()
 	fmt.Println(b1.write())
 
-	b2 := new(B)	// b2 是指针
+	b2 := new(B) // b2 是指针
 	b2.change()
 	fmt.Println(b2.write())
 }
@@ -147,7 +147,7 @@ func (self Base) MoreMagic() {
 	self.Magic()
 }
 
-type Voodoo struct{
+type Voodoo struct {
 	Base
 }
 

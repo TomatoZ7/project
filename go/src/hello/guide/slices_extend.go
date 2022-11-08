@@ -14,14 +14,14 @@ func sliceExtend() {
 	fmt.Println(slice1)
 
 	// 扩容
-	slice1 = slice1[0:len(slice1)+10]
+	slice1 = slice1[0 : len(slice1)+10]
 	fmt.Println(slice1)
 }
 
 func reslicing() {
 	s1 := make([]int, 0, 10)
 	for i := 0; i < cap(s1); i++ {
-		s1 = s1[0:i+1]
+		s1 = s1[0 : i+1]
 		s1[i] = i
 		fmt.Printf("the length of slice is %d\n", len(s1))
 	}

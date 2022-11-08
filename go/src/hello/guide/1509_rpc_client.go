@@ -10,7 +10,7 @@ import (
 const serverAddress = "localhost"
 
 func main() {
-	client, err := rpc.DialHTTP("tcp", serverAddress + ":1234")
+	client, err := rpc.DialHTTP("tcp", serverAddress+":1234")
 	if err != nil {
 		log.Fatal("Error dialing", err)
 	}

@@ -7,13 +7,13 @@ import (
 
 func longWait() {
 	fmt.Println("Beginning longWait()")
-	time.Sleep(5 * 1e9)	// sleep for 5 seconds
+	time.Sleep(5 * 1e9) // sleep for 5 seconds
 	fmt.Println("End of longWait()")
 }
 
 func shortWait() {
 	fmt.Println("Beginning shortWait()")
-	time.Sleep(2 * 1e9)	// sleep for 2 seconds
+	time.Sleep(2 * 1e9) // sleep for 2 seconds
 	fmt.Println("End of shortWait()")
 }
 

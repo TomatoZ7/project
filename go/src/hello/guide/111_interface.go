@@ -31,9 +31,9 @@ func interfaces() {
 
 // valuable
 type stockPosition struct {
-	ticker string
+	ticker     string
 	sharePrice float32
-	count float32
+	count      float32
 }
 
 func (s stockPosition) getValue() float32 {
@@ -41,7 +41,7 @@ func (s stockPosition) getValue() float32 {
 }
 
 type car struct {
-	make string
+	make  string
 	model string
 	price float32
 }
@@ -67,5 +67,3 @@ func valuableFunc() {
 	v, ok := o.(valuable)
 	fmt.Println(v, ok)
 }
-
-

@@ -27,7 +27,7 @@ func copyAppendSlice() {
 
 	n := copy(slTo, slFrom)
 	fmt.Println(slTo)
-	fmt.Printf("Copied %d elements\n", n)	// n == 3
+	fmt.Printf("Copied %d elements\n", n) // n == 3
 
 	sl3 := []int{1, 2, 3}
 	sl3 = append(sl3, 4, 5, 6)
@@ -37,7 +37,7 @@ func copyAppendSlice() {
 func AppendByte(slice []byte, data ...byte) []byte {
 	m := len(slice)
 	n := m + len(data)
-	if n > cap(slice) {		// if necessary, reallocate
+	if n > cap(slice) { // if necessary, reallocate
 		newSlice := make([]byte, (n+1)*2)
 		copy(newSlice, slice)
 		slice = newSlice
@@ -48,7 +48,7 @@ func AppendByte(slice []byte, data ...byte) []byte {
 }
 
 func Practice1(slice []int, factor int) []int {
-	newSlice := make([]int, len(slice) * factor, len(slice) * factor)
+	newSlice := make([]int, len(slice)*factor, len(slice)*factor)
 	copy(newSlice, slice)
 	slice = newSlice
 

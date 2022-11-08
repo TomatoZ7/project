@@ -79,7 +79,7 @@ func mapRange2() {
 	// Version B
 	items2 := make([]map[int]int, 5)
 	for _, item := range items2 {
-		item = make(map[int]int, 1)	// item is only a copy of the slice element
+		item = make(map[int]int, 1) // item is only a copy of the slice element
 		item[1] = 2
 	}
 	fmt.Printf("Version B: Value of items: %v\n", items2)
@@ -101,7 +101,7 @@ func sortMap() {
 	keys := make([]string, len(barVal))
 	i := 0
 	for k, _ := range barVal {
-		keys[i]	= k
+		keys[i] = k
 		i++
 	}
 	sort.Strings(keys)

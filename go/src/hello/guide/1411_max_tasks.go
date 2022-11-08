@@ -13,7 +13,7 @@ const MAXREQS = 1024
 var sem = make(chan int, MAXREQS)
 
 type Request struct {
-	a, b int
+	a, b   int
 	replyc chan int
 }
 

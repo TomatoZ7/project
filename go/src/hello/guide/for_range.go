@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-func main()	{
+func main() {
 	str2 := "Chinese: 日本語"
 	fmt.Println("index int(rune) rune    char bytes")
 	for index, rune := range str2 {

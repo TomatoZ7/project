@@ -15,10 +15,10 @@ func main() {
 func readInput() {
 	var (
 		firstName, lastName, s string
-		i int
-		f float32
-		input = "56.12 / 5212 / Go"
-		format = "%f / %d / %s"
+		i                      int
+		f                      float32
+		input                  = "56.12 / 5212 / Go"
+		format                 = "%f / %d / %s"
 	)
 
 	fmt.Println("Please enter your full name: ")
@@ -64,7 +64,9 @@ func switchInput() {
 	//}
 
 	switch input {
-	case "Philip\n", "Chris\n":		fmt.Printf("Welcome %s\n", input)
-	default:			fmt.Printf("You are not welcome here! GoodBye!")
+	case "Philip\n", "Chris\n":
+		fmt.Printf("Welcome %s\n", input)
+	default:
+		fmt.Printf("You are not welcome here! GoodBye!")
 	}
 }

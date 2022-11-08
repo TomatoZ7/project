@@ -21,10 +21,10 @@ func main() {
 	// 格式化时间
 	now := time.Now()
 	dateStr := fmt.Sprintf("%d-%d-%d %d:%d:%d", now.Year(), int(now.Month()), now.Day(), now.Hour(), now.Minute(), now.Second())
-	fmt.Println(dateStr)	// 2022-4-25 13:57:10
+	fmt.Println(dateStr) // 2022-4-25 13:57:10
 
 	dateStr1 := fmt.Sprintf("%02d-%02d-%02d %02d:%02d:%02d", now.Year(), int(now.Month()), now.Day(), now.Hour(), now.Minute(), now.Second())
-	fmt.Println(dateStr1)	// 2022-04-25 14:01:27
+	fmt.Println(dateStr1) // 2022-04-25 14:01:27
 
 	//fmt.Println(now.Format("2021/01/24 12:24:02"))
 	fmt.Println(now.Format("2006/01/02 15:04:05"))

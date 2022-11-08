@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-type Any1 interface {}
+type Any1 interface{}
 type EvalFunc func(Any1) (Any1, Any1)
 
 func BuildLazyEvaluator(evalFunc EvalFunc, initState Any1) func() Any1 {
@@ -16,7 +16,7 @@ func BuildLazyEvaluator(evalFunc EvalFunc, initState Any1) func() Any1 {
 		}
 	}
 	retFunc := func() Any1 {
-		return <- retValChan
+		return <-retValChan
 	}
 	go loopFunc()
 	return retFunc

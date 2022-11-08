@@ -6,7 +6,7 @@ import (
 import "fmt"
 
 func ints() {
-	data := []int{74, 59, 238, -784, 9845, 959,905, 0, 0, 42, 7586, -5467984, 7586}
+	data := []int{74, 59, 238, -784, 9845, 959, 905, 0, 0, 42, 7586, -5467984, 7586}
 	// conversion to type IntArray
 	a := sort2.IntArray(data)
 	sort2.Sort(a)
@@ -27,9 +27,9 @@ func strings1() {
 }
 
 type day struct {
-	num int
+	num       int
 	shortName string
-	longName string
+	longName  string
 }
 
 type dayArray struct {

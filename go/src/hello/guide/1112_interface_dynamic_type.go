@@ -15,7 +15,6 @@ func DuckDance(duck IDuck) {
 }
 
 type Bird struct {
-
 }
 
 func (b *Bird) Quack() {

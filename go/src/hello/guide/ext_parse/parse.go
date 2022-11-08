@@ -8,8 +8,8 @@ import (
 
 type ParseError struct {
 	Index int
-	Word string
-	Err error
+	Word  string
+	Err   error
 }
 
 func (e *ParseError) String() string {

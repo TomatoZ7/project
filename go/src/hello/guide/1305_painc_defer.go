@@ -25,5 +25,5 @@ func g(i int) {
 	}
 	defer fmt.Println("Defer in g", i)
 	fmt.Println("Printing in g", i)
-	g(i+1)
+	g(i + 1)
 }

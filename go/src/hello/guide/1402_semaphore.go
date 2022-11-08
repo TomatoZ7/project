@@ -1,6 +1,6 @@
 package main
 
-type Empty interface {}
+type Empty interface{}
 type semaphore chan Empty
 
 func (s semaphore) P(n int) {
@@ -12,8 +12,6 @@ func (s semaphore) P(n int) {
 
 func (s semaphore) V(n int) {
 	for i := 0; i < n; i++ {
-		<- s
+		<-s
 	}
 }
-
-

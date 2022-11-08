@@ -4,7 +4,7 @@ import "fmt"
 
 func main() {
 	var arr1 [6]int
-	var slice1 = arr1[2:5]	// item at index 5 not included
+	var slice1 = arr1[2:5] // item at index 5 not included
 
 	for i := 0; i < len(arr1); i++ {
 		arr1[i] = i

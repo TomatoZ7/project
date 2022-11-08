@@ -3,11 +3,12 @@ package main
 import "fmt"
 
 const (
-	WIDTH = 1920
+	WIDTH  = 1920
 	HEIGHT = 1080
 )
 
 type pixel int
+
 var screen [WIDTH][HEIGHT]pixel
 
 func main() {

@@ -14,7 +14,7 @@ func main() {
 	if err != nil {
 		// 由于目标计算机积极拒绝而无法创建连接
 		fmt.Println("Error dialing", err.Error())
-		return	// 终止程序
+		return // 终止程序
 	}
 	inputReader := bufio.NewReader(os.Stdin)
 	fmt.Println("First, what is your name?")

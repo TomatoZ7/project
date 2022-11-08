@@ -27,20 +27,20 @@ func (p *Person) backend() {
 
 // 设置 salary
 func (p *Person) SetSalary(sal float64) {
-	p.chF <- func () { p.salary = sal }
+	p.chF <- func() { p.salary = sal }
 }
 
 // 取回 salary
 func (p *Person) Salary() float64 {
 	fChan := make(chan float64)
-	p.chF <- func () { fChan <- p.salary }
+	p.chF <- func() { fChan <- p.salary }
 	return <-fChan
 }
 
 func (p *Person) String() string {
 	return "Person - name is: " + p.Name + " - salary is: " +
 
-	strconv.FormatFloat(p.Salary(), 'f', 2, 64)
+		strconv.FormatFloat(p.Salary(), 'f', 2, 64)
 }
 
 func main() {
