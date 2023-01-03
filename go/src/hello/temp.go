@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type Pet interface {
 	Name() string
@@ -24,16 +26,10 @@ func (dog Dog) Category() string {
 }
 
 func main() {
-
-	value2 := [...]int8{0, 1, 2, 3, 4, 5, 6}
-	switch value2[4] {
-	case 0, 1:
-		fmt.Println("0 or 1")
-	case 2, 3:
-		fmt.Println("2 or 3")
-	case 4, 5, 6:
-		fmt.Println("4 or 5 or 6")
-	}
+	defer fmt.Println("x")
+	defer fmt.Println("y")
+	defer fmt.Println("z")
+	fmt.Println("q")
 }
 
 func modify(param [3][]string) [3][]string {
