@@ -1,11 +1,19 @@
 package main
 
-import (
-	"github.com/google/uuid"
-	"github.com/sirupsen/logrus"
-)
+type Inter interface {
+	play()
+}
+
+type Stu struct {
+	Inter
+}
+
+// func (kk Stu) play() {
+// 	fmt.Println(kk.cxk + "play basketball")
+// }
 
 func main() {
-	logrus.Println("hello, go module mode")
-	logrus.Println(uuid.NewString())
+	var i Inter
+	i = Stu{}
+	println(i)
 }
